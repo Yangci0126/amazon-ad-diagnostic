@@ -24,14 +24,14 @@
 <body>
   <a class="skip-link" href="#analysis">跳到分析表格</a>
   <header class="topbar">
-    <a class="brand" href="./" aria-label="广告诊断台首页"><span class="brandmark" aria-hidden="true"><i></i><i></i><i></i></span><span>广告诊断台<span class="brand-sub">SP · 搜索词分析</span></span></a>
+    <a class="brand" href="./" aria-label="广告诊断台首页"><span class="brandmark" aria-hidden="true"><i></i><i></i><i></i></span><span>广告诊断台<span class="brand-sub">SP · 搜索词分析 · v1.1</span></span></a>
     <div class="header-actions"><span class="local-note"><span aria-hidden="true">◈</span> 数据仅在本机处理</span><button id="guideBtn" class="button quiet">使用说明</button><button id="settingsBtn" class="button">诊断设置</button><button id="uploadBtn" class="button primary"><span aria-hidden="true">＋</span> 导入报表</button></div>
     <input type="file" id="fileInput" accept=".xlsx" hidden>
   </header>
   <main>
-    <section class="intro"><div><h1>广告分析<span class="title-dot">.</span></h1><p id="fileMeta" class="muted">导入商品推广搜索词报告，开始分析。</p></div><div class="intro-actions"><span id="dataPill" class="pill demo">尚未导入</span><button id="demoBtn" class="button">体验示例数据</button><button id="clearBtn" class="button quiet" hidden>清除数据</button></div></section>
+    <section class="intro"><div><h1>广告分析<span class="title-dot">.</span></h1><p id="fileMeta" class="muted">导入 SC / VC 商品推广搜索词报告，开始分析。</p></div><div class="intro-actions"><span id="dataPill" class="pill demo">尚未导入</span><button id="demoBtn" class="button">体验示例数据</button><button id="clearBtn" class="button quiet" hidden>清除数据</button></div></section>
     <div id="notice" class="notice" role="status"><span>先导入报表，或使用示例数据熟悉界面。四项诊断阈值可随时调整。</span></div>
-    <section id="metrics" class="metrics" aria-label="报告指标"><article class="metric purple"><span>广告花费</span><strong>—</strong><small>当前业务范围</small></article><article class="metric green"><span>归因销售额</span><strong>—</strong><small>7 天归因口径</small></article><article class="metric yellow"><span>ACOS</span><strong>—</strong><small>花费 ÷ 销售额</small></article><article class="metric pink"><span>ROAS</span><strong>—</strong><small>销售额 ÷ 花费</small></article><article class="metric white"><span>订单 / 转化率</span><strong>—</strong><small>订单数 ÷ 点击量</small></article></section>
+    <section id="metrics" class="metrics" aria-label="报告指标"><article class="metric purple"><span>广告花费</span><strong>—</strong><small>当前业务范围</small></article><article class="metric green"><span>归因销售额</span><strong>—</strong><small>自动识别 7 / 14 天归因</small></article><article class="metric yellow"><span>ACOS</span><strong>—</strong><small>花费 ÷ 销售额</small></article><article class="metric pink"><span>ROAS</span><strong>—</strong><small>销售额 ÷ 花费</small></article><article class="metric white"><span>订单 / 转化率</span><strong>—</strong><small>订单数 ÷ 点击量</small></article></section>
     <section class="workspace" id="analysis" aria-labelledby="analysisTitle">
       <div class="workspace-heading"><div><h2 id="analysisTitle">搜索词分析</h2><p class="muted" id="scopeSummary">整体汇总 · 按商品诊断 · 来源可追溯</p></div><button id="exportBtn" class="button" disabled>↓ 导出分析</button></div>
       <div id="dimensionTabs" class="tabs" role="tablist" aria-label="分析维度"><button role="tab" aria-selected="true" data-dim="term">客户搜索词</button><button role="tab" aria-selected="false" data-dim="portfolio">广告组合</button><button role="tab" aria-selected="false" data-dim="campaign">广告活动</button><button role="tab" aria-selected="false" data-dim="adgroup">广告组</button><button role="tab" aria-selected="false" data-dim="target">投放</button></div>
@@ -49,7 +49,7 @@
   <dialog id="detailDialog" class="drawer"><div id="detailContent"></div></dialog>
   <dialog id="infoDialog" class="modal"><div class="dialog-heading"><h2 id="infoTitle"></h2><button type="button" class="icon-button" data-close aria-label="关闭">×</button></div><div id="infoContent" class="prose"></div><div class="dialog-footer"><button class="button" data-close>知道了</button></div></dialog>
   <div id="toast" class="toast" role="status" hidden></div>
-  <div id="dropOverlay" class="drop-overlay" hidden><div><span aria-hidden="true">↥</span><h2>松开即可导入报表</h2><p>支持固定格式的商品推广搜索词报告 .xlsx</p></div></div>
+  <div id="dropOverlay" class="drop-overlay" hidden><div><span aria-hidden="true">↥</span><h2>松开即可导入报表</h2><p>支持 SC / VC 中英文商品推广搜索词报告 .xlsx</p></div></div>
 <template id="third-party-license"><pre>JSZip is dual licensed. At your choice you may use it under the MIT license *or* the GPLv3
 license.
 
@@ -790,7 +790,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
 /* Pure, deterministic calculations. No network or UI side effects. */
 (function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.AdEngine=api;})(typeof globalThis!=='undefined'?globalThis:this,function(){
   'use strict';
-  const VERSION='1.0.0';
+  const VERSION='1.1.0';
   const REQUIRED={start:'开始日期',end:'结束日期',portfolio:'广告组合名称',currency:'货币',campaign:'广告活动名称',adgroup:'广告组名称',country:'国家/地区',target:'投放',match:'匹配类型',term:'客户搜索词',impressions:'展示量',clicks:'点击量',spend:'花费',sales:'7天总销售额',orders:'7天总订单数(#)',units:'7天总销售量(#)'};
   const OPTIONAL={skuUnits:'7天内广告SKU销售量(#)',otherUnits:'7天内其他SKU销售量(#)',skuSales:'7天内广告SKU销售额',otherSales:'7天内其他SKU销售额'};
   const NUMERIC=['impressions','clicks','spend','sales','orders','units','skuUnits','otherUnits','skuSales','otherSales'];
@@ -801,32 +801,52 @@ https://github.com/nodeca/pako/blob/main/LICENSE
   const key=(...x)=>JSON.stringify(x);
   const clean=x=>String(x??'').trim();
   const normalize=x=>clean(x).toLowerCase();
-  const header=x=>clean(x).replace(/\s/g,'').replace(/（/g,'(').replace(/）/g,')');
+  const header=x=>clean(x).replace(/[\s\uFEFF]/g,'').replace(/（/g,'(').replace(/）/g,')').toLowerCase();
+  const ALIASES={start:['开始日期','Start Date'],end:['结束日期','End Date'],date:['日期','Date'],portfolio:['广告组合名称','Portfolio name'],currency:['货币','Currency'],campaign:['广告活动名称','Campaign Name'],adgroup:['广告组名称','Ad Group Name'],country:['国家/地区','Country','Country/Region'],target:['投放','Targeting'],match:['匹配类型','Match Type'],term:['客户搜索词','Customer Search Term'],impressions:['展示量','Impressions'],clicks:['点击量','Clicks'],spend:['花费','Spend']};
+  function columnName(index){let s='';for(index++;index>0;index=Math.floor((index-1)/26))s=String.fromCharCode(65+(index-1)%26)+s;return s;}
+  function schema(rawHeaders){
+    const headers=(rawHeaders||[]).map(header),indices={},fieldSources={};
+    function find(k,names){const allowed=names.map(header),hits=headers.map((h,i)=>allowed.includes(h)?i:-1).filter(i=>i>=0);if(hits.length>1)throw new Error(`存在重复或含义相同的表头：${hits.map(i=>rawHeaders[i]).join('、')}。请保留一列。`);const i=hits[0]??-1;if(k){indices[k]=i;if(i>=0)fieldSources[k]={header:clean(rawHeaders[i]),column:columnName(i)};}return i;}
+    for(const [k,names] of Object.entries(ALIASES))find(k,names);
+    const periods=[7,14].map(days=>({days,fields:{sales:[`${days}天总销售额`,`${days} Day Total Sales`],orders:[`${days}天总订单数(#)`,`${days} Day Total Orders (#)`],units:[`${days}天总销售量(#)`,`${days} Day Total Units (#)`,`${days} Day Total Units Sold (#)`]}}));
+    const found=periods.filter(p=>Object.values(p.fields).some(names=>find(null,names)>=0));
+    if(found.length>1)throw new Error('同时发现 7 天与 14 天归因字段。请只保留同一归因周期的销售额、订单数和销量，避免混用。');
+    if(!found.length)throw new Error('未找到 7 天或 14 天的总销售额、总订单数及总销量字段。');
+    const {days,fields}=found[0];for(const [k,names] of Object.entries(fields))find(k,names);
+    const supplemental={skuUnits:[`${days}天内广告SKU销售量(#)`,`${days}天内广告ASIN销售量(#)`,`${days} Day Advertised SKU Units (#)`,`${days} Day Advertised ASIN Units (#)`],otherUnits:[`${days}天内其他SKU销售量(#)`,`${days}天内品牌光环ASIN销售量(#)`,`${days} Day Other SKU Units (#)`,`${days} Day Brand Halo ASIN Units (#)`],skuSales:[`${days}天内广告SKU销售额`,`${days}天内广告ASIN销售额`,`${days} Day Advertised SKU Sales`,`${days} Day Advertised ASIN Sales`],otherSales:[`${days}天内其他SKU销售额`,`${days}天内品牌光环ASIN销售额`,`${days} Day Other SKU Sales`,`${days} Day Brand Halo ASIN Sales`]};
+    for(const [k,names] of Object.entries(supplemental))find(k,names);
+    let dateMode='range';
+    if(indices.start<0&&indices.end<0&&indices.date>=0){indices.start=indices.date;indices.end=indices.date;fieldSources.start=fieldSources.date;fieldSources.end=fieldSources.date;dateMode='daily';}
+    const missing=Object.keys(REQUIRED).filter(k=>indices[k]<0);
+    if(missing.length)throw new Error('缺少必需表头：'+missing.map(k=>['sales','orders','units'].includes(k)?fields[k].join(' / '):k==='start'||k==='end'?'Date / 日期，或完整的开始和结束日期':ALIASES[k].join(' / ')).join('；')+'。请导入完整的商品推广搜索词报告。');
+    return {indices,profile:{format:days===14?'VC':'SC',attributionDays:days,dateMode,fieldSources,salesBasis:days===14?'广告 ASIN + 品牌光环 ASIN':'广告 SKU + 其他 SKU',formatBasis:'按报告归因字段识别格式，不读取账号身份'}};
+  }
+  function isReportHeaders(headers){return (headers||[]).some(h=>ALIASES.term.map(header).includes(header(h)));}
   const divide=(a,b)=>b>0?a/b:null;
   const round=x=>Math.round((x+Number.EPSILON)*100)/100;
   function dateValue(x){if(x instanceof Date)return x.toISOString().slice(0,10);if(typeof x==='number'&&Number.isFinite(x))return new Date(Date.UTC(1899,11,30)+Math.floor(x)*86400000).toISOString().slice(0,10);const s=clean(x);const m=s.match(/^(\d{4})[-/](\d{1,2})[-/](\d{1,2})/);if(!m)return null;const t=`${m[1]}-${m[2].padStart(2,'0')}-${m[3].padStart(2,'0')}`;const d=new Date(t+'T00:00:00Z');return Number.isFinite(d.getTime())&&d.toISOString().slice(0,10)===t?t:null;}
   function parseData(matrix){
     if(!Array.isArray(matrix)||matrix.length<2)throw new Error('报表没有可分析的数据。');
-    const headers=(matrix[0]||[]).map(header),indices={};
-    const missing=[];
-    for(const [k,v] of Object.entries({...REQUIRED,...OPTIONAL})){const matches=headers.map((h,i)=>h===header(v)?i:-1).filter(i=>i>=0);if(matches.length>1)throw new Error(`存在重复表头：${v}。请检查文件。`);indices[k]=matches[0]??-1;if(indices[k]<0&&REQUIRED[k])missing.push(v);}
-    if(missing.length)throw new Error('缺少必需表头：'+missing.join('、')+'。请导入商品推广搜索词报告。');
+    const {indices,profile}=schema(matrix[0]);
+    const fieldLabel=k=>profile.fieldSources[k]?.header||REQUIRED[k]||OPTIONAL[k];
     if(matrix.length>100001)throw new Error('单次最多分析 100,000 行，请缩小报告范围。');
     const rows=[],issues=[],seen=new Set();let duplicates=0,intervals=0,zeroClick=0,zeroSpendSales=0,blankPortfolios=0;
     for(let i=1;i<matrix.length;i++){
       const line=matrix[i];if(!line||line.every(v=>v==null||v===''))continue;
       const r={line:i+1};let bad=false;
       for(const k of Object.keys({...REQUIRED,...OPTIONAL})){const v=indices[k]<0?undefined:line[indices[k]];
-        if(NUMERIC.includes(k)){if(v==null||clean(v)===''){if(OPTIONAL[k]){r[k]=0;continue;}issues.push(`第 ${i+1} 行：${REQUIRED[k]}为空`);bad=true;continue;}const n=typeof v==='number'?v:Number(clean(v).replace(/,/g,''));if(!Number.isFinite(n)||n<0||(COUNT_KEYS.includes(k)&&!Number.isInteger(n))){issues.push(`第 ${i+1} 行：${REQUIRED[k]||OPTIONAL[k]}不是有效的非负${COUNT_KEYS.includes(k)?'整数':'数值'}`);bad=true;}r[k]=n;}
+        if(NUMERIC.includes(k)){if(v==null||clean(v)===''){if(OPTIONAL[k]){r[k]=0;continue;}issues.push(`第 ${i+1} 行：${fieldLabel(k)}为空`);bad=true;continue;}const n=typeof v==='number'?v:Number(clean(v).replace(/,/g,''));if(!Number.isFinite(n)||n<0||(COUNT_KEYS.includes(k)&&!Number.isInteger(n))){issues.push(`第 ${i+1} 行：${fieldLabel(k)}不是有效的非负${COUNT_KEYS.includes(k)?'整数':'数值'}`);bad=true;}r[k]=n;}
         else if(k==='start'||k==='end'){r[k]=dateValue(v);if(!r[k]){issues.push(`第 ${i+1} 行：日期格式无效`);bad=true;}}
         else r[k]=clean(v);
       }
       if(r.start&&r.end&&r.start>r.end){issues.push(`第 ${i+1} 行：开始日期晚于结束日期`);bad=true;}
-      if(!r.portfolio){r.portfolio='未分配广告组合';blankPortfolios++;}
+      r.sourcePortfolio=r.portfolio;
+      r.unassignedPortfolio=!r.portfolio||/^(no portfolio|未分配广告组合|未分配|无广告组合)$/i.test(r.portfolio);
+      if(r.unassignedPortfolio){r.portfolio=`未分配组合 · ${r.campaign}`;blankPortfolios++;}
       for(const k of ['currency','country','campaign','adgroup','target','term'])if(!r[k]){issues.push(`第 ${i+1} 行：${REQUIRED[k]}为空`);bad=true;}
       if(!/^[a-z]{3}$/i.test(r.currency)){issues.push(`第 ${i+1} 行：货币须为 USD 等三字母代码`);bad=true;}
       if(bad)continue;
-      r.match=r.match.toUpperCase()||'-';r.currency=r.currency.toUpperCase();r.termKey=normalize(r.term);r.targetKey=normalize(r.target);r.market=key(r.country,r.currency);r.portfolioKey=key(r.market,r.portfolio);r.isAsin=/^b0[a-z0-9]{8}$/i.test(r.term);
+      r.match=r.match.toUpperCase()||'-';r.currency=r.currency.toUpperCase();r.termKey=normalize(r.term);r.targetKey=normalize(r.target);r.market=key(r.country,r.currency);r.portfolioKey=r.unassignedPortfolio?key(r.market,'unassigned',r.campaign):profile.format==='VC'?key('VC',r.market,r.portfolio):key(r.market,r.portfolio);r.isAsin=/^b0[a-z0-9]{8}$/i.test(r.term);
       const signature=JSON.stringify(line);if(seen.has(signature))duplicates++;seen.add(signature);
       if(r.start!==r.end)intervals++;if(r.clicks===0)zeroClick++;if(r.spend===0&&r.sales>0)zeroSpendSales++;
       rows.push(r);
@@ -834,7 +854,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
     if(issues.length)throw new Error(`发现 ${issues.length} 项格式或数值问题，本次未导入。\n${issues.slice(0,6).join('\n')}${issues.length>6?'\n…请修正后重新导入。':''}`);
     if(!rows.length)throw new Error('报表没有有效记录。');
     const markets=[...new Set(rows.map(r=>r.market))];
-    return {rows,quality:{records:rows.length,duplicates,intervals,zeroClick,zeroSpendSales,blankPortfolios,markets:markets.length,hasSkuSales:indices.skuSales>=0&&indices.otherSales>=0},start:rows.reduce((a,r)=>r.start<a?r.start:a,rows[0].start),end:rows.reduce((a,r)=>r.end>a?r.end:a,rows[0].end),markets};
+    return {rows,profile,quality:{records:rows.length,duplicates,intervals,zeroClick,zeroSpendSales,blankPortfolios,unassignedCampaigns:new Set(rows.filter(r=>r.unassignedPortfolio).map(r=>r.portfolioKey)).size,markets:markets.length,hasSkuSales:indices.skuSales>=0&&indices.otherSales>=0},start:rows.reduce((a,r)=>r.start<a?r.start:a,rows[0].start),end:rows.reduce((a,r)=>r.end>a?r.end:a,rows[0].end),markets};
   }
   function aggregate(rows){const s=Object.fromEntries(BASE_KEYS.map(k=>[k,0]));for(const r of rows)for(const k of BASE_KEYS)s[k]+=r[k]||0;for(const k of ['spend','sales','skuSales','otherSales'])s[k]=round(s[k]);return {...s,ctr:divide(s.clicks,s.impressions),cpc:divide(s.spend,s.clicks),cvr:divide(s.orders,s.clicks),unitCvr:divide(s.units,s.clicks),acos:divide(s.spend,s.sales),roas:divide(s.sales,s.spend),aov:divide(s.sales,s.orders),unitPrice:divide(s.sales,s.units),noSalesSpend:round(rows.filter(r=>r.sales===0).reduce((a,r)=>a+r.spend,0))};}
   function validateSettings(s){if(!s)return '请先设置四项诊断阈值。';if(!Number.isInteger(s.sampleClicks)||s.sampleClicks<1)return '样本点击数量必须是大于 0 的整数。';if(!Number.isInteger(s.redClicks)||s.redClicks<s.sampleClicks)return '红线点击数量须为整数，且不能小于样本点击数量。';if(!Number.isFinite(s.targetAcos)||s.targetAcos<=0)return '目标 ACOS 必须大于 0。';if(!Number.isFinite(s.redAcos)||s.redAcos<=s.targetAcos)return '红线 ACOS 必须大于目标 ACOS。';return '';}
@@ -857,14 +877,14 @@ https://github.com/nodeca/pako/blob/main/LICENSE
   function group(rows,keyFn){const m=new Map();for(const r of rows){const k=keyFn(r);if(!m.has(k))m.set(k,[]);m.get(k).push(r);}return m;}
   function model(allRows,scope,dim,config,targetMode='source'){
     const scoped=allRows.filter(r=>(!scope.market||r.market===scope.market)&&(!scope.portfolio||r.portfolio===scope.portfolio)&&(!scope.campaign||r.campaign===scope.campaign)&&(!scope.match||r.match===scope.match));
-    const baselines=new Map([...group(allRows,r=>r.portfolioKey)].map(([k,rs])=>[k,aggregate(rs).cvr]));
-    const exact=new Set(allRows.filter(r=>r.match==='EXACT').map(r=>key(r.portfolioKey,r.termKey)));
+    const baselines=new Map([...group(allRows,r=>r.portfolioKey)].map(([k,rs])=>[k,rs[0].unassignedPortfolio?null:aggregate(rs).cvr]));
+    const exact=new Set(allRows.filter(r=>!r.unassignedPortfolio&&r.match==='EXACT').map(r=>key(r.portfolioKey,r.termKey)));
     const fn=r=>{if(dim==='term')return key(r.market,r.termKey);if(dim==='portfolio')return r.portfolioKey;if(dim==='campaign')return key(r.market,r.portfolio,r.campaign);if(dim==='adgroup')return key(r.market,r.portfolio,r.campaign,r.adgroup);return targetMode==='text'?key(r.market,r.targetKey):key(r.market,r.portfolio,r.campaign,r.adgroup,r.targetKey,r.match);};
     const entries=[...group(scoped,fn)].map(([id,rs])=>{
       const first=rs[0],name=first[dim],stats=aggregate(rs);
       const breakdown=[...group(rs,r=>r.portfolioKey)].map(([pk,sub])=>{
         const settings=effectiveSettings(config,pk),m=aggregate(sub),d=diagnose(m,settings,baselines.get(pk),dim==='term');
-        return {id:key(id,pk),portfolioKey:pk,portfolio:sub[0].portfolio,rows:sub,stats:m,settings,baseline:baselines.get(pk),...d,hasExact:exact.has(key(pk,first.termKey)),isAsin:dim==='term'&&first.isAsin};
+        return {id:key(id,pk),portfolioKey:pk,portfolio:sub[0].portfolio,unassignedPortfolio:sub[0].unassignedPortfolio,rows:sub,stats:m,settings,baseline:baselines.get(pk),...d,hasExact:exact.has(key(pk,first.termKey)),isAsin:dim==='term'&&first.isAsin};
       });
       const tags=TAGS.filter(t=>breakdown.some(b=>b.tags.includes(t)));
       return {id,name,rows:rs,stats,breakdown,tags,dim,currency:first.currency,country:first.country,isAsin:dim==='term'&&first.isAsin,sourceCount:group(rs,r=>key(r.portfolioKey,r.campaign,r.adgroup,r.targetKey,r.match)).size};
@@ -876,6 +896,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
     const {main,tags,stats:s,settings,hasExact,isAsin}=b;
     if(main==='待设置')return '设置阈值后，查看诊断建议。';
     if(main==='优秀')return '';
+    if(b.unassignedPortfolio)return '原报告未分配广告组合，已按活动单独汇总。请先确认商品归属，再评估具体调整；暂不判断潜力词或商品内 EXACT 覆盖。';
     if(main==='数据量不足'){
       if(!tags.includes('潜力关键词'))return `继续积累数据，距离样本门槛还差 ${Math.max(0,settings.sampleClicks-s.clicks)} 次点击。`;
       if(isAsin)return '该条目是商品 ASIN。检查同商品组合是否已有对应商品投放；可按当前 CPC 小额测试，勿作为 EXACT 关键词创建。';
@@ -890,7 +911,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
     return (low?'已达到低效红线。':'')+'先标记该词与商品的相关性：不相关时评估否定；强相关时'+(low?'优先检查页面和变体匹配，并控制消耗。':'评估降低投放竞价或改善页面。');
   }
   function sources(rows){return [...group(rows,r=>key(r.portfolioKey,r.campaign,r.adgroup,r.targetKey,r.match))].map(([id,rs])=>({id,...rs[0],rows:rs,stats:aggregate(rs)})).sort((a,b)=>b.stats.spend-a.stats.spend);}
-  return {VERSION,REQUIRED,OPTIONAL,TAGS,DIMENSIONS,key,normalize,dateValue,parseData,aggregate,validateSettings,effectiveSettings,diagnose,model,scenarios,advice,sources};
+  return {VERSION,REQUIRED,OPTIONAL,TAGS,DIMENSIONS,key,normalize,dateValue,schema,isReportHeaders,parseData,aggregate,validateSettings,effectiveSettings,diagnose,model,scenarios,advice,sources};
 });
 
 </script>
@@ -911,6 +932,9 @@ https://github.com/nodeca/pako/blob/main/LICENSE
   const state={dataset:null,fileName:'',demo:false,dim:'term',scope:{market:'',portfolio:'',campaign:'',match:''},targetMode:'source',tag:'全部',search:'',minClicks:0,minSpend:0,priority:false,sort:'spend',dir:-1,page:1,pageSize:25,model:null,filtered:[],annotations:{},config:savedConfig,visible:new Set(['name','impressions','clicks','ctr','spend','cpc','sales','units','cvr','acos','roas','tags','advice']),detailId:null};
   const columns=[['name','客户搜索词'],['impressions','展示量'],['clicks','点击量'],['ctr','点击率'],['spend','花费'],['cpc','CPC'],['sales','销售额'],['orders','订单数'],['units','销量'],['cvr','转化率'],['acos','ACOS'],['roas','ROAS'],['tags','诊断标签'],['advice','建议摘要']];
   let toastTimer,dragDepth=0;
+  const reportLabel=()=>state.dataset?`${state.dataset.profile.format} 格式 · ${state.dataset.profile.attributionDays} 天归因`:'';
+  const groupUnit=e=>e.breakdown.some(b=>b.unassignedPortfolio)?'分析分组':'商品';
+  const sourceLabel=k=>{const f=state.dataset?.profile.fieldSources[k];return f?`${f.column} 列（${f.header}）`:'未提供';};
   function toast(message){$('toast').textContent=message;$('toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').hidden=true,4200);}
   function showInfo(title,content){$('infoTitle').textContent=title;$('infoContent').innerHTML=content;$('infoDialog').showModal();}
   function options(select,items,allLabel,value){select.innerHTML=(allLabel?`<option value="">${esc(allLabel)}</option>`:'')+items.map(v=>typeof v==='string'?`<option value="${esc(v)}">${esc(v)}</option>`:`<option value="${esc(v.value)}">${esc(v.label)}</option>`).join('');select.value=value||'';}
@@ -934,12 +958,13 @@ https://github.com/nodeca/pako/blob/main/LICENSE
     renderOverview();renderTags();renderTable();
     $('exportBtn').disabled=!state.model.entries.length;$('qualityBtn').disabled=false;
     $('clearBtn').hidden=false;$('dataPill').className='pill '+(state.demo?'demo':'real');$('dataPill').textContent=state.demo?'示例数据 · 非真实报表':'已导入报表';
-    $('fileMeta').textContent=`${state.fileName} · ${state.dataset.start} 至 ${state.dataset.end} · ${integer(state.dataset.rows.length)} 条原始记录`;
+    $('fileMeta').textContent=`${state.fileName} · ${reportLabel()} · ${state.dataset.start} 至 ${state.dataset.end} · ${integer(state.dataset.rows.length)} 条原始记录`;
     $('scopeSummary').textContent=`${state.scope.portfolio||'全部商品'} · ${state.scope.market?JSON.parse(state.scope.market).join(' / '):''} · ${integer(state.model.entries.length)} 个${E.DIMENSIONS[state.dim]}${state.dim==='term'&&!state.scope.portfolio?' · 标签按商品分别判断':''}`;
     const pending=state.model.entries.filter(e=>e.tags.includes('待设置')).length;
     const notice=$('notice');notice.className='notice'+(pending?' warn':'');
     notice.innerHTML=pending?`<span>已完成数据汇总。${integer(pending)} 个分析对象仍有商品未设置完整阈值，设置后即可生成诊断。</span><button class="button" id="noticeSettings">设置阈值</button>`:state.demo?'<span>正在体验虚构示例。示例阈值：样本 10 次 / 红线 30 次，目标 ACOS 25% / 红线 45%；不会用于你导入的真实报表。</span>':'<span>已按商品计算诊断。搜索与标签筛选只改变表格结果，不改变所属商品的转化率基准。</span>';
     if(state.dataset.quality.duplicates)notice.innerHTML+=`<span>发现 ${integer(state.dataset.quality.duplicates)} 条完全重复记录，已保留，请在数据检查中核实。</span>`;
+    if(state.dataset.quality.blankPortfolios)notice.innerHTML+=`<span>${integer(state.dataset.quality.blankPortfolios)} 条未分配组合记录已按 ${state.dataset.quality.unassignedCampaigns} 个活动隔离；商品归属待确认，暂不判断潜力词。</span>`;
     $('noticeSettings')?.addEventListener('click',openSettings);
   }
   function renderEmpty(){
@@ -947,13 +972,13 @@ https://github.com/nodeca/pako/blob/main/LICENSE
     $('fileMeta').textContent='导入商品推广搜索词报告，开始分析。';$('dataPill').textContent='尚未导入';$('dataPill').className='pill demo';$('scopeSummary').textContent='整体汇总 · 按商品诊断 · 来源可追溯';
     $('notice').className='notice';$('notice').innerHTML='<span>先导入报表，或使用示例数据熟悉界面。四项诊断阈值可随时调整。</span>';
     const descriptions=['广告花费','归因销售额','ACOS','ROAS','订单 / 转化率'];
-    $('metrics').innerHTML=descriptions.map((t,i)=>`<article class="metric ${['purple','green','yellow','pink','white'][i]}"><span>${t}</span><strong>—</strong><small>${['当前业务范围','7 天归因口径','花费 ÷ 销售额','销售额 ÷ 花费','订单数 ÷ 点击量'][i]}</small></article>`).join('');
+    $('metrics').innerHTML=descriptions.map((t,i)=>`<article class="metric ${['purple','green','yellow','pink','white'][i]}"><span>${t}</span><strong>—</strong><small>${['当前业务范围','自动识别 7 / 14 天归因','花费 ÷ 销售额','销售额 ÷ 花费','订单数 ÷ 点击量'][i]}</small></article>`).join('');
     $('tagFilters').innerHTML='';$('dataTable').querySelector('thead').innerHTML='';$('dataTable').querySelector('tbody').innerHTML='<tr><td><div class="empty-state"><span class="empty-icon" aria-hidden="true">↥</span><h3>开始你的第一次诊断</h3><p>拖入 .xlsx 报表，或点击右上角「导入报表」。</p><p class="muted">原始文件保持不变，分析结果可导出。</p></div></td></tr>';
     $('rowSummary').textContent='等待导入数据';$('pageInfo').textContent='1 / 1';$('prevPage').disabled=true;$('nextPage').disabled=true;
   }
   function renderOverview(){
     const s=state.model.stats,c=state.model.scoped[0]?.currency||JSON.parse(state.scope.market||'["","USD"]')[1];
-    const cards=[['purple','广告花费',money(s.spend,c),`无销售记录花费 ${money(s.noSalesSpend,c)}`],['green','归因销售额',money(s.sales,c),`${integer(s.units)} 件销量 · 7 天归因`],['yellow','ACOS',s.sales===0&&s.spend>0?'无销售':pct(s.acos),'总花费 ÷ 总销售额'],['pink','ROAS',decimal(s.roas),`${integer(s.clicks)} 次点击 · CPC ${money(s.cpc,c)}`],['white','订单 / 转化率',`${integer(s.orders)} <span class="inline-secondary">/ ${pct(s.cvr)}</span>`,`${integer(s.impressions)} 次展示 · CTR ${pct(s.ctr)}`]];
+    const cards=[['purple','广告花费',money(s.spend,c),`无销售记录花费 ${money(s.noSalesSpend,c)}`],['green','归因销售额',money(s.sales,c),`${integer(s.units)} 件销量 · ${state.dataset.profile.attributionDays} 天归因`],['yellow','ACOS',s.sales===0&&s.spend>0?'无销售':pct(s.acos),'总花费 ÷ 总销售额'],['pink','ROAS',decimal(s.roas),`${integer(s.clicks)} 次点击 · CPC ${money(s.cpc,c)}`],['white','订单 / 转化率',`${integer(s.orders)} <span class="inline-secondary">/ ${pct(s.cvr)}</span>`,`${integer(s.impressions)} 次展示 · CTR ${pct(s.ctr)}`]];
     $('metrics').innerHTML=cards.map(([color,title,value,sub])=>`<article class="metric ${color}"><span>${title}</span><strong>${value}</strong><small>${esc(sub)}</small></article>`).join('');
   }
   function renderTags(){
@@ -961,7 +986,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
     if(!list.includes(state.tag))state.tag='全部';
     $('tagFilters').innerHTML=list.map(t=>`<button class="tag-filter ${state.tag===t?'active':''}" data-tag="${esc(t)}" aria-pressed="${state.tag===t}">${esc(t)} <strong>${integer(t==='全部'?state.model.entries.length:state.model.entries.filter(e=>e.tags.includes(t)).length)}</strong></button>`).join('');
   }
-  function summaryAdvice(e){if(e.dim!=='term')return '查看汇总与标签依据';const bs=e.breakdown.filter(b=>b.main!=='优秀');if(!bs.length)return '—';if(e.breakdown.length>1)return `${e.breakdown.length} 个商品分别判断 · 展开查看建议`;return E.advice(bs[0],state.annotations[bs[0].id]);}
+  function summaryAdvice(e){if(e.dim!=='term')return '查看汇总与标签依据';const bs=e.breakdown.filter(b=>b.main!=='优秀');if(!bs.length)return '—';if(e.breakdown.length>1)return `${e.breakdown.length} 个${groupUnit(e)}分别判断 · 展开查看建议`;return E.advice(bs[0],state.annotations[bs[0].id]);}
   function searchFilter(){
     const q=E.normalize(state.search);
     const results=state.model.entries.filter(e=>(!q||E.normalize(e.name).includes(q))&&(state.tag==='全部'||e.tags.includes(state.tag))&&e.stats.clicks>=state.minClicks&&e.stats.spend>=state.minSpend&&(!state.priority||e.tags.includes('紧急调整')||e.tags.includes('低效关键词')));
@@ -974,7 +999,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
     $('dataTable').querySelector('thead').innerHTML='<tr>'+visible.map(([k,l])=>`<th scope="col" aria-sort="${state.sort===k?(state.dir===1?'ascending':'descending'):'none'}"><button data-sort="${k}">${esc(k==='name'?E.DIMENSIONS[state.dim]:l)}<span aria-hidden="true">${state.sort===k?(state.dir===1?'↑':'↓'):'↕'}</span></button></th>`).join('')+'<th scope="col">详情</th></tr>';
     const current=state.filtered.slice((state.page-1)*state.pageSize,state.page*state.pageSize);
     $('dataTable').querySelector('tbody').innerHTML=current.length?current.map(e=>'<tr>'+visible.map(([k])=>{
-      if(k==='name'){let meta=e.dim==='term'?`${e.breakdown.length} 个商品 · ${e.sourceCount} 个投放来源`:e.dim==='portfolio'?`${new Set(e.rows.map(r=>r.campaign)).size} 个广告活动`:e.dim==='campaign'?e.rows[0].portfolio:e.dim==='adgroup'?e.rows[0].campaign:state.targetMode==='text'?`${e.sourceCount} 个投放来源`:e.rows[0].adgroup+' · '+e.rows[0].match;return `<td><button class="name-button" data-detail="${esc(e.id)}">${esc(e.name)}</button>${e.isAsin?'<span class="tag asin">ASIN</span>':''}<div class="row-meta">${esc(meta)}</div></td>`;}
+      if(k==='name'){let meta=e.dim==='term'?`${e.breakdown.length} 个${groupUnit(e)} · ${e.sourceCount} 个投放来源`:e.dim==='portfolio'?`${new Set(e.rows.map(r=>r.campaign)).size} 个广告活动`:e.dim==='campaign'?e.rows[0].portfolio:e.dim==='adgroup'?e.rows[0].campaign:state.targetMode==='text'?`${e.sourceCount} 个投放来源`:e.rows[0].adgroup+' · '+e.rows[0].match;return `<td><button class="name-button" data-detail="${esc(e.id)}">${esc(e.name)}</button>${e.isAsin?'<span class="tag asin">ASIN</span>':''}<div class="row-meta">${esc(meta)}</div></td>`;}
       if(k==='tags')return `<td class="tags-cell">${e.tags.map(tag).join('')}${e.breakdown.length>1?'<div class="row-meta">不同商品标签汇集</div>':''}</td>`;
       if(k==='advice')return `<td class="suggestion-cell">${esc(summaryAdvice(e))}</td>`;
       return `<td${['spend','sales','acos'].includes(k)?' class="number-accent"':''}>${metricCell(e,k)}</td>`;
@@ -1004,8 +1029,8 @@ https://github.com/nodeca/pako/blob/main/LICENSE
     document.body.classList.add('busy');$('uploadBtn').disabled=true;$('demoBtn').disabled=true;$('clearBtn').disabled=true;$('uploadBtn').textContent='正在读取…';
     try{
       await new Promise(r=>setTimeout(r,30));const sheets=await SpreadsheetIO.read(await file.arrayBuffer());
-      const candidates=sheets.filter(s=>(s.data[0]||[]).some(v=>String(v).trim()==='客户搜索词'));
-      if(!candidates.length)throw new Error('未找到包含“客户搜索词”表头的工作表。请上传商品推广搜索词报告。');
+      const candidates=sheets.filter(s=>E.isReportHeaders(s.data[0]));
+      if(!candidates.length)throw new Error('未找到“客户搜索词 / Customer Search Term”表头。请上传 SC 或 VC 的商品推广搜索词报告。');
       if(candidates.length>1)throw new Error('检测到多张搜索词报告。第一版每次分析一张报告，请只保留需要分析的工作表。');
       const data=E.parseData(candidates[0].data);installDataset(data,file.name);toast(`已导入 ${integer(data.rows.length)} 条记录，完成汇总。`);
     }catch(error){showInfo('本次导入未完成',`<p style="white-space:pre-wrap">${esc(error.message||'文件读取失败，请重新导出报表。')}</p><p>已有分析数据保持不变。</p>`);}
@@ -1029,16 +1054,16 @@ https://github.com/nodeca/pako/blob/main/LICENSE
   function renderDetail(e){
     const s=e.stats,c=e.currency;
     const metrics=[['广告花费',money(s.spend,c)],['归因销售额',money(s.sales,c)],['ACOS',s.sales===0&&s.spend>0?'无销售':pct(s.acos)],['点击 / 订单',integer(s.clicks)+' / '+integer(s.orders)],['订单转化率',pct(s.cvr)],['实际平均 CPC',money(s.cpc,c)]];
-    $('detailContent').innerHTML=`<div class="dialog-heading"><div><p class="eyebrow">${esc(E.DIMENSIONS[e.dim])}详情</p><h2>${esc(e.name)}</h2><p class="muted">${e.breakdown.length} 个商品 · ${e.sourceCount} 个投放来源 · ${esc(c)}</p></div><button class="icon-button" data-close aria-label="关闭详情">×</button></div><div class="detail-metrics">${metrics.map(([label,value])=>`<div class="detail-metric"><small>${esc(label)}</small><strong>${esc(value)}</strong></div>`).join('')}</div>${e.breakdown.length>1?'<p class="context-warning">上方为整体汇总。下方按商品分别诊断，建议仅用于对应来源。</p>':''}${e.breakdown.map((b,i)=>breakdownHTML(e,b,i)).join('')}<p class="read-only-note">结果基于本次报告与当前设置。原始文件未修改；相关性、备注和处理状态仅保留在当前分析中，可随导出保存。</p>`;
+    $('detailContent').innerHTML=`<div class="dialog-heading"><div><p class="eyebrow">${esc(E.DIMENSIONS[e.dim])}详情</p><h2>${esc(e.name)}</h2><p class="muted">${e.breakdown.length} 个${groupUnit(e)} · ${e.sourceCount} 个投放来源 · ${esc(c)}</p></div><button class="icon-button" data-close aria-label="关闭详情">×</button></div><div class="detail-metrics">${metrics.map(([label,value])=>`<div class="detail-metric"><small>${esc(label)}</small><strong>${esc(value)}</strong></div>`).join('')}</div>${e.breakdown.length>1?'<p class="context-warning">上方为整体汇总。下方按商品分别诊断，建议仅用于对应来源。</p>':''}${e.breakdown.map((b,i)=>breakdownHTML(e,b,i)).join('')}<p class="read-only-note">结果基于本次报告与当前设置。原始文件未修改；相关性、备注和处理状态仅保留在当前分析中，可随导出保存。</p>`;
   }
   function breakdownHTML(e,b,index){
     const annotation=state.annotations[b.id]||{relevance:'待确认',status:'待处理',note:''};const v=E.scenarios(b.stats,b.settings),c=e.currency,isTerm=e.dim==='term';
     const advice=isTerm?E.advice(b,annotation):'';
     const threshold=E.validateSettings(b.settings)?'阈值尚未设置':`样本 ${b.settings.sampleClicks} 次 / 红线 ${b.settings.redClicks} 次 · 目标 ${pct(b.settings.targetAcos)} / 红线 ${pct(b.settings.redAcos)}`;
-    let html=`<section class="detail-section"><h3>${esc(b.portfolio)}</h3><div>${b.tags.map(tag).join('')}</div><div class="diagnosis-card"><div class="group-title">为什么得到这个标签</div><p>${esc(b.reason)}</p><p>所属商品整体转化率：<strong>${pct(b.baseline)}</strong>。基准包含当前报告中该商品的全部流量。</p><span class="scope-badge">${esc(threshold)}</span><button class="text-button" data-config="${esc(b.portfolioKey)}" style="margin-left:8px;font-size:.8125rem">调整阈值</button></div>`;
+    let html=`<section class="detail-section"><h3>${esc(b.portfolio)}</h3><div>${b.tags.map(tag).join('')}</div><div class="diagnosis-card"><div class="group-title">为什么得到这个标签</div><p>${esc(b.reason)}</p>${b.unassignedPortfolio?'<p class="context-warning">原报告未分配广告组合，当前仅按活动隔离。未建立商品转化率基准，暂不判断潜力词或商品内 EXACT 覆盖。</p>':`<p>所属商品整体转化率：<strong>${pct(b.baseline)}</strong>。基准包含当前报告中该商品的全部流量。</p>`}<span class="scope-badge">${esc(threshold)}</span><button class="text-button" data-config="${esc(b.portfolioKey)}" style="margin-left:8px;font-size:.8125rem">调整阈值</button></div>`;
     if(isTerm){
       html+=`<div class="diagnosis-card"><div class="group-title">${b.main==='优秀'?'当前表现达到目标':'下一步建议'}</div><div id="advice-${index}">${advice?`<div class="advice">${esc(advice)}</div>`:'<p>按当前规则，不主动建议调整。</p>'}</div>`;
-      if(v&&b.main!=='优秀'){
+      if(v&&b.main!=='优秀'&&!b.unassignedPortfolio){
         const potential=b.tags.includes('潜力关键词');
         html+=`<div class="formula-grid"><div class="formula-item"><span>目标平均 CPC</span><strong>${money(v.targetCpc,c)}</strong><small>目标 ACOS × 销售额 ÷ 点击量</small></div><div class="formula-item"><span>红线平均 CPC</span><strong>${money(v.redCpc,c)}</strong><small>红线 ACOS × 销售额 ÷ 点击量</small></div>${potential?`<div class="formula-item"><span>起始 CPC 参考</span><strong>${money(b.stats.cpc,c)}</strong><small>本商品中该词的实际平均 CPC</small></div><div class="formula-item"><span>预计测试总花费</span><strong>${money(v.testSpend,c)}</strong><small>当前 CPC × ${b.settings.sampleClicks} 次点击，向上取整；非每日预算</small></div>`:''}</div>`;
         html+=v.targetCpc===null?'<p class="read-only-note">没有足够的点击和销售数据，无法推算可承受 CPC，不输出 0 作为竞价建议。</p>':'<p class="read-only-note">以历史销售效率保持不变为假设。测算值是平均 CPC，不是后台基础竞价；下方每个来源应单独评估。</p>';
@@ -1047,11 +1072,15 @@ https://github.com/nodeca/pako/blob/main/LICENSE
       html+=`<div class="annotation-grid"><label class="field">与商品的相关性<select data-annotation="relevance" data-bi="${index}">${['待确认','强相关','不相关'].map(x=>`<option${annotation.relevance===x?' selected':''}>${x}</option>`).join('')}</select></label><label class="field">处理状态<select data-annotation="status" data-bi="${index}">${['待处理','继续观察','已处理'].map(x=>`<option${annotation.status===x?' selected':''}>${x}</option>`).join('')}</select></label><label class="field full-width">备注<textarea data-annotation="note" data-bi="${index}" maxlength="2000" placeholder="记录判断依据或已采取的操作">${esc(annotation.note)}</textarea></label></div></div>`;
     }
     const ss=E.sources(b.rows);html+=`<h3 style="margin-top:22px">投放来源 <span class="muted">${ss.length} 项 · 按花费排序</span></h3>`;
-    html+=ss.map(source=>{const d=E.diagnose(source.stats,b.settings,b.baseline,isTerm),v=E.scenarios(source.stats,b.settings),m=source.stats;return `<details class="source-card"><summary>${esc(source.target)} <span class="tag pending">${esc(source.match)}</span></summary><dl><dt>广告活动</dt><dd>${esc(source.campaign)}</dd><dt>广告组</dt><dd>${esc(source.adgroup)}</dd><dt>源文件行</dt><dd>${source.rows.map(r=>r.line).slice(0,20).join('、')}${source.rows.length>20?` 等 ${source.rows.length} 行`:''}</dd></dl><div class="source-values"><span>花费 ${money(m.spend,c)}</span><span>销售额 ${money(m.sales,c)}</span><span>点击 ${integer(m.clicks)}</span><span>订单 ${integer(m.orders)}</span><span>ACOS ${m.sales===0&&m.spend>0?'无销售':pct(m.acos)}</span></div><div>${d.tags.map(tag).join('')}</div><p class="read-only-note">${esc(d.reason)}</p>${isTerm?`<p class="read-only-note">该来源目标 CPC ${money(v?.targetCpc,c)} · 红线 CPC ${money(v?.redCpc,c)}</p><p class="read-only-note">${e.dim==='term'?'调竞价会影响同一投放下的其他搜索词，请结合投放维度的整体表现。':''}</p>`:''}</details>`;}).join('');
+    html+=ss.map(source=>{const d=E.diagnose(source.stats,b.settings,b.baseline,isTerm),v=b.unassignedPortfolio?null:E.scenarios(source.stats,b.settings),m=source.stats;return `<details class="source-card"><summary>${esc(source.target)} <span class="tag pending">${esc(source.match)}</span></summary><dl><dt>广告活动</dt><dd>${esc(source.campaign)}</dd><dt>广告组</dt><dd>${esc(source.adgroup)}</dd><dt>源文件行</dt><dd>${source.rows.map(r=>r.line).slice(0,20).join('、')}${source.rows.length>20?` 等 ${source.rows.length} 行`:''}</dd></dl><div class="source-values"><span>花费 ${money(m.spend,c)}</span><span>销售额 ${money(m.sales,c)}</span><span>点击 ${integer(m.clicks)}</span><span>订单 ${integer(m.orders)}</span><span>ACOS ${m.sales===0&&m.spend>0?'无销售':pct(m.acos)}</span></div><div>${d.tags.map(tag).join('')}</div><p class="read-only-note">${esc(d.reason)}</p>${isTerm?`<p class="read-only-note">该来源目标 CPC ${money(v?.targetCpc,c)} · 红线 CPC ${money(v?.redCpc,c)}</p><p class="read-only-note">${e.dim==='term'?'调竞价会影响同一投放下的其他搜索词，请结合投放维度的整体表现。':''}</p>`:''}</details>`;}).join('');
     return html+'</section>';
   }
-  function quality(){if(!state.dataset)return;const d=state.dataset,q=d.quality;showInfo('数据检查',`<p>${esc(state.fileName)}</p><div class="check-line">读取记录 <strong>${integer(q.records)}</strong> 条 · 核心字段与非负数值校验通过</div><div class="check-line">完全重复记录 <strong>${q.duplicates}</strong> 条${q.duplicates?'，未自动删除；汇总包含这些记录，请检查是否重复导出。':'，未发现完全重复行。'}</div><div class="check-line">跨日期记录 <strong>${integer(q.intervals)}</strong> 条，按整段汇总；不会拆分成日趋势。</div><div class="check-line">零点击记录 <strong>${q.zeroClick}</strong> 条，零花费但有销售 <strong>${q.zeroSpendSales}</strong> 条。记录保留，分母为零显示“—”。</div><div class="check-line">空广告组合 <strong>${q.blankPortfolios}</strong> 条${q.blankPortfolios?'，暂归“未分配广告组合”；商品归属不确定，请优先修正。':'。'}</div><div class="check-line">${q.markets} 个站点 / 币种分区；金额只在同一分区内汇总。</div><h3>计算与覆盖范围</h3><p>核心比率按汇总数据重算。订单取 T 列，销量取 U 列，销售额取 Q 列。ACOS 在有花费但无销售时显示“无销售”。无销售花费卡片统计销售额为零的原始记录花费，不等于汇总后无销售搜索词的花费。</p><p>本工具每次分析一个文件；跨期记录与重复导出可能造成重复累计，请使用单次完整导出的报告。本报告未提供当前竞价、预算、广告位加价和商品实时售价。</p><p>搜索词报告的展示量不一定等于后台完整广告展示量。<a href="https://advertising.amazon.com/help/G3HEFZYWZF84NPS9" target="_blank" rel="noopener noreferrer">查看亚马逊报告说明</a></p>`);}
-  function guide(){showInfo('使用说明',`<ol><li>导入固定格式的商品推广搜索词报告（.xlsx）。文件不会上传到服务器。</li><li>在「诊断设置」填写四项阈值。可以设置全局默认，也可为每个广告组合单独设定。</li><li>选择商品与分析维度。搜索词默认整体汇总，标签在所属商品内分别判断。</li><li>点击名称或「查看」，展开标签依据、数值测算和投放来源；搜索词支持相关性、备注及处理状态。</li><li>点击「导出分析」，保存当前筛选的全部结果、分商品建议、投放来源及诊断设置。</li></ol><h3>标签规则</h3><p>点击不足 → 数据量不足；样本充足且有销售时，ACOS ≤ 目标 → 优秀，目标 &lt; ACOS &lt; 红线 → 有待优化，ACOS ≥ 红线 → 紧急调整。样本充足、有花费但无销售也归紧急调整。</p><p>点击不足但有订单且转化率高于所属商品整体基准 → 附加潜力标签；点击达到红线，且高 ACOS 或有花费无销售 → 附加低效标签。两项附加标签只适用于搜索词。</p><h3>数据与测算</h3><p>转化率按订单数 ÷ 点击量；先汇总基础指标，再计算比率。源文件中的 CTR、CPC、ACOS、ROAS 不直接平均。内部计算使用完整精度，页面显示两位小数。</p><p>潜力词基准始终是所属广告组合在本报告中的整体订单转化率，广告活动、匹配类型和表格筛选不会改变这一基准。</p><p>当前 CPC 与后台竞价并不相同。目标 CPC 及价格情景测算均假设历史销售效率不变；EXACT 来源缺失也不证明账户尚未建立该投放。</p><h3>本机保存</h3><p>真实报表的阈值设置保存在当前浏览器。导入的数据与备注保留在当前页面内，刷新或清除后需重新导入；请先导出需要保存的结果。示例是虚构数据，与真实报表的设置分开。</p>`);}
+  function quality(){
+    if(!state.dataset)return;const d=state.dataset,q=d.quality,p=d.profile;
+    const mapping=['term','impressions','clicks','spend','sales','orders','units'].map(k=>`<div class="check-line">${esc(E.REQUIRED[k].replace(/^7天/,''))}：${esc(sourceLabel(k))}</div>`).join('');
+    showInfo('数据检查',`<p>${esc(state.fileName)}</p><div class="check-line"><strong>${esc(reportLabel())}</strong> · ${p.dateMode==='daily'?'单列 Date / 日期，逐日记录':'开始日期 + 结束日期，范围记录'}</div><div class="check-line">读取记录 <strong>${integer(q.records)}</strong> 条 · 核心字段与非负数值校验通过</div><div class="check-line">完全重复记录 <strong>${q.duplicates}</strong> 条${q.duplicates?'，未自动删除；汇总包含这些记录，请检查是否重复导出。':'，未发现完全重复行。'}</div><div class="check-line">跨日期记录 <strong>${integer(q.intervals)}</strong> 条，按整段汇总；不会拆分成日趋势。</div><div class="check-line">零点击记录 <strong>${q.zeroClick}</strong> 条，零花费但有销售 <strong>${q.zeroSpendSales}</strong> 条。记录保留，分母为零显示“—”。</div><div class="check-line">空组合 / No Portfolio <strong>${q.blankPortfolios}</strong> 条${q.blankPortfolios?`，已按 ${q.unassignedCampaigns} 个广告活动隔离，避免混合不同商品；暂不判断潜力词和商品内 EXACT 覆盖。`:'。'}</div><div class="check-line">${q.markets} 个站点 / 币种分区；金额只在同一分区内汇总。</div><h3>本报告字段映射</h3>${mapping}<h3>计算与覆盖范围</h3><p>销售额、订单和销量均使用 ${p.attributionDays} 天归因字段。销售额构成：${esc(p.salesBasis)}。附加销量/销售额用于保留构成信息，不再加到总量，避免重复累计。格式按归因字段识别，不读取账号身份。</p><p>核心比率按汇总数据重算。ACOS 在有花费但无销售时显示“无销售”。无销售花费卡片统计销售额为零的原始记录花费，不等于汇总后无销售搜索词的花费。</p><p>本工具每次分析一个文件；7 天与 14 天归因口径分别保留，不直接合并或按比例换算。本报告未提供当前竞价、预算、广告位加价和商品实时售价。</p><p>搜索词报告的展示量不一定等于后台完整广告展示量。<a href="https://advertising.amazon.com/help/G3HEFZYWZF84NPS9" target="_blank" rel="noopener noreferrer">查看亚马逊报告说明</a></p>`);
+  }
+  function guide(){showInfo('使用说明',`<ol><li>导入 SC 或 VC 商品推广搜索词报告（.xlsx），自动识别中英文表头、日期格式及 7 / 14 天归因。文件不会上传到服务器。</li><li>在「诊断设置」填写四项阈值。可以设置全局默认，也可为每个广告组合单独设定。</li><li>选择商品与分析维度。搜索词默认整体汇总，标签在所属商品内分别判断。</li><li>点击名称或「查看」，展开标签依据、数值测算和投放来源；搜索词支持相关性、备注及处理状态。</li><li>点击「导出分析」，保存当前筛选的全部结果、分商品建议、投放来源及诊断设置。</li></ol><h3>标签规则</h3><p>点击不足 → 数据量不足；样本充足且有销售时，ACOS ≤ 目标 → 优秀，目标 &lt; ACOS &lt; 红线 → 有待优化，ACOS ≥ 红线 → 紧急调整。样本充足、有花费但无销售也归紧急调整。</p><p>点击不足但有订单且转化率高于所属商品整体基准 → 附加潜力标签；点击达到红线，且高 ACOS 或有花费无销售 → 附加低效标签。两项附加标签只适用于搜索词。</p><h3>数据与测算</h3><p>SC 样本采用 7 天归因，VC 样本采用 14 天归因；格式以归因字段识别，不读取账号身份。Date 是单日记录，开始/结束日期是时间范围。销售额、订单和销量必须来自同一周期，不把 14 天数据换算为 7 天。未分配组合记录按广告活动隔离，确认商品归属前不判断潜力词。</p><p>转化率按订单数 ÷ 点击量；先汇总基础指标，再计算比率。源文件中的 CTR、CPC、ACOS、ROAS 不直接平均。内部计算使用完整精度，页面显示两位小数。</p><p>潜力词基准始终是所属广告组合在本报告中的整体订单转化率，广告活动、匹配类型和表格筛选不会改变这一基准。</p><p>当前 CPC 与后台竞价并不相同。目标 CPC 及价格情景测算均假设历史销售效率不变；EXACT 来源缺失也不证明账户尚未建立该投放。</p><h3>本机保存</h3><p>真实报表的阈值设置保存在当前浏览器。导入的数据与备注保留在当前页面内，刷新或清除后需重新导入；请先导出需要保存的结果。示例是虚构数据，与真实报表的设置分开。</p>`);}
   async function exportAnalysis(){
     if(!state.filtered.length)return;$('exportBtn').disabled=true;$('exportBtn').textContent='正在导出…';
     try{
@@ -1059,13 +1088,13 @@ https://github.com/nodeca/pako/blob/main/LICENSE
       const overview=[names];const decisions=[['维度对象','广告组合 / 商品','站点','币种','标签','判断依据','样本点击数量','红线点击数量','目标ACOS','红线ACOS','商品基准转化率','点击量','订单数','花费','销售额','订单转化率','ACOS','实际平均CPC','目标平均CPC','红线平均CPC','所需平均订单金额','所需平均件单价','预计测试总花费','同商品EXACT来源','相关性','处理状态','备注','建议']];
       const sources=[['维度对象','广告组合','广告活动','广告组','投放','匹配类型','站点','币种','源文件行号','展示量','点击量','订单数','销量','花费','销售额','订单转化率','ACOS','实际CPC','目标CPC','红线CPC','来源标签']];
       for(const e of state.filtered){const s=e.stats;overview.push([e.name,e.country,e.currency,e.breakdown.length,s.impressions,s.clicks,s.ctr,s.spend,s.cpc,s.sales,s.orders,s.units,s.cvr,s.sales===0&&s.spend>0?'无销售':s.acos,s.roas,e.breakdown.map(b=>`${b.portfolio}：${b.tags.join('、')}`).join('；'),summaryAdvice(e)]);
-        for(const b of e.breakdown){const m=b.stats,p=b.settings||{},v=E.scenarios(m,p)||{},annotation=state.annotations[b.id]||{},isTerm=e.dim==='term';decisions.push([e.name,b.portfolio,e.country,e.currency,b.tags.join('、'),b.reason,p.sampleClicks,p.redClicks,p.targetAcos,p.redAcos,b.baseline,m.clicks,m.orders,m.spend,m.sales,m.cvr,m.sales===0&&m.spend>0?'无销售':m.acos,m.cpc,isTerm?v.targetCpc:null,isTerm?v.redCpc:null,isTerm&&b.main==='有待优化'?v.requiredAov:null,isTerm&&b.main==='有待优化'?v.requiredUnitPrice:null,isTerm&&b.tags.includes('潜力关键词')?v.testSpend:null,isTerm?(b.isAsin?'ASIN条目，不适用关键词EXACT':b.hasExact?'本报告有来源':'本报告未发现，需检查账户'):'不适用',isTerm?annotation.relevance||'待确认':'',isTerm?annotation.status||'待处理':'',annotation.note||'',isTerm?E.advice(b,annotation):'仅提供标签，暂无此维度调整建议']);
-          for(const source of E.sources(b.rows)){const m=source.stats,v=E.scenarios(m,p)||{},d=E.diagnose(m,p,b.baseline,isTerm);sources.push([e.name,b.portfolio,source.campaign,source.adgroup,source.target,source.match,e.country,e.currency,source.rows.map(r=>r.line).join(', '),m.impressions,m.clicks,m.orders,m.units,m.spend,m.sales,m.cvr,m.sales===0&&m.spend>0?'无销售':m.acos,m.cpc,isTerm?v.targetCpc:null,isTerm?v.redCpc:null,d.tags.join('、')]);}
+        for(const b of e.breakdown){const m=b.stats,p=b.settings||{},v=b.unassignedPortfolio?{}:E.scenarios(m,p)||{},annotation=state.annotations[b.id]||{},isTerm=e.dim==='term';decisions.push([e.name,b.portfolio,e.country,e.currency,b.tags.join('、'),b.reason,p.sampleClicks,p.redClicks,p.targetAcos,p.redAcos,b.baseline,m.clicks,m.orders,m.spend,m.sales,m.cvr,m.sales===0&&m.spend>0?'无销售':m.acos,m.cpc,isTerm?v.targetCpc:null,isTerm?v.redCpc:null,isTerm&&b.main==='有待优化'?v.requiredAov:null,isTerm&&b.main==='有待优化'?v.requiredUnitPrice:null,isTerm&&b.tags.includes('潜力关键词')?v.testSpend:null,isTerm?(b.unassignedPortfolio?'商品归属待确认，暂不判断':b.isAsin?'ASIN条目，不适用关键词EXACT':b.hasExact?'本报告有来源':'本报告未发现，需检查账户'):'不适用',isTerm?annotation.relevance||'待确认':'',isTerm?annotation.status||'待处理':'',annotation.note||'',isTerm?E.advice(b,annotation):'仅提供标签，暂无此维度调整建议']);
+          for(const source of E.sources(b.rows)){const m=source.stats,v=b.unassignedPortfolio?{}:E.scenarios(m,p)||{},d=E.diagnose(m,p,b.baseline,isTerm);sources.push([e.name,b.portfolio,source.campaign,source.adgroup,source.target,source.match,e.country,e.currency,source.rows.map(r=>r.line).join(', '),m.impressions,m.clicks,m.orders,m.units,m.spend,m.sales,m.cvr,m.sales===0&&m.spend>0?'无销售':m.acos,m.cpc,isTerm?v.targetCpc:null,isTerm?v.redCpc:null,d.tags.join('、')]);}
         }
       }
-      const now=new Date(),metadata=[['项目','值'],['规则版本',E.VERSION],['导出时间',now.toISOString()],['来源文件',state.fileName],['数据类型',state.demo?'虚构示例':'用户导入'],['报告开始',state.dataset.start],['报告结束',state.dataset.end],['导入记录',state.dataset.rows.length],['完全重复记录（保留）',state.dataset.quality.duplicates],['维度',E.DIMENSIONS[state.dim]],['站点 / 币种',JSON.parse(state.scope.market).join(' / ')],['广告组合筛选',state.scope.portfolio||'全部'],['广告活动筛选',state.scope.campaign||'全部'],['匹配类型筛选',state.scope.match||'全部'],['标签筛选',state.tag],['关键词筛选',state.search],['最小点击',state.minClicks],['最小花费',state.minSpend],['优先处理',state.priority?'是':'否'],['导出结果数',state.filtered.length],['转化率口径','订单数 / 点击量；T 列订单，U 列销量'],['基准范围','所属广告组合在本报告内的整体订单转化率，不受其他筛选影响'],['数值说明','目标CPC是平均点击成本参考，不等于后台竞价；价格测算是假设转化率和CPC不变的所需金额下限；测试花费不是每日预算'],['设置记录',JSON.stringify(state.config)],['原始文件','未修改；本文件为当前筛选的分析快照，不作为新的源报告导入']];
+      const now=new Date(),metadata=[['项目','值'],['规则版本',E.VERSION],['报告格式',state.dataset.profile.format],['归因周期（天）',state.dataset.profile.attributionDays],['日期粒度',state.dataset.profile.dateMode==='daily'?'单列日期 / 每日记录':'开始日期 + 结束日期'],['销售额构成口径',state.dataset.profile.salesBasis],['字段映射',JSON.stringify(state.dataset.profile.fieldSources)],['未分配组合处理','按广告活动隔离，保留数据；不建立商品基准，不判断潜力词或商品内EXACT覆盖'],['导出时间',now.toISOString()],['来源文件',state.fileName],['数据类型',state.demo?'虚构示例':'用户导入'],['报告开始',state.dataset.start],['报告结束',state.dataset.end],['导入记录',state.dataset.rows.length],['完全重复记录（保留）',state.dataset.quality.duplicates],['维度',E.DIMENSIONS[state.dim]],['站点 / 币种',JSON.parse(state.scope.market).join(' / ')],['广告组合筛选',state.scope.portfolio||'全部'],['广告活动筛选',state.scope.campaign||'全部'],['匹配类型筛选',state.scope.match||'全部'],['标签筛选',state.tag],['关键词筛选',state.search],['最小点击',state.minClicks],['最小花费',state.minSpend],['优先处理',state.priority?'是':'否'],['导出结果数',state.filtered.length],['转化率口径',`订单数 / 点击量；订单：${sourceLabel('orders')}；销量：${sourceLabel('units')}`],['基准范围','所属广告组合在本报告内的整体订单转化率，不受其他筛选影响'],['数值说明','目标CPC是平均点击成本参考，不等于后台竞价；价格测算是假设转化率和CPC不变的所需金额下限；测试花费不是每日预算'],['设置记录',JSON.stringify(state.config)],['原始文件','未修改；本文件为当前筛选的分析快照，不作为新的源报告导入']];
       const blob=await SpreadsheetIO.write([{name:'分析汇总',rows:overview,percentColumns:[6,12,13],widths:[34,12,12,12,16,14,14,16,14,16,14,14,16,14,14,55,65]},{name:'分商品诊断与建议',rows:decisions,percentColumns:[8,9,10,15,16],widths:[32,36,12,12,28,70]},{name:'投放来源',rows:sources,percentColumns:[15,16],widths:[30,32,48,48,28,16,12,12,28]},{name:'设置与口径',rows:metadata,widths:[28,110]}]);
-      const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=`广告诊断_${E.DIMENSIONS[state.dim]}_${now.toISOString().slice(0,10)}${state.demo?'_示例':''}.xlsx`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),10000);toast(`已导出当前筛选的全部 ${integer(state.filtered.length)} 项及来源明细。`);
+      const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=`广告诊断_${state.dataset.profile.format}_${state.dataset.profile.attributionDays}天_${E.DIMENSIONS[state.dim]}_${now.toISOString().slice(0,10)}${state.demo?'_示例':''}.xlsx`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),10000);toast(`已导出当前筛选的全部 ${integer(state.filtered.length)} 项及来源明细。`);
     }catch(e){showInfo('导出未完成',`<p>${esc(e.message)}</p>`);}finally{$('exportBtn').disabled=!state.filtered.length;$('exportBtn').textContent='↓ 导出分析';}
   }
   $('uploadBtn').addEventListener('click',()=>$('fileInput').click());$('fileInput').addEventListener('change',e=>importFile(e.target.files[0]));$('demoBtn').addEventListener('click',demo);
