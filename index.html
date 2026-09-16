@@ -45,7 +45,7 @@
 <body>
   <a class="skip-link" href="#analysis">跳到分析表格</a>
   <header class="topbar">
-    <a class="brand" href="./" aria-label="广告诊断台首页"><span class="brandmark" aria-hidden="true"><i></i><i></i><i></i></span><span>广告诊断台<span class="brand-sub">SP · 多报告分析 · v1.3</span></span></a>
+    <a class="brand" href="./" aria-label="广告诊断台首页"><span class="brandmark" aria-hidden="true"><i></i><i></i><i></i></span><span>广告诊断台<span class="brand-sub">SP · 多报告分析 · v1.3.1</span></span></a>
     <div class="header-actions"><span class="local-note"><span aria-hidden="true">◈</span> 数据仅在本机处理</span><button id="guideBtn" class="button quiet">使用说明</button><button id="settingsBtn" class="button">诊断设置</button><button id="uploadBtn" class="button primary"><span aria-hidden="true">＋</span> 导入报表</button></div>
     <input type="file" id="fileInput" accept=".xlsx,.csv" multiple hidden>
   </header>
@@ -829,7 +829,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
 /* Pure, deterministic calculations. No network or UI side effects. */
 (function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.AdEngine=api;})(typeof globalThis!=='undefined'?globalThis:this,function(){
   'use strict';
-  const VERSION='1.3.0';
+  const VERSION='1.3.1';
   const REQUIRED={start:'开始日期',end:'结束日期',portfolio:'广告组合名称',currency:'货币',campaign:'广告活动名称',adgroup:'广告组名称',country:'国家/地区',target:'投放',match:'匹配类型',term:'客户搜索词',impressions:'展示量',clicks:'点击量',spend:'花费',sales:'7天总销售额',orders:'7天总订单数(#)',units:'7天总销售量(#)'};
   const OPTIONAL={skuUnits:'7天内广告SKU销售量(#)',otherUnits:'7天内其他SKU销售量(#)',skuSales:'7天内广告SKU销售额',otherSales:'7天内其他SKU销售额'};
   const NUMERIC=['impressions','clicks','spend','sales','orders','units','skuUnits','otherUnits','skuSales','otherSales'];
@@ -1395,9 +1395,16 @@ window.ReportUI=(()=>{
     }
     function resetFilters(){state.scope={portfolio:[],campaign:[],match:[]};state.query='';state.from='';state.to='';state.page=1;state.sort='spend';state.dir=-1;state.jump=null;$('reportQuery').value='';$('reportFrom').value='';$('reportTo').value='';}
     function selectType(type,reset=true){state.type=type;state.dimension=defaultDimension[type];if(reset)resetFilters();syncPickers();render();}
+    function referenceSource(report){
+      // Keep the imported report intact; references use its real span intersected with the active scope.
+      const start=[report.start,state.from,state.jump?.start].filter(Boolean).sort().at(-1);
+      const end=[report.end,state.to,state.jump?.end].filter(Boolean).sort()[0];
+      return {...report,start,end};
+    }
     function filteredRows(){
       const report=current();if(!report)return [];
-      return report.rows.filter(r=>selected(state.scope.portfolio,r.portfolio)&&selected(state.scope.campaign,r.campaign)&&selected(state.scope.match,r.match)&&(!state.from||r.start>=state.from)&&(!state.to||r.end<=state.to)&&(!state.jump||state.jump.rows.has(r)));
+      const source=referenceSource(report);
+      return report.rows.filter(r=>selected(state.scope.portfolio,r.portfolio)&&selected(state.scope.campaign,r.campaign)&&selected(state.scope.match,r.match)&&r.start>=source.start&&r.end<=source.end&&(!state.jump||state.jump.rows.has(r)));
     }
     function trend(rows,key='spend'){
       const groups=new Map();for(const r of rows){const date=r.start===r.end?r.start:`${r.start}～${r.end}`;if(!groups.has(date))groups.set(date,[]);groups.get(date).push(r);}
@@ -1427,7 +1434,7 @@ window.ReportUI=(()=>{
       const dims=state.type==='share'?['term']:state.type==='placement'?['placement','campaign','portfolio']:state.type==='product'?['product','adgroup','campaign','portfolio']:state.type==='target'?['target','adgroup','campaign','portfolio']:['campaign','portfolio'];
       if(!dims.includes(state.dimension))state.dimension=dims[0];
       $('reportDimension').innerHTML=dims.map(d=>`<option value="${d}"${d===state.dimension?' selected':''}>${dimensions[d]}</option>`).join('');
-      const rows=filteredRows();state.rows=rows;
+      const rows=filteredRows(),source=referenceSource(report);state.rows=rows;
       const searchText=E.normalize(state.query);
       state.entries=L.group(rows,state.dimension).filter(e=>!searchText||E.normalize(e.name+' '+e.rows.map(r=>[r.asin,r.sku,r.target,r.campaign,r.adgroup].join(' ')).join(' ')).includes(searchText));
       state.entries.sort((a,b)=>{const av=state.sort==='name'?a.name:a.stats[state.sort],bv=state.sort==='name'?b.name:b.stats[state.sort];if(av==null)return bv==null?0:1;if(bv==null)return -1;return (typeof av==='string'?av.localeCompare(bv,'zh-CN'):av-bv)*state.dir;});
@@ -1452,7 +1459,7 @@ window.ReportUI=(()=>{
       $('reportTable').querySelector('tbody').innerHTML=state.entries.slice((state.page-1)*25,state.page*25).map((e,index)=>`<tr>${columns.map(k=>{
         if(k==='name')return `<td><button class="name-button" data-report-entry="${(state.page-1)*25+index}">${esc(e.name||'未提供')}</button><div class="row-meta">${esc(state.dimension==='product'?e.rows[0].sku||'仅 ASIN':state.dimension==='target'?e.rows[0].campaign+' · '+e.rows[0].match:state.dimension==='placement'?e.rows[0].campaign:state.dimension==='term'?'份额为账号范围参考':e.rows[0].portfolio)}</div></td>`;
         if(k==='share'||k==='rank'){
-          const term=e.rows[0].termKey,accountRows=report.rows.filter(r=>r.termKey===term&&(!state.from||r.start>=state.from)&&(!state.to||r.end<=state.to));const latest=latestShare(accountRows);
+          const term=e.rows[0].termKey,accountRows=report.rows.filter(r=>r.termKey===term&&r.start>=source.start&&r.end<=source.end);const latest=latestShare(accountRows);
           return `<td>${k==='share'?percent(latest.share):num(latest.rank)}<div class="row-meta">${latest.conflict?'数据冲突':esc(latest.date||'')}</div></td>`;
         }
         if(['topShare','budget','status'].includes(k)){
@@ -1492,16 +1499,15 @@ window.ReportUI=(()=>{
     }
     function openEntry(index){
       const entry=state.entries[index],report=current();if(!entry||!report)return;
-      state.detail={sourceReport:report,rows:entry.rows};
+      const source=referenceSource(report);state.detail={sourceReport:source,rows:entry.rows};
       const daily=trend(entry.rows),lastDate=daily.at(-1)?.date||'',latestEnd=entry.rows.reduce((max,r)=>r.end>max?r.end:max,''),extraKeys=['asin','sku','budget','status','biddingStrategy','targetingType','placement'],labels={asin:'广告 ASIN',sku:'广告 SKU',budget:'预算',status:'状态',biddingStrategy:'竞价策略',targetingType:'投放类型',placement:'广告位'};
       const extras=extraKeys.map(k=>{const values=[...new Set(entry.rows.filter(r=>r.end===latestEnd).map(r=>r[k]).filter(v=>v!=null&&v!==''))];return values.length?`<p><strong>${labels[k]}</strong>：${esc(values.join('；'))}</p>`:'';}).join('');
       let shareBlock='';
       if(report.type==='share'){
-        const term=entry.rows[0].termKey,all=report.rows.filter(r=>r.termKey===term&&(!state.from||r.start>=state.from)&&(!state.to||r.end<=state.to));
-        const relation=L.related([report],{...report,type:'search',start:state.from||report.start,end:state.to||report.end},all).share;
+        const term=entry.rows[0].termKey,all=report.rows.filter(r=>r.termKey===term&&r.start>=source.start&&r.end<=source.end);
+        const relation=L.related([report],{...source,type:'search'},all).share;
         shareBlock=`<section class="detail-section"><h3>账号级展示份额 / 排名</h3><p class="read-only-note">${esc(relation.message)}；不随当前商品 / 活动筛选改变，不做跨日平均。</p>${shareChart(relation.series||[],'展示份额')}${seriesTable(relation.series||[],true)}</section>`;
       }
-      const source={...report,start:state.from||report.start,end:state.to||report.end};state.detail.sourceReport=source;
       $('reportDetailContent').innerHTML=`<div class="dialog-heading"><div><p class="eyebrow">${titles[report.type]}详情</p><h2>${esc(entry.name)}</h2><p class="muted">${esc(report.fileName)} · ${period(source)} · ${report.profile.attributionDays} 天归因</p></div><button type="button" class="icon-button" data-close aria-label="关闭报告详情">×</button></div><p class="read-only-note">${esc(context().accountId)} / ${esc(context().country)} / ${esc(report.rows[0].currency)} · 指标仅来自这份报告</p><div class="detail-metrics">${['spend','sales','clicks','orders','cvr','acos'].map(k=>`<div class="detail-metric"><small>${metricNames[k]}</small><strong>${metric(entry.stats,k)}</strong></div>`).join('')}</div>${extras?`<section class="detail-section"><h3>报告属性</h3><p class="read-only-note">${lastDate} 最近有记录的状态，非后台实时设置。</p>${extras}</section>`:''}${shareBlock}<section class="detail-section"><h3>${report.profile.dateMode==='daily'?'每日表现':'原始区间表现'}</h3>${report.profile.dateMode==='daily'?spark(daily,'spend','广告花费'):'<p class="read-only-note">区间记录不拆分成日趋势。</p>'}${seriesTable(daily)}</section>${relationMarkup(source,entry.rows)}<p class="read-only-note">首版报告数据仅供参考，不新增竞价建议或改变搜索词诊断标签。</p>`;
       $('reportDetailContent').insertAdjacentHTML('beforeend',searchReferences(source,entry.rows));
       $('reportDetailDialog').showModal();
@@ -1514,7 +1520,7 @@ window.ReportUI=(()=>{
       const report=state.reports.find(r=>r.type===type);if(!report)return;
       const item=L.related(state.reports,sourceReport,rows)[type];
       $('reportDetailDialog').close();$('detailDialog').close();selectType(type);
-      if(item?.rows?.length){const terms=new Set(item.rows.map(r=>r.termKey)),matched=type==='share'?report.rows.filter(r=>terms.has(r.termKey)&&r.start>=item.start&&r.end<=item.end):item.rows;state.jump={rows:new Set(matched),message:item.message};state.from=item.start||sourceReport.start;state.to=item.end||sourceReport.end;$('reportFrom').value=state.from;$('reportTo').value=state.to;}
+      if(item?.rows?.length){const terms=new Set(item.rows.map(r=>r.termKey)),matched=type==='share'?report.rows.filter(r=>terms.has(r.termKey)&&r.start>=item.start&&r.end<=item.end):item.rows;state.jump={rows:new Set(matched),start:item.start,end:item.end,message:item.message};state.from=item.start||sourceReport.start;state.to=item.end||sourceReport.end;$('reportFrom').value=state.from;$('reportTo').value=state.to;}
       switchView('reports');$('reportWorkspace').scrollIntoView({block:'start',behavior:'smooth'});
     }
     async function importFiles(files){
@@ -1578,7 +1584,7 @@ window.ReportUI=(()=>{
       const report=current();if(!report||!state.entries.length)return;
       $('reportExportBtn').disabled=true;$('reportExportBtn').textContent='正在导出…';
       try{
-        const rows=state.entries.flatMap(e=>e.rows),source={...report,start:state.from||report.start,end:state.to||report.end};
+        const rows=state.entries.flatMap(e=>e.rows),source=referenceSource(report);
         const sheets=[{name:'报告汇总',rows:[[dimensions[state.dimension],...Object.values(metricNames)],...state.entries.map(e=>[e.name,...metricKeys.map(k=>e.stats[k])])],widths:[45,...metricKeys.map(()=>18)]},rawSheet(report,rows,'本报告源记录'),{name:'来源与筛选',rows:[['项目','内容'],['版本',E.VERSION],['来源',report.fileName],['账号',report.accountId],['账号类型',report.accountType],['站点',report.country],['原始报告日期',period(report)],['筛选开始',state.from],['筛选结束',state.to],['归因天数',report.profile.attributionDays],['广告组合',state.scope.portfolio.join('；')||'全部'],['广告活动',state.scope.campaign.join('；')||'全部'],['匹配类型',state.scope.match.join('；')||'全部'],['搜索',state.query],['关联范围',state.jump?.message||'未限定'],['口径','只汇总本报告；关联报告独立列出，不能相加。份额和排名保留原值，不跨日平均。预算和状态是报告历史记录。']],widths:[26,110]},...linkedSheets(source,rows)];
         if(report.type==='share'){
           const item=L.related([report],{...source,type:'search'},rows).share;
