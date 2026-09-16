@@ -40,16 +40,29 @@
 @media(max-width:780px){.mobile-table-hint{display:block;font-size:.75rem;color:var(--muted);padding:0 16px;margin:0 0 12px}.topbar{height:auto}}
 .skip-link{top:10px;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;padding:0}.skip-link:focus-visible{width:auto;height:auto;clip-path:none;padding:16px}.skip-link:focus:not(:focus-visible){top:10px}.drawer .dialog-heading{position:sticky;top:-28px;background:#fff;z-index:5;padding:14px 0;margin-top:-14px;border-bottom:1px solid var(--line)}@media(max-width:780px){.drawer .dialog-heading{top:-22px}}
 
+/* v1.4: durable workspace, campaign placement rows and independent detail page. */
+.save-bar{display:flex;justify-content:flex-end;align-items:center;gap:12px;padding:9px 3.3% 0;font-size:.75rem;color:#777086;min-height:29px}.save-bar .save-failed{color:#b03c57}.detail-session #uploadBtn,.detail-session #demoBtn,.detail-session #clearBtn{display:none}.detail-page{max-width:1240px;margin:0 auto;padding:22px 32px 50px}.detail-page-nav{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-bottom:14px}.detail-page #detailContent{background:white;border:1px solid #eae9f1;border-radius:20px;padding:28px 32px}.detail-page .detail-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0}.detail-page .detail-section{border-top:1px solid #eae9f1;padding-top:24px;margin-top:26px}.detail-page .dialog-heading{margin-bottom:16px}.detail-page .detail-metric strong{font-weight:400}.detail-page .reference-values strong{font-weight:400}#detailReturnBar{margin-bottom:16px}#detailReturnBar .text-button{margin-left:12px}.placement-campaign-row>td{background:#f0ebff;font-weight:600;border-top:1px solid #ddd3f5}.placement-child-row>td{background:#fdfcff}.placement-child-label{display:inline-block;padding-left:14px;border-left:3px solid #d2c6f7;font-size:.8125rem}.placement-missing-row>td{color:#9b95a8}.placement-child-row td:first-child{max-width:330px;min-width:300px}.placement-child-row .name-button{max-width:300px}.placement-missing-row .row-meta{color:#9b95a8}
+@media(max-width:780px){.save-bar{padding:8px 16px;font-size:.6875rem;justify-content:flex-start}.detail-page{padding:12px 12px 30px}.detail-page #detailContent{padding:20px 16px;border-radius:14px}.detail-page .detail-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.detail-page-nav{justify-content:flex-start}.detail-page-nav .button{font-size:.75rem;padding:8px 10px}.placement-child-row td:first-child{min-width:210px;max-width:240px}.placement-child-row .name-button{max-width:200px}}
+
+</style>
+  <style>
+/* Chart styles are scoped so the same components work in drawers and full detail pages. */
+.viz-chart-shell{position:relative;min-width:0;max-width:100%}.viz-fixed-axis{position:absolute;top:4px;display:block;max-width:none!important;height:276px!important;background:white;pointer-events:none}.viz-axis-left{left:2px;width:42px!important}.viz-axis-right{right:0;width:42px!important}.viz-fixed-axis text{font-family:inherit;font-size:10px;fill:#776b87}.viz-data{font-size:12px;margin-top:12px;border-top:1px solid #eee8f5}.viz-data>summary{cursor:pointer;color:#73519d;padding:12px 0 3px}.viz-data>.viz-scroll{max-height:320px;overflow:auto}.viz-data-table{width:100%;border-collapse:collapse;font-size:12px}.viz-data-table th,.viz-data-table td{padding:9px 7px!important;text-align:right;white-space:nowrap;border-bottom:1px solid #eee8f5;font-weight:400!important}.viz-data-table th:first-child,.viz-data-table td:first-child{width:auto;min-width:0!important;max-width:none!important;text-align:left;white-space:normal}.viz-data-table thead th{color:#776b87;position:sticky;top:0;background:white}
+@media(max-width:600px){.viz-figure.viz-share{padding:8px}.viz-share .viz-latest{padding:9px 8px;gap:9px 13px}.viz-share .viz-latest strong{font-size:13px}.viz-share .viz-legend{gap:4px 10px;font-size:11px}.viz-share .viz-svg text{font-size:10px}.viz-share .viz-footnote{font-size:10px}.viz-share .viz-note{line-height:1.65}}
+.viz-figure{position:relative;min-width:0;max-width:100%;margin:14px 0;padding:16px;background:#fff;border:1px solid #e7e0f3;border-radius:14px;color:#342c48;font-size:13px;overflow:visible}.viz-caption{font-size:14px;font-weight:650;line-height:1.6;overflow-wrap:anywhere}.viz-note,.viz-footnote{font-size:12px;line-height:1.75;color:#71667f;margin:7px 0 12px}.viz-footnote{margin:2px 0 0}.viz-empty{padding:16px;border:1px dashed #dfd5eb;border-radius:12px;color:#766a84;font-size:13px}.viz-latest{display:flex;flex-wrap:wrap;gap:8px 22px;background:#f7f3ff;border-radius:10px;padding:11px 13px;margin:12px 0;color:#71667f;font-size:12px}.viz-latest>span{display:flex;flex-direction:column;gap:5px}.viz-latest strong{font-size:15px;font-weight:600;color:#4f347f;line-height:1.5}.viz-legend{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:12px;line-height:1.8;color:#71667f;margin:12px 0}.viz-legend>span{display:inline-flex;gap:6px;align-items:center}.viz-legend i{display:inline-block;flex-shrink:0;width:12px;height:12px;border-radius:3px}.viz-line-key{height:3px!important;background:#7250db;position:relative}.viz-line-key:after{content:'';position:absolute;width:7px;height:7px;top:-2px;left:3px;border-radius:50%;background:#7250db}.viz-rank-key{background:#ffbd77}.viz-spend-key{background:#9873e8}.viz-sales-key{background:#52c7ae}.viz-scroll{max-width:100%;min-width:0;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;scrollbar-width:thin;padding:4px 2px 2px}.viz-scroll:focus-visible{outline:2px solid #8060f2;outline-offset:2px}.viz-svg{display:block;max-width:none;width:auto!important;height:auto!important;overflow:visible}.viz-svg text{font-family:inherit;font-size:11px;fill:#776b87}.viz-grid{stroke:#eee8f5;stroke-width:1;stroke-dasharray:3 3}.viz-hit{fill:transparent}.viz-rank-bar{fill:#ffbd77;opacity:.72}.viz-share-line{fill:none;stroke:#7250db;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}.viz-share-dot{fill:#7250db;stroke:white;stroke-width:1.4;pointer-events:none}.viz-spend-bar{fill:#9873e8;background:#9873e8}.viz-sales-bar{fill:#52c7ae;background:#52c7ae}.viz-point{cursor:crosshair;outline:none}.viz-point:hover>.viz-hit,.viz-point:focus>.viz-hit{fill:#7250db0c;stroke:#ac95e3;stroke-width:1}.viz-tooltip{position:absolute;z-index:20;background:#342a48;color:#fff;padding:10px 12px;border-radius:9px;box-shadow:0 5px 18px #28133622;font-size:12px;line-height:1.8;white-space:normal;overflow-wrap:anywhere;pointer-events:none;max-width:calc(100% - 20px);font-variant-numeric:tabular-nums}.viz-tooltip[hidden]{display:none!important}.viz-group{border-bottom:1px solid #e9e3f1;margin:8px 0}.viz-group>summary{cursor:pointer;padding:11px 2px;font-size:13px;font-weight:600;overflow-wrap:anywhere}.viz-placement-table{width:100%;min-width:790px;border-collapse:collapse;font-size:12px;table-layout:fixed}.viz-placement-table th,.viz-placement-table td{padding:13px 9px!important;border-bottom:1px solid #eee8f5;text-align:right;white-space:nowrap;font-weight:400;font-variant-numeric:tabular-nums;background:none}.viz-placement-table thead th{color:#786b8b;font-weight:500}.viz-placement-table th:first-child{width:180px!important;min-width:0!important;max-width:none!important;text-align:left;white-space:normal;line-height:1.7;font-weight:500}.viz-placement-table td:nth-child(2),.viz-placement-table th:nth-child(2){width:192px!important;text-align:left}.viz-placement-table .viz-no-record{color:#958b9e;text-align:left}.viz-horizontal{min-width:150px;border-radius:5px}.viz-horizontal-row{position:relative;display:block;height:23px;margin:3px 0;line-height:23px}.viz-horizontal-row>i{position:absolute;left:0;top:1px;height:21px;border-radius:4px;opacity:.32;min-width:0}.viz-horizontal-row>span{position:relative;z-index:1;font-size:11px;padding-left:6px;white-space:nowrap}.viz-horizontal:focus-visible{outline:2px solid #8060f2;outline-offset:3px}.viz-placements,.viz-grouped{min-width:0;max-width:100%}@media(max-width:600px){.viz-figure{padding:12px;margin:12px 0;border-radius:11px}.viz-latest{gap:9px 17px;padding:10px}.viz-latest strong{font-size:14px}.viz-legend{gap:5px 12px}.viz-caption{font-size:13px}.viz-note{font-size:11px}.viz-tooltip{font-size:11px}.viz-placement-table{min-width:780px}}@media print{.viz-scroll{overflow:visible}.viz-svg{width:100%!important;max-width:100%;height:auto!important}.viz-tooltip{display:none!important}}
+
 </style>
 </head>
 <body>
   <a class="skip-link" href="#analysis">跳到分析表格</a>
   <header class="topbar">
-    <a class="brand" href="./" aria-label="广告诊断台首页"><span class="brandmark" aria-hidden="true"><i></i><i></i><i></i></span><span>广告诊断台<span class="brand-sub">SP · 多报告分析 · v1.3.1</span></span></a>
+    <a class="brand" href="./" aria-label="广告诊断台首页"><span class="brandmark" aria-hidden="true"><i></i><i></i><i></i></span><span>广告诊断台<span class="brand-sub">SP · 多报告分析 · v1.4</span></span></a>
     <div class="header-actions"><span class="local-note"><span aria-hidden="true">◈</span> 数据仅在本机处理</span><button id="guideBtn" class="button quiet">使用说明</button><button id="settingsBtn" class="button">诊断设置</button><button id="uploadBtn" class="button primary"><span aria-hidden="true">＋</span> 导入报表</button></div>
     <input type="file" id="fileInput" accept=".xlsx,.csv" multiple hidden>
   </header>
-  <main>
+  <div class="save-bar" role="status"><span id="saveStatus">正在读取本机数据…</span><button id="saveRetry" class="text-button" hidden>重新保存</button></div>
+  <main id="workspaceMain">
+    <div id="detailReturnBar" class="context-warning" hidden>正在浏览这份详情对应的报表快照。<button id="detailReturnBtn" class="text-button">返回搜索词详情</button></div>
     <section class="intro"><div><h1>广告分析<span class="title-dot">.</span></h1><p id="fileMeta" class="muted">导入 SC / VC 商品推广搜索词报告，开始分析。</p></div><div class="intro-actions"><span id="dataPill" class="pill demo">尚未导入</span><button id="demoBtn" class="button">体验示例数据</button><button id="clearBtn" class="button quiet" hidden>清除数据</button></div></section>
     <details id="reportLibrary" class="report-library" open>
       <summary><span>已导入报告 <strong id="reportCount">0 / 6 类已导入</strong></span><span class="muted">管理分析批次与数据来源</span></summary>
@@ -67,7 +80,7 @@
       <div id="tagFilters" class="tag-filters" aria-label="诊断标签筛选"></div>
       <div class="table-toolbar"><div class="search-wrap"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="搜索客户搜索词…" aria-label="搜索当前维度"></div><div class="table-controls"><label class="compact-input">点击 ≥ <input id="minClicks" type="number" min="0" step="1" placeholder="0" aria-label="最小点击量"></label><label class="compact-input">花费 ≥ <input id="minSpend" type="number" min="0" step="0.01" placeholder="0" aria-label="最小花费"></label><label class="checkbox-label"><input id="priorityOnly" type="checkbox">优先处理</label><button id="columnsBtn" class="button quiet">显示列</button><button id="resetFilters" class="button quiet" title="重置表格筛选">重置</button></div></div>
       <div id="columnPicker" class="column-picker" hidden></div>
-      <p class="mobile-table-hint">左右滑动查看指标，点击名称展开诊断。</p>
+      <p class="mobile-table-hint">左右滑动查看指标，点击搜索词在新页面查看详情。</p>
       <div id="tableRegion" class="table-region" role="region" aria-label="诊断结果表格" tabindex="0"><table id="dataTable"><thead></thead><tbody><tr><td><div class="empty-state"><span class="empty-icon" aria-hidden="true">↥</span><h3>开始你的第一次诊断</h3><p>拖入 XLSX / CSV 报表，或点击右上角「导入报表」。</p><p class="muted">原始文件保持不变，分析结果可导出。</p></div></td></tr></tbody></table></div>
       <div class="table-footer"><span id="rowSummary">等待导入数据</span><div class="pagination"><label>每页 <select id="pageSize"><option>25</option><option>50</option><option>100</option></select> 条</label><button id="prevPage" class="icon-button" aria-label="上一页" disabled>‹</button><span id="pageInfo">1 / 1</span><button id="nextPage" class="icon-button" aria-label="下一页" disabled>›</button></div></div>
     </section>
@@ -83,6 +96,7 @@
     </section>
     <footer class="page-footer"><span>按订单计算转化率 · 比率在汇总后重算</span><button id="qualityBtn" class="text-button" disabled>查看数据检查</button><span>各报告独立汇总 · 关联数据仅作参考</span></footer>
   </main>
+  <section id="detailPage" class="detail-page" hidden><nav class="detail-page-nav" aria-label="详情页操作"><a id="detailHomeLink" class="button quiet" href="./" target="_blank" rel="noopener">打开分析页</a><button id="detailBackBtn" class="button quiet">查看本页报告</button><button id="detailExportBtn" class="button primary">↓ 导出此搜索词</button><button id="detailCloseBtn" class="button quiet">关闭此页</button></nav><p id="detailPageStatus" class="read-only-note"></p></section>
   <dialog id="settingsDialog" class="modal"><form id="settingsForm"><div class="dialog-heading"><div><p class="eyebrow">按商品设定目标</p><h2>诊断设置</h2></div><button type="button" class="icon-button" data-close aria-label="关闭设置">×</button></div><label class="field">设置适用范围<select id="settingsScope"><option value="">全局默认</option></select></label><p id="settingsHint" class="muted">未单独设置的广告组合使用全局默认值。</p><div class="settings-grid"><label class="field">样本点击数量<input id="sampleClicks" name="sampleClicks" type="number" min="1" step="1" value="10" required><small>达到此点击量后，判断表现标签</small></label><label class="field">红线点击数量<input id="redClicks" name="redClicks" type="number" min="1" step="1" placeholder="请输入" required><small>达到红线后，进一步判断低效词</small></label><label class="field">目标 ACOS（%）<input id="targetAcos" name="targetAcos" type="number" min="0.01" step="0.01" placeholder="请输入" required><small>达到或低于目标，标为优秀</small></label><label class="field">红线 ACOS（%）<input id="redAcos" name="redAcos" type="number" min="0.01" step="0.01" placeholder="请输入" required><small>达到或超过红线，标为紧急调整</small></label></div><p class="info-box">潜力词与所属商品的整体订单转化率比较。搜索、标签筛选和排序不会改变基准。</p><p id="settingsError" class="error-text" role="alert"></p><div class="dialog-footer"><button type="button" id="removeOverride" class="button quiet" hidden>恢复使用全局默认</button><button type="button" class="button" data-close>取消</button><button type="submit" class="button primary">保存并重新诊断</button></div></form></dialog>
   <dialog id="detailDialog" class="drawer"><div id="detailContent"></div></dialog>
   <dialog id="reportDetailDialog" class="drawer"><div id="reportDetailContent"></div></dialog>
@@ -829,7 +843,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
 /* Pure, deterministic calculations. No network or UI side effects. */
 (function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.AdEngine=api;})(typeof globalThis!=='undefined'?globalThis:this,function(){
   'use strict';
-  const VERSION='1.3.1';
+  const VERSION='1.4.0';
   const REQUIRED={start:'开始日期',end:'结束日期',portfolio:'广告组合名称',currency:'货币',campaign:'广告活动名称',adgroup:'广告组名称',country:'国家/地区',target:'投放',match:'匹配类型',term:'客户搜索词',impressions:'展示量',clicks:'点击量',spend:'花费',sales:'7天总销售额',orders:'7天总订单数(#)',units:'7天总销售量(#)'};
   const OPTIONAL={skuUnits:'7天内广告SKU销售量(#)',otherUnits:'7天内其他SKU销售量(#)',skuSales:'7天内广告SKU销售额',otherSales:'7天内其他SKU销售额'};
   const NUMERIC=['impressions','clicks','spend','sales','orders','units','skuUnits','otherUnits','skuSales','otherSales'];
@@ -1329,12 +1343,326 @@ https://github.com/nodeca/pako/blob/main/LICENSE
 
 </script>
 <script>
+/* Local SVG charts. Every plotted value retains its original day or reporting interval. */
+(function(root,factory){const api=factory(typeof module==='object'&&module.exports?require('./report-links.js'):root.ReportLinks);if(typeof module==='object'&&module.exports)module.exports=api;else root.ReportViz=api;})(typeof globalThis!=='undefined'?globalThis:this,function(Links){
+  'use strict';
+  const finite=v=>typeof v==='number'&&Number.isFinite(v),esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const num=(v,d=0)=>finite(v)?v.toLocaleString('zh-CN',{minimumFractionDigits:d,maximumFractionDigits:d}):'—';
+  const pct=v=>finite(v)?num(v*100,2)+'%':'—';
+  const money=(v,c)=>{if(!finite(v))return '—';const code=/^[A-Z]{3}$/i.test(c||'')?String(c).toUpperCase():'USD';try{return new Intl.NumberFormat('zh-CN',{style:'currency',currency:code,maximumFractionDigits:2}).format(v);}catch{return num(v,2)+' '+code;}};
+  const date=v=>{const s=String(v||'');if(!/^\d{4}-\d{2}-\d{2}$/.test(s))return null;const t=Date.parse(s+'T00:00:00Z');return Number.isFinite(t)&&new Date(t).toISOString().slice(0,10)===s?s:null;};
+  const day=v=>date(v)?Date.parse(v+'T00:00:00Z')/86400000:NaN;
+  const period=r=>{const start=date(r.start)||date(r.date),end=date(r.end)||date(r.date)||start;return {start,end,label:start===end?start:start+' ～ '+end};};
+  const empty=message=>'<p class="viz-empty">'+esc(message)+'</p>';
+  function grouped(rows,key){const result=new Map();for(const r of rows){const k=key(r);if(!result.has(k))result.set(k,[]);result.get(k).push(r);}return [...result.values()];}
+  function tip(text){return ' tabindex="0" role="img" aria-label="'+esc(text)+'" data-viz-tip="'+esc(text)+'"';}
+  function frame(title,sub,body,extra=''){return '<figure class="viz-figure '+extra+'"><figcaption class="viz-caption">'+esc(title)+'</figcaption>'+(sub?'<p class="viz-note">'+esc(sub)+'</p>':'')+body+'<output class="viz-tooltip" aria-live="polite" hidden></output></figure>';}
+  function legend(){return '<div class="viz-legend"><span><i class="viz-line-key"></i>展示份额 · 左轴</span><span><i class="viz-rank-key"></i>展示排名 · 右轴</span><span>排名数值越小越好</span></div>';}
+  function latestCards(r){return '<div class="viz-latest"><span>最近记录 <strong>'+esc(r.label)+'</strong></span><span>展示份额 <strong>'+pct(r.share)+'</strong></span><span>展示排名 <strong>'+num(r.rank)+'</strong></span></div>';}
+  function shareOne(source,options={}){
+    // Conflicting records remain missing, and repeated identical records are not averaged.
+    const rows=grouped(source,r=>JSON.stringify([period(r).start,period(r).end])).map(items=>{const p=period(items[0]),value=k=>{const vals=items.map(r=>r[k]).filter(finite);return vals.length&&!vals.some(v=>Math.abs(v-vals[0])>1e-10)?vals[0]:null;};return {...p,share:value('share'),rank:value('rank')};}).filter(r=>r.start&&r.end).sort((a,b)=>a.end.localeCompare(b.end)||a.start.localeCompare(b.start));
+    if(!rows.length)return empty('暂无有效日期的展示份额记录。');
+    const daily=rows.every(r=>r.start===r.end),first=day(rows[0].start),last=day(rows.at(-1).end),span=daily?Math.max(1,last-first):Math.max(1,rows.length-1);
+    const step=daily?22:148,width=Math.max(daily?480:550,112+span*step),height=276,left=42,right=width-42,top=28,bottom=210,plotH=bottom-top;
+    const pos=(r,i)=>daily?left+14+(day(r.start)-first)*(right-left-28)/span:left+14+i*(right-left-28)/Math.max(1,rows.length-1);
+    const largestShare=rows.reduce((m,r)=>finite(r.share)&&r.share>=0&&r.share<=1?Math.max(m,r.share):m,0),sharePercent=Math.max(.01,largestShare*100),sharePower=10**Math.floor(Math.log10(sharePercent)),shareMax=Math.min(100,[1,2,5,10].find(n=>n*sharePower>=sharePercent)*sharePower)/100;
+    const axisPct=v=>Number((v*100).toPrecision(4)).toString()+'%',shareTicks=[0,1,2,3,4].map(i=>i*shareMax/4);
+    const maximum=rows.reduce((m,r)=>finite(r.rank)?Math.max(m,r.rank):m,1),power=10**Math.floor(Math.log10(maximum)),rankMax=Math.ceil(maximum/power)*power;
+    const bars=[],dots=[],labels=[],grid=[],segments=[];let segment=[],previous=null;
+    const labelEvery=daily?Math.max(1,Math.ceil(68/Math.max(step,1))):1;
+    rows.forEach((r,i)=>{const x=pos(r,i),hasShare=finite(r.share)&&r.share>=0&&r.share<=1,hasRank=finite(r.rank)&&r.rank>=1,text=r.label+'｜展示份额 '+pct(r.share)+'｜展示排名 '+num(r.rank);
+      const barH=hasRank?r.rank/rankMax*plotH:0;bars.push('<g class="viz-point"'+tip(text)+'><rect class="viz-hit" x="'+(x-10)+'" y="'+top+'" width="20" height="'+plotH+'"/>'+(hasRank?'<rect class="viz-rank-bar" x="'+(x-6)+'" y="'+(bottom-barH)+'" width="12" height="'+Math.max(1,barH)+'" rx="3"/>':'')+'<title>'+esc(text)+'</title></g>');
+      // A missing metric or an unreported calendar day starts a new segment.
+      if(!hasShare||!daily||(previous!==null&&day(r.start)-previous!==1)){if(segment.length)segments.push(segment);segment=[];}
+      if(hasShare){segment.push([x,bottom-r.share/shareMax*plotH]);dots.push('<circle class="viz-share-dot" cx="'+x+'" cy="'+(bottom-r.share/shareMax*plotH)+'" r="3.5"/>');}previous=day(r.start);
+      if(i%labelEvery===0||i===rows.length-1)labels.push(daily?'<text x="'+x+'" y="234" text-anchor="middle">'+esc(r.start.slice(5))+'</text>':'<text x="'+x+'" y="233" text-anchor="middle"><tspan x="'+x+'">'+esc(r.start)+'</tspan><tspan x="'+x+'" dy="17">'+esc(r.end===r.start?'':('至 '+r.end))+'</tspan></text>');
+    });if(segment.length)segments.push(segment);
+    for(let i=0;i<=4;i++){const y=bottom-i*plotH/4;grid.push('<line class="viz-grid" x1="'+left+'" x2="'+right+'" y1="'+y+'" y2="'+y+'"/>');}
+    const line=segments.filter(s=>s.length>1).map(s=>'<polyline class="viz-share-line" points="'+s.map(p=>p.join(',')).join(' ')+'"/>').join('');
+    const leftAxis='<svg class="viz-fixed-axis viz-axis-left" width="42" height="'+height+'" aria-hidden="true"><text x="4" y="15">份额</text>'+shareTicks.map((v,i)=>'<text x="37" y="'+(bottom-i*plotH/4+4)+'" text-anchor="end">'+axisPct(v)+'</text>').join('')+'</svg>',rightAxis='<svg class="viz-fixed-axis viz-axis-right" width="42" height="'+height+'" aria-hidden="true"><text x="6" y="15">排名</text>'+[...new Set([0,1,2,3,4].map(i=>Math.round(rankMax*i/4)))].map(t=>'<text x="6" y="'+(bottom-t/rankMax*plotH+4)+'">'+num(t)+'</text>').join('')+'</svg>';
+    const svg='<div class="viz-chart-shell" data-viz-share-max="'+shareMax+'"><div class="viz-scroll" tabindex="0" aria-label="展示份额与排名图，可横向滚动"><svg class="viz-svg" width="'+width+'" height="'+height+'" viewBox="0 0 '+width+' '+height+'" aria-label="展示份额折线和展示排名柱状图，份额轴0至'+axisPct(shareMax)+'">'+grid.join('')+bars.join('')+line+dots.join('')+labels.join('')+'</svg></div>'+leftAxis+rightAxis+'</div>';
+    const table='<details class="viz-data"><summary>查看全部日期数值（'+rows.length+' 条）</summary><div class="viz-scroll"><table class="viz-data-table"><thead><tr><th scope="col">日期 / 区间</th><th scope="col">展示份额</th><th scope="col">展示排名</th></tr></thead><tbody>'+[...rows].reverse().map(r=>'<tr><th scope="row">'+esc(r.label)+'</th><td>'+pct(r.share)+'</td><td>'+num(r.rank)+'</td></tr>').join('')+'</tbody></table></div></details>';
+    return frame(options.title||'账号搜索词展示份额',daily?'按实际日期展示，缺少记录的日期会断线。悬停或点击查看具体值，横向滑动查看更多日期。':'此报告为区间汇总，各点对应标注的完整区间；不拆分成每日数据，也不连接为每日趋势。',latestCards(rows.at(-1))+legend()+svg+'<p class="viz-footnote">份额轴从 0 起，自动范围 0～'+axisPct(shareMax)+'；'+esc(rows[0].start+' ～ '+rows.at(-1).end)+(daily?' · '+rows.length+' 个有记录的日期':'')+'</p>'+table,'viz-share');
+  }
+  function share(series,options={}){if(!Array.isArray(series)||!series.length)return empty('尚无可展示的账号份额记录。');const groups=grouped(series,r=>String(r.termKey||r.term||''));return groups.length===1?shareOne(groups[0],options):'<div class="viz-grouped">'+groups.map((rows,i)=>'<details class="viz-group"'+(i===0?' open':'')+'><summary>'+esc(rows[0].term||rows[0].termKey||'搜索词')+'</summary>'+shareOne(rows,options)+'</details>').join('')+'</div>';}
+  function performance(rows,options={}){
+    if(!Array.isArray(rows)||!rows.length)return empty('暂无可展示的表现数据。');
+    const currency=options.currency||rows[0].currency||'USD',buckets=grouped(rows,r=>JSON.stringify([period(r).start,period(r).end])).map(items=>({...period(items[0]),...Links.aggregate(items)})).filter(r=>r.start&&r.end).sort((a,b)=>a.start.localeCompare(b.start)||a.end.localeCompare(b.end));if(!buckets.length)return empty('暂无有效日期的表现数据。');
+    const daily=buckets.every(r=>r.start===r.end),first=day(buckets[0].start),last=day(buckets.at(-1).end),span=daily?Math.max(1,last-first):Math.max(1,buckets.length-1),step=daily?Math.max(34,Math.min(72,560/span)):166,width=Math.max(650,110+span*step),height=286,left=70,right=width-25,top=28,bottom=205,plotH=bottom-top,maximum=buckets.reduce((m,r)=>Math.max(m,finite(r.spend)?r.spend:0,finite(r.sales)?r.sales:0),1);
+    const pos=(r,i)=>daily?left+22+(day(r.start)-first)*(right-left-44)/span:left+22+i*(right-left-44)/Math.max(1,buckets.length-1),grid=[],marks=[],labels=[];
+    for(let i=0;i<=4;i++){const y=bottom-i*plotH/4;grid.push('<line class="viz-grid" x1="'+left+'" x2="'+right+'" y1="'+y+'" y2="'+y+'"/><text x="'+(left-8)+'" y="'+(y+4)+'" text-anchor="end">'+num(maximum*i/4,maximum<4?1:0)+'</text>');}
+    buckets.forEach((r,i)=>{const x=pos(r,i),text=r.label+'｜花费 '+money(r.spend,currency)+'｜销售额 '+money(r.sales,currency)+'｜点击量 '+num(r.clicks)+'｜订单量 '+num(r.orders);marks.push('<g class="viz-point"'+tip(text)+'><rect class="viz-hit" x="'+(x-16)+'" y="'+top+'" width="32" height="'+plotH+'"/>'+['spend','sales'].map((k,j)=>finite(r[k])?'<rect class="viz-'+k+'-bar" x="'+(x-13+j*14)+'" y="'+(bottom-r[k]/maximum*plotH)+'" width="12" height="'+Math.max(0,r[k]/maximum*plotH)+'" rx="2"/>':'').join('')+'<title>'+esc(text)+'</title></g>');if(!daily||i%Math.max(1,Math.ceil(68/step))===0||i===buckets.length-1)labels.push('<text x="'+x+'" y="229" text-anchor="middle">'+(daily?esc(r.start.slice(5)):'<tspan x="'+x+'">'+esc(r.start)+'</tspan><tspan x="'+x+'" dy="17">'+esc(r.end===r.start?'':'至 '+r.end)+'</tspan>')+'</text>');});
+    const sums=Links.aggregate(rows),body='<div class="viz-latest"><span>花费 <strong>'+money(sums.spend,currency)+'</strong></span><span>销售额 <strong>'+money(sums.sales,currency)+'</strong></span><span>点击量 <strong>'+num(sums.clicks)+'</strong></span><span>订单量 <strong>'+num(sums.orders)+'</strong></span></div><div class="viz-legend"><span><i class="viz-spend-key"></i>花费</span><span><i class="viz-sales-key"></i>销售额</span><span>单位：'+esc(currency)+'</span></div><div class="viz-scroll" tabindex="0" aria-label="花费与销售额图，可横向滚动"><svg class="viz-svg" width="'+width+'" height="'+height+'" viewBox="0 0 '+width+' '+height+'" aria-label="花费和销售额分组柱状图">'+grid.join('')+marks.join('')+labels.join('')+'</svg></div>';
+    return frame(options.title||'花费与销售额',daily?'按本报告的每日记录汇总；悬停、点击或用 Tab 聚焦可查看金额、点击量和订单量。':'按本报告原始区间分别汇总；区间数据不按天拆分，柱子之间不表示连续的每日走势。',body,'viz-performance');
+  }
+  const placements=['亚马逊站内的搜索结果顶部','亚马逊站内的商品页面','亚马逊站内搜索结果的其余位置','亚马逊站外'];
+  function placementName(value){const original=String(value||'').trim(),v=original.toLowerCase().replace(/[\s_()（）-]+/g,' ').trim();if(/站外|off amazon|outside amazon|offsite|off site/.test(v))return placements[3];if(/商品页面|商品详情|product pages?|detail pages?/.test(v))return placements[1];if(/其余位置|其余搜索|rest of search/.test(v))return placements[2];if(/搜索结果顶部|搜索首页|top of search/.test(v))return placements[0];return original||'未提供广告位';}
+  function placement(rows,options={}){
+    if(!Array.isArray(rows)||!rows.length)return empty('尚无可展示的广告位记录。');
+    const campaigns=grouped(rows,r=>JSON.stringify([r.accountType,r.accountId,r.market||r.country,r.currency,r.portfolioKey||r.portfolio,r.campaign]));
+    return '<div class="viz-placements">'+campaigns.map(items=>{const source=items[0],currency=options.currency||source.currency||'USD',total=Links.aggregate(items),buckets=new Map(grouped(items,r=>placementName(r.placement)).map(rs=>[placementName(rs[0].placement),Links.aggregate(rs)])),names=[...placements,...[...buckets.keys()].filter(n=>!placements.includes(n))],maximum=Math.max(1,...[...buckets.values()].flatMap(s=>[s.spend,s.sales]).filter(finite));
+      const body='<div class="viz-legend"><span><i class="viz-spend-key"></i>花费</span><span><i class="viz-sales-key"></i>销售额</span><span>同一活动内比较 · '+esc(currency)+'</span></div><div class="viz-scroll" tabindex="0" aria-label="活动内四类广告位表现，可横向滚动"><table class="viz-placement-table"><thead><tr><th scope="col">广告位</th><th scope="col">花费 / 销售额</th><th scope="col">CTR</th><th scope="col">CVR</th><th scope="col">CPC</th><th scope="col">ACOS</th><th scope="col">花费占比</th></tr></thead><tbody>'+names.map(name=>{const s=buckets.get(name);if(!s)return '<tr><th scope="row">'+esc(name)+'</th><td colspan="6" class="viz-no-record">源报告无记录</td></tr>';const fraction=finite(total.spend)&&total.spend>0&&finite(s.spend)?s.spend/total.spend:null,text=name+'｜花费 '+money(s.spend,currency)+'｜销售额 '+money(s.sales,currency)+'｜展示量 '+num(s.impressions)+'｜点击量 '+num(s.clicks)+'｜订单量 '+num(s.orders);return '<tr><th scope="row">'+esc(name)+'</th><td><div class="viz-horizontal"'+tip(text)+'>'+['spend','sales'].map(k=>'<span class="viz-horizontal-row"><i class="viz-'+k+'-bar" style="width:'+Math.max(0,finite(s[k])?s[k]/maximum*100:0)+'%"></i><span>'+money(s[k],currency)+'</span></span>').join('')+'</div></td><td>'+pct(s.ctr)+'</td><td>'+pct(s.cvr)+'</td><td>'+money(s.cpc,currency)+'</td><td>'+pct(s.acos)+'</td><td>'+pct(fraction)+'</td></tr>';}).join('')+'</tbody></table></div>';
+      return frame(source.campaign||'未提供广告活动',((source.portfolio||'未分配广告组合')+' · 活动花费 '+money(total.spend,currency)+' · 活动销售额 '+money(total.sales,currency)),body,'viz-placement');}).join('')+'</div>';
+  }
+  // Document-level delegation also covers charts inserted later and fresh detail tabs.
+  const mounted=new WeakSet();
+  function mount(root){root=root||(typeof document!=='undefined'?document:null);if(!root||mounted.has(root))return;const doc=root.ownerDocument||root;if(mounted.has(doc))return;mounted.add(doc);
+    function close(){for(const el of doc.querySelectorAll('.viz-tooltip:not([hidden])'))el.hidden=true;}
+    function show(event){const mark=event.target.closest?.('[data-viz-tip]');if(!mark)return;const fig=mark.closest('.viz-figure'),box=fig?.querySelector('.viz-tooltip');if(!box)return;close();box.textContent=mark.dataset.vizTip;box.hidden=false;const f=fig.getBoundingClientRect(),m=mark.getBoundingClientRect(),w=Math.min(310,Math.max(160,f.width-20));box.style.maxWidth=w+'px';box.style.left=Math.max(8,Math.min(f.width-w-8,(event.clientX||m.left+m.width/2)-f.left-w/2))+'px';box.style.top=Math.max(8,Math.min(f.height-box.offsetHeight-8,m.top-f.top+16))+'px';}
+    doc.addEventListener('pointerover',show);doc.addEventListener('focusin',show);doc.addEventListener('click',event=>{if(event.target.closest?.('[data-viz-tip]'))show(event);else close();});doc.addEventListener('pointerout',event=>{const from=event.target.closest?.('[data-viz-tip]'),to=event.relatedTarget?.closest?.('[data-viz-tip]');if(from&&from!==to)close();});doc.addEventListener('focusout',event=>{if(event.target.closest?.('[data-viz-tip]'))close();});doc.addEventListener('keydown',event=>{if(event.key==='Escape')close();});doc.addEventListener('scroll',close,true);
+  }
+  if(typeof document!=='undefined')mount(document);
+  return {share,performance,placement,placementName,mount};
+});
+
+</script>
+<script>
+/* Browser-local report storage. Nothing in this module accesses the network. */
+window.WorkspaceStore=(()=>{
+  'use strict';
+  const DB_NAME='amazon-ad-diagnostic-local',DB_VERSION=1;
+  const DETAIL_LIMIT=20,DETAIL_TTL=7*24*60*60*1000;
+  let opening=null,connection=null,queue=Promise.resolve(),workspaceEpoch=0,allEpoch=0;
+
+  class StorageError extends Error{
+    constructor(code,message,cause){super(message);this.name='WorkspaceStorageError';this.code=code;if(cause)this.cause=cause;}
+  }
+  function failure(error,operation){
+    if(error instanceof StorageError)return error;
+    const name=error?.name||'';
+    if(name==='QuotaExceededError')return new StorageError('QUOTA','本机存储空间不足，本次更改尚未保存。请导出需要保留的数据，或清除旧的本机数据。',error);
+    if(['SecurityError','NotAllowedError','InvalidStateError'].includes(name))return new StorageError('UNAVAILABLE','当前浏览器未允许本机数据存储，本次数据无法在刷新后恢复。请检查浏览器的站点存储设置。',error);
+    if(name==='DataCloneError')return new StorageError('INVALID_SNAPSHOT','本次数据包含无法保存的内容，更改尚未保存。',error);
+    return new StorageError('STORAGE_ERROR',`本机数据${operation||'操作'}未完成，已有记录未被主动清除。${error?.message?' '+error.message:''}`,error);
+  }
+  function clone(value){
+    try{return structuredClone(value);}catch(error){throw failure(error,'保存');}
+  }
+  function open(){
+    if(connection)return Promise.resolve(connection);
+    if(opening)return opening;
+    opening=new Promise((resolve,reject)=>{
+      let request,settled=false;
+      const fail=error=>{if(settled)return;settled=true;reject(error);};
+      try{
+        if(!window.indexedDB)throw new StorageError('UNAVAILABLE','当前浏览器不支持本机数据存储，本次数据无法在刷新后恢复。');
+        request=indexedDB.open(DB_NAME,DB_VERSION);
+      }catch(error){fail(failure(error,'打开'));return;}
+      request.onupgradeneeded=()=>{
+        const db=request.result;
+        if(!db.objectStoreNames.contains('workspace'))db.createObjectStore('workspace',{keyPath:'key'});
+        if(!db.objectStoreNames.contains('datasets'))db.createObjectStore('datasets',{keyPath:'key'});
+        if(!db.objectStoreNames.contains('details')){
+          const details=db.createObjectStore('details',{keyPath:'key'});
+          details.createIndex('updatedAt','updatedAt');
+          details.createIndex('expiresAt','expiresAt');
+        }
+      };
+      request.onblocked=()=>fail(new StorageError('BLOCKED','本机存储升级被另一个页面阻止。请关闭旧版工具页面后重试；现有数据不会被清除。'));
+      request.onerror=()=>fail(failure(request.error,'打开'));
+      request.onsuccess=()=>{
+        const db=request.result;
+        if(settled){db.close();return;}
+        connection=db;settled=true;
+        db.onversionchange=()=>{db.close();if(connection===db)connection=null;};
+        db.onclose=()=>{if(connection===db)connection=null;};
+        resolve(db);
+      };
+    }).finally(()=>{opening=null;});
+    return opening;
+  }
+  function serial(work){
+    const result=queue.then(work);
+    queue=result.catch(()=>{});
+    return result;
+  }
+  async function transaction(stores,mode,operation,work){
+    const db=await open();
+    return new Promise((resolve,reject)=>{
+      let tx,result,localError;
+      try{tx=db.transaction(stores,mode);}catch(error){reject(failure(error,operation));return;}
+      tx.oncomplete=()=>resolve(result);
+      tx.onabort=()=>reject(failure(localError||tx.error||new Error('存储事务已中止。'),operation));
+      tx.onerror=()=>{}; // Abort owns rejection so a failed write can never look successful.
+      const setResult=value=>{result=value;};
+      const abort=error=>{localError=error;try{tx.abort();}catch{reject(failure(error,operation));}};
+      try{work(tx,setResult,abort);}catch(error){abort(error);}
+    });
+  }
+  function contextKey(context){
+    if(!context||typeof context!=='object')return context??null;
+    return Object.keys(context).sort().map(key=>[key,context[key]]);
+  }
+  function prepare(snapshot){
+    if(!snapshot||typeof snapshot!=='object'||Array.isArray(snapshot))throw new StorageError('INVALID_SNAPSHOT','无法保存空的分析快照。');
+    const reports=snapshot.library?.reports;
+    if(!Array.isArray(reports))return {snapshot:clone(snapshot),reports:null,datasetKey:null};
+    const thin={...snapshot,library:{...snapshot.library}};delete thin.library.reports;
+    // Reports are immutable after import. UI edits only clone the small snapshot.
+    // A changed import batch must receive a new dataRevision (the caller owns it).
+    const metadata=reports.map(r=>[r.id??null,r.type??null,r.rows?.length??0,r.fileName??null,r.start??null,r.end??null]);
+    const revision=snapshot.dataRevision??(reports.every(r=>r.id)?'report-ids':uniqueKey());
+    const datasetKey=JSON.stringify([revision,contextKey(snapshot.library.context),metadata]);
+    return {snapshot:clone(thin),reports,datasetKey};
+  }
+  function uniqueKey(){
+    return typeof crypto?.randomUUID==='function'?crypto.randomUUID():Date.now().toString(36)+'-'+Array.from(crypto.getRandomValues(new Uint32Array(4)),n=>n.toString(36)).join('-');
+  }
+  function writePrepared(tx,store,key,prepared,now,extra,afterPut,abort){
+    const put=()=>{const request=tx.objectStore(store).put({key,snapshot:prepared.snapshot,datasetKey:prepared.datasetKey,updatedAt:now,...extra});if(afterPut)request.onsuccess=afterPut;};
+    if(!prepared.datasetKey){put();return;}
+    // A cheap key lookup also handles another tab clearing the database. No
+    // row hashing/stringification or repeated report clone is needed here.
+    const datasets=tx.objectStore('datasets'),lookup=datasets.getKey(prepared.datasetKey);
+    lookup.onsuccess=()=>{
+      try{if(lookup.result===undefined)datasets.put({key:prepared.datasetKey,reports:prepared.reports,createdAt:now});put();}catch(error){abort(error);}
+    };
+  }
+  function hydrate(tx,record,setResult,abort){
+    if(!record){setResult(null);return;}
+    if(!record.datasetKey){setResult(record.snapshot);return;}
+    const request=tx.objectStore('datasets').get(record.datasetKey);
+    request.onsuccess=()=>{
+      if(!request.result){abort(new StorageError('MISSING_DATASET','本机分析记录引用的报告数据缺失，无法完整恢复。请重新导入报告；当前存储记录未被删除。'));return;}
+      const snapshot=record.snapshot;
+      snapshot.library={...snapshot.library,reports:request.result.reports};
+      setResult(snapshot);
+    };
+  }
+  function pruneDetails(tx,now,done=()=>{}){
+    const store=tx.objectStore('details');
+    const expired=store.index('expiresAt').openKeyCursor(IDBKeyRange.upperBound(now));
+    expired.onsuccess=()=>{const cursor=expired.result;if(cursor){store.delete(cursor.primaryKey);cursor.continue();}};
+    // Schedule count after the expiry cursor is exhausted, so only live pages
+    // count toward the cap. Key cursors never clone the large report payloads.
+    const expiryHandler=expired.onsuccess;
+    expired.onsuccess=()=>{
+      if(expired.result){expiryHandler();return;}
+      const count=store.count();
+      count.onsuccess=()=>{
+        let surplus=count.result-DETAIL_LIMIT;if(surplus<=0){done();return;}
+        const oldest=store.index('updatedAt').openKeyCursor();
+        oldest.onsuccess=()=>{const cursor=oldest.result;if(!cursor||surplus<=0){done();return;}store.delete(cursor.primaryKey);surplus--;cursor.continue();};
+      };
+    };
+  }
+  function removeUnreferencedDatasets(tx){
+    const referenced=new Set();let pending=2;
+    for(const name of ['workspace','details']){
+      // These records contain only UI state and references, never report rows.
+      const request=tx.objectStore(name).getAll();
+      request.onsuccess=()=>{
+        for(const record of request.result)if(record.datasetKey)referenced.add(record.datasetKey);
+        if(--pending)return;
+        const datasets=tx.objectStore('datasets'),cursorRequest=datasets.openKeyCursor();
+        cursorRequest.onsuccess=()=>{
+          const cursor=cursorRequest.result;if(!cursor)return;
+          if(!referenced.has(cursor.primaryKey))datasets.delete(cursor.primaryKey);
+          cursor.continue();
+        };
+      };
+    }
+  }
+  async function afterSaved(result){
+    try{
+      // One read/write transaction locks every reference store and the datasets
+      // together, including writers in other tabs. An import always commits its
+      // dataset and reference atomically, so this scan cannot race a live link.
+      await transaction(['workspace','details','datasets'],'readwrite','清理旧报告',tx=>{
+        pruneDetails(tx,Date.now(),()=>removeUnreferencedDatasets(tx));
+      });
+    }catch{
+      // Cleanup is best effort AFTER the save has committed. A cleanup failure
+      // must not misreport saved work as lost; the next successful write retries.
+    }
+    return result;
+  }
+  function saveWorkspace(snapshot){
+    let prepared;try{prepared=prepare(snapshot);}catch(error){return Promise.reject(error);}
+    const epoch=workspaceEpoch,all=allEpoch;
+    return serial(()=>{
+      if(epoch!==workspaceEpoch||all!==allEpoch)return {saved:false,reason:'cleared'};
+      const now=Date.now();
+      return transaction(['workspace','datasets'],'readwrite','保存',(tx,set,abort)=>{writePrepared(tx,'workspace','active',prepared,now,null,null,abort);set({saved:true,updatedAt:now});}).then(afterSaved);
+    });
+  }
+  function loadWorkspace(){
+    return serial(()=>transaction(['workspace','datasets'],'readonly','读取',(tx,set,abort)=>{const request=tx.objectStore('workspace').get('active');request.onsuccess=()=>hydrate(tx,request.result,set,abort);}));
+  }
+  function clearWorkspace(){
+    workspaceEpoch++;
+    return serial(()=>transaction(['workspace'],'readwrite','清除',(tx,set)=>{tx.objectStore('workspace').delete('active');set({cleared:true});}).then(afterSaved));
+  }
+  function clearAll(){
+    workspaceEpoch++;allEpoch++;
+    return serial(()=>transaction(['workspace','datasets','details'],'readwrite','清除',(tx,set)=>{for(const name of ['workspace','datasets','details'])tx.objectStore(name).clear();set({cleared:true,all:true});}));
+  }
+  function writeDetail(key,snapshot,requireExisting){
+    let prepared;try{prepared=prepare(snapshot);}catch(error){return Promise.reject(error);}
+    const epoch=allEpoch;
+    return serial(()=>{
+      if(epoch!==allEpoch)throw new StorageError('CLEARED','本机数据已清除，本次详情未保存。');
+      const now=Date.now();
+      return transaction(['details','datasets'],'readwrite','保存',(tx,set,abort)=>{
+        const save=()=>{
+          writePrepared(tx,'details',key,prepared,now,{expiresAt:now+DETAIL_TTL},()=>{pruneDetails(tx,now);set(key);},abort);
+        };
+        if(!requireExisting){save();return;}
+        const request=tx.objectStore('details').get(key);
+        request.onsuccess=()=>{
+          if(!request.result||request.result.expiresAt<=now){abort(new StorageError('DETAIL_EXPIRED','此详情的本机快照已过期或被清除。请回到分析页重新打开详情。'));return;}
+          save();
+        };
+      }).then(afterSaved);
+    });
+  }
+  function saveDetail(snapshot){return writeDetail(uniqueKey(),snapshot,false);}
+  function updateDetail(key,snapshot){
+    if(typeof key!=='string'||!key)return Promise.reject(new StorageError('INVALID_KEY','详情记录编号无效。'));
+    return writeDetail(key,snapshot,true);
+  }
+  function loadDetail(key){
+    if(typeof key!=='string'||!key)return Promise.resolve(null);
+    return serial(()=>transaction(['details','datasets'],'readonly','读取',(tx,set,abort)=>{
+      const request=tx.objectStore('details').get(key);
+      request.onsuccess=()=>hydrate(tx,request.result?.expiresAt>Date.now()?request.result:null,set,abort);
+    }));
+  }
+  function patchWorkspaceAnnotations(dataRevision,patches){
+    let copied;try{copied=clone(patches);}catch(error){return Promise.reject(error);}
+    if(!copied||typeof copied!=='object'||Array.isArray(copied))return Promise.reject(new StorageError('INVALID_SNAPSHOT','备注变更格式无效。'));
+    const epoch=workspaceEpoch,all=allEpoch;
+    return serial(()=>{
+      if(epoch!==workspaceEpoch||all!==allEpoch)return false;
+      return transaction(['workspace'],'readwrite','保存备注',(tx,set)=>{
+        const store=tx.objectStore('workspace'),request=store.get('active');
+        request.onsuccess=()=>{
+          const record=request.result;
+          if(!record||record.snapshot.dataRevision!==dataRevision){set(false);return;}
+          const snapshot=record.snapshot,diagnosis={...snapshot.diagnosis},annotations={...diagnosis.annotations};
+          for(const [id,patch]of Object.entries(copied)){
+            if(!patch||typeof patch!=='object')continue;
+            const value={...annotations[id]};
+            for(const field of ['note','relevance','status'])if(Object.hasOwn(patch,field))value[field]=patch[field];
+            Object.defineProperty(annotations,id,{value,writable:true,enumerable:true,configurable:true});
+          }
+          diagnosis.annotations=annotations;record.snapshot={...snapshot,diagnosis};record.updatedAt=Date.now();store.put(record);set(true);
+        };
+      });
+    });
+  }
+  return Object.freeze({loadWorkspace,saveWorkspace,clearWorkspace,clearAll,saveDetail,loadDetail,updateDetail,patchWorkspaceAnnotations});
+})();
+
+</script>
+<script>
 /* Report library and reference views. Source files remain browser-local. */
 window.ReportUI=(()=>{
   'use strict';
   const titles={search:'搜索词报告',product:'推广的商品',campaign:'广告活动',placement:'广告位',share:'搜索词展示量份额',target:'投放'};
   const dimensions={product:'商品 / SKU',campaign:'广告活动',placement:'广告位',term:'搜索词',target:'投放来源',adgroup:'广告组',portfolio:'广告组合'};
-  const defaultDimension={product:'product',campaign:'campaign',placement:'placement',share:'term',target:'target',search:'term'};
+  const defaultDimension={product:'product',campaign:'campaign',placement:'campaign',share:'term',target:'target',search:'term'};
   const $=id=>document.getElementById(id),E=window.AdEngine,R=window.ReportEngine,L=window.ReportLinks;
   const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const num=n=>n==null?'—':Number(n).toLocaleString('zh-CN',{maximumFractionDigits:2});
@@ -1346,9 +1674,27 @@ window.ReportUI=(()=>{
   const metricKeys=Object.keys(metricNames);
   const metric=(stats,key)=>['ctr','cvr','acos'].includes(key)?key==='acos'&&stats.spend>0&&stats.sales===0?'无销售':percent(stats[key]):num(stats[key]);
   const countries=['美国','法国','德国','英国','加拿大','意大利','西班牙','日本','澳大利亚','墨西哥','荷兰','瑞典','波兰','比利时','印度','巴西','阿联酋','沙特阿拉伯'];
+  const placementNames=['亚马逊站内的搜索结果顶部','亚马逊站内的商品页面','亚马逊站内搜索结果的其余位置','亚马逊站外'];
+  function placementName(value){
+    if(window.ReportViz?.placementName)return window.ReportViz.placementName(value);
+    const text=String(value||'').trim(),norm=text.toLowerCase();
+    const aliases=[['搜索顶部','搜索结果顶部','top of search','top of search (first page)','first page top of search on amazon'],['商品页面','product pages','product pages on amazon'],['其余搜索结果','rest of search','rest of search on amazon'],['off amazon','off-amazon','outside amazon','off amazon placements']];
+    const index=placementNames.findIndex((name,i)=>name===text||aliases[i].includes(norm));return index>=0?placementNames[index]:text||'未提供广告位名称';
+  }
+  function placementGroups(rows){
+    const names=[...placementNames,...new Set(rows.map(r=>placementName(r.placement)).filter(n=>!placementNames.includes(n)))];
+    return names.map(name=>{const items=rows.filter(r=>placementName(r.placement)===name);return {name,rows:items,stats:L.aggregate(items)};});
+  }
+  const blankFilters=()=>({scope:{portfolio:[],campaign:[],match:[]},query:'',from:'',to:''});
+  const copy=value=>JSON.parse(JSON.stringify(value));
   function create(bridge){
-    const state={reports:[],view:'diagnosis',type:'product',dimension:'product',query:'',scope:{portfolio:[],campaign:[],match:[]},from:'',to:'',page:1,sort:'spend',dir:-1,entries:[],rows:[],demo:false,busy:false,detail:null,jump:null,errors:[]};
-    let picker=new Map(),pendingReplacement=null,shareCache=null;
+    const state={reports:[],view:'diagnosis',type:'product',dimension:'product',sharedFilters:blankFilters(),typePrefs:{},page:1,sort:'spend',dir:-1,entries:[],rows:[],placementEntries:new Map(),demo:false,busy:false,detail:null,jump:null,errors:[]};
+    let picker=new Map(),pendingReplacement=null,shareCache=null,restoring=false,initializing=true;
+    const filters=()=>state.jump?.filters||state.sharedFilters;
+    const matchSupported=()=>['target','share','search'].includes(state.type);
+    const changed=()=>{if(!restoring&&!initializing)bridge.changed?.();};
+    const rememberType=()=>{state.typePrefs[state.type]={dimension:state.dimension,sort:state.sort,dir:state.dir,page:state.page};};
+    function syncInputs(){const f=filters();$('reportQuery').value=f.query;$('reportFrom').value=f.from;$('reportTo').value=f.to;}
     const current=()=>state.reports.find(r=>r.type===state.type);
     const search=()=>state.reports.find(r=>r.type==='search');
     const context=()=>({accountId:$('batchAccount').value.trim(),accountType:$('batchType').value,country:$('batchCountry').value});
@@ -1359,7 +1705,7 @@ window.ReportUI=(()=>{
       if(!shareCache){const related=L.related(state.reports,base,base.rows).share;shareCache=new Map();for(const point of related.series||[])shareCache.set(point.termKey,{...point,status:related.status,message:related.message});}
       return rows.length?shareCache.get(rows[0].termKey)||null:null;
     }
-    function switchView(view){state.view=view;bridge.closePicker();$('analysis').hidden=view!=='diagnosis';$('metrics').hidden=view!=='diagnosis';$('notice').hidden=view!=='diagnosis';$('reportWorkspace').hidden=view!=='reports';document.querySelectorAll('[data-work-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.workView===view)));if(view==='reports')render();else if(search())bridge.refreshSearch();}
+    function switchView(view){state.view=view;bridge.closePicker();$('analysis').hidden=view!=='diagnosis';$('metrics').hidden=view!=='diagnosis';$('notice').hidden=view!=='diagnosis';$('reportWorkspace').hidden=view!=='reports';document.querySelectorAll('[data-work-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.workView===view)));if(view==='reports')render();else if(search())bridge.refreshSearch();changed();}
     function reportStatus(report){
       const base=search();if(!base||base===report)return report.type==='search'?'诊断数据源':'可独立查看';
       if(report.end<base.start||report.start>base.end)return '与搜索词周期不一致';
@@ -1385,26 +1731,28 @@ window.ReportUI=(()=>{
     }
     function syncPickers(){
       const rows=current()?.rows||[];
-      const portfolios=[...new Set(rows.map(r=>r.portfolio))].sort();state.scope.portfolio=state.scope.portfolio.filter(v=>portfolios.includes(v));
-      picker.get('reportPortfolioFilter').setItems(portfolios);
-      const campaigns=[...new Set(rows.filter(r=>selected(state.scope.portfolio,r.portfolio)).map(r=>r.campaign))].sort();
-      state.scope.campaign=state.scope.campaign.filter(v=>campaigns.includes(v));picker.get('reportCampaignFilter').setItems(campaigns);
-      const matches=[...new Set(rows.map(r=>r.match).filter(Boolean))].sort();state.scope.match=state.scope.match.filter(v=>matches.includes(v));
-      picker.get('reportMatchFilter').setItems(matches.map(value=>({value,label:value==='-'?'商品投放 / 自动 / 其他':value})));
-      $('reportMatchField').hidden=!['target','share','search'].includes(state.type);
+      const options=(available,chosen,label=v=>v)=>[...new Set([...available,...chosen])].sort().map(value=>({value,label:label(value)+(available.includes(value)?'':'（此报告无此选项）')}));
+      const portfolios=[...new Set(rows.map(r=>r.portfolio))].sort();
+      picker.get('reportPortfolioFilter').setItems(options(portfolios,filters().scope.portfolio));
+      const campaigns=[...new Set(rows.filter(r=>selected(filters().scope.portfolio,r.portfolio)).map(r=>r.campaign))].sort();
+      picker.get('reportCampaignFilter').setItems(options(campaigns,filters().scope.campaign));
+      const matches=[...new Set(rows.map(r=>r.match).filter(Boolean))].sort();
+      picker.get('reportMatchFilter').setItems(options(matches,filters().scope.match,value=>value==='-'?'商品投放 / 自动 / 其他':value));
+      $('reportMatchField').hidden=!matchSupported()&&!filters().scope.match.length;
+      if(!matchSupported())$('reportMatchFilter').disabled=true;
     }
-    function resetFilters(){state.scope={portfolio:[],campaign:[],match:[]};state.query='';state.from='';state.to='';state.page=1;state.sort='spend';state.dir=-1;state.jump=null;$('reportQuery').value='';$('reportFrom').value='';$('reportTo').value='';}
-    function selectType(type,reset=true){state.type=type;state.dimension=defaultDimension[type];if(reset)resetFilters();syncPickers();render();}
+    function resetFilters(){state.sharedFilters=blankFilters();state.jump=null;state.page=1;state.sort='spend';state.dir=-1;syncInputs();}
+    function selectType(type){rememberType();state.jump=null;state.type=type;Object.assign(state,{dimension:defaultDimension[type],sort:'spend',dir:-1,page:1},state.typePrefs[type]||{});syncInputs();syncPickers();render();changed();}
     function referenceSource(report){
       // Keep the imported report intact; references use its real span intersected with the active scope.
-      const start=[report.start,state.from,state.jump?.start].filter(Boolean).sort().at(-1);
-      const end=[report.end,state.to,state.jump?.end].filter(Boolean).sort()[0];
+      const start=[report.start,filters().from,state.jump?.start].filter(Boolean).sort().at(-1);
+      const end=[report.end,filters().to,state.jump?.end].filter(Boolean).sort()[0];
       return {...report,start,end};
     }
     function filteredRows(){
       const report=current();if(!report)return [];
       const source=referenceSource(report);
-      return report.rows.filter(r=>selected(state.scope.portfolio,r.portfolio)&&selected(state.scope.campaign,r.campaign)&&selected(state.scope.match,r.match)&&r.start>=source.start&&r.end<=source.end&&(!state.jump||state.jump.rows.has(r)));
+      return report.rows.filter(r=>selected(filters().scope.portfolio,r.portfolio)&&selected(filters().scope.campaign,r.campaign)&&(!matchSupported()||selected(filters().scope.match,r.match))&&r.start>=source.start&&r.end<=source.end&&(!state.jump||state.jump.rows.has(r)));
     }
     function trend(rows,key='spend'){
       const groups=new Map();for(const r of rows){const date=r.start===r.end?r.start:`${r.start}～${r.end}`;if(!groups.has(date))groups.set(date,[]);groups.get(date).push(r);}
@@ -1431,21 +1779,25 @@ window.ReportUI=(()=>{
       const report=current();$('reportTitle').textContent=titles[state.type]+'数据';
       $('reportEmpty').hidden=!!report;$('reportContent').hidden=!report;$('reportExportBtn').disabled=!report||!state.entries.length;
       if(!report){state.entries=[];state.rows=[];$('reportExportBtn').disabled=true;$('reportSubtitle').textContent='导入对应报告后即可查看；不影响其他已导入报告。';if(state.view==='reports')bridge.emptyMeta(`${titles[state.type]}尚未导入，其他报告保留在当前批次。`);return;}
-      const dims=state.type==='share'?['term']:state.type==='placement'?['placement','campaign','portfolio']:state.type==='product'?['product','adgroup','campaign','portfolio']:state.type==='target'?['target','adgroup','campaign','portfolio']:['campaign','portfolio'];
+      const dims=state.type==='share'?['term']:state.type==='placement'?['campaign','placement','portfolio']:state.type==='product'?['product','adgroup','campaign','portfolio']:state.type==='target'?['target','adgroup','campaign','portfolio']:['campaign','portfolio'];
       if(!dims.includes(state.dimension))state.dimension=dims[0];
       $('reportDimension').innerHTML=dims.map(d=>`<option value="${d}"${d===state.dimension?' selected':''}>${dimensions[d]}</option>`).join('');
       const rows=filteredRows(),source=referenceSource(report);state.rows=rows;
-      const searchText=E.normalize(state.query);
-      state.entries=L.group(rows,state.dimension).filter(e=>!searchText||E.normalize(e.name+' '+e.rows.map(r=>[r.asin,r.sku,r.target,r.campaign,r.adgroup].join(' ')).join(' ')).includes(searchText));
+      const searchText=E.normalize(filters().query);
+      const grouped=state.type==='placement'&&state.dimension==='placement'?L.group(rows,'campaign').flatMap(c=>placementGroups(c.rows).filter(p=>p.rows.length).map(p=>({...p,id:c.id+'|'+p.name}))):L.group(rows,state.dimension);
+      state.entries=grouped.filter(e=>!searchText||E.normalize(e.name+' '+e.rows.map(r=>[r.portfolio,r.asin,r.sku,r.term,r.target,r.campaign,r.adgroup,r.placement?placementName(r.placement):''].join(' ')).join(' ')).includes(searchText));
       state.entries.sort((a,b)=>{const av=state.sort==='name'?a.name:a.stats[state.sort],bv=state.sort==='name'?b.name:b.stats[state.sort];if(av==null)return bv==null?0:1;if(bv==null)return -1;return (typeof av==='string'?av.localeCompare(bv,'zh-CN'):av-bv)*state.dir;});
       const visibleRows=state.entries.flatMap(e=>e.rows),currency=report.rows[0]?.currency||'';
       $('reportMetrics').innerHTML=metricCards(visibleRows,currency);
       $('reportSubtitle').textContent=`${report.fileName} · ${context().accountId} / ${context().country} · ${period(report)} · ${report.profile.attributionDays} 天归因`;
       if(state.view==='reports')bridge.emptyMeta(`${titles[state.type]} · ${period(report)} · ${report.profile.attributionDays} 天归因 · ${num(report.rows.length)} 条源记录`);
       const warn=[];
-      if(state.from&&state.to&&state.from>state.to)warn.push('开始日期晚于结束日期，请调整日期范围。');
+      if(filters().from&&filters().to&&filters().from>filters().to)warn.push('开始日期晚于结束日期，请调整日期范围。');
       if(report.profile.dateMode!=='daily')warn.push('区间记录仅在完整落入筛选范围时纳入，不按比例拆分。');
-      if(state.jump)warn.push(state.jump.message+'；当前已定位关联来源，点击“重置”可查看整份报告。');
+      if(state.jump)warn.push(state.jump.message+'；当前使用独立关联筛选，切换报告可回到原公共筛选；“重置”会清除公共筛选和关联定位。');
+      if(!matchSupported()&&filters().scope.match.length)warn.push('匹配类型筛选已保留；当前报告没有此维度，暂不应用，返回投放或份额报告后继续生效。');
+      for(const [key,label] of [['portfolio','广告组合'],['campaign','广告活动']]){const absent=filters().scope[key].filter(value=>!report.rows.some(r=>r[key]===value));if(absent.length)warn.push(`${label}中的 ${absent.length} 个已选项在此报告不存在，仍保留该条件，不自动切换为全部。`);}
+      if(state.type==='placement')warn.push('按活动查看四类广告位；未提供的位置显示“—”，不计作零；未知广告位名称完整保留。');
       if(state.type==='share')warn.push('份额和排名为账号级指标，不随商品 / 活动筛选改变；展示最近有记录日期的原值，不做跨日平均。');
       if(state.type==='campaign')warn.push('预算、状态和竞价策略来自报告对应日期，非后台实时设置；预算不按明细行累加。');
       if(report.quality.duplicates)warn.push(`存在 ${report.quality.duplicates} 条完全重复原始记录，保留并计入本报告，请核实来源。`);
@@ -1456,7 +1808,8 @@ window.ReportUI=(()=>{
       if(state.type==='campaign')columns.splice(1,0,'budget','status');
       $('reportTable').querySelector('thead').innerHTML='<tr>'+columns.map(k=>`<th>${['name',...metricKeys].includes(k)?`<button data-report-sort="${k}">${k==='name'?dimensions[state.dimension]:metricNames[k]} ${state.sort===k?state.dir===1?'↑':'↓':'↕'}</button>`:{share:'账号展示份额 · 最近',rank:'账号排名 · 最近',topShare:'搜索顶部份额 · 最近',budget:'预算 · 最近',status:'状态 · 最近'}[k]}</th>`).join('')+'</tr>';
       const pages=Math.max(1,Math.ceil(state.entries.length/25));state.page=Math.min(state.page,pages);
-      $('reportTable').querySelector('tbody').innerHTML=state.entries.slice((state.page-1)*25,state.page*25).map((e,index)=>`<tr>${columns.map(k=>{
+      state.placementEntries.clear();
+      $('reportTable').querySelector('tbody').innerHTML=state.entries.slice((state.page-1)*25,state.page*25).map((e,index)=>`<tr class="${state.type==='placement'&&state.dimension==='campaign'?'placement-campaign-row':''}">${columns.map(k=>{
         if(k==='name')return `<td><button class="name-button" data-report-entry="${(state.page-1)*25+index}">${esc(e.name||'未提供')}</button><div class="row-meta">${esc(state.dimension==='product'?e.rows[0].sku||'仅 ASIN':state.dimension==='target'?e.rows[0].campaign+' · '+e.rows[0].match:state.dimension==='placement'?e.rows[0].campaign:state.dimension==='term'?'份额为账号范围参考':e.rows[0].portfolio)}</div></td>`;
         if(k==='share'||k==='rank'){
           const term=e.rows[0].termKey,accountRows=report.rows.filter(r=>r.termKey===term&&r.start>=source.start&&r.end<=source.end);const latest=latestShare(accountRows);
@@ -1467,9 +1820,10 @@ window.ReportUI=(()=>{
           return `<td>${values.length===1?esc(k==='topShare'?percent(values[0]):k==='budget'?num(values[0]):values[0]):values.length?'多项，查看详情':'—'}<div class="row-meta">${date}</div></td>`;
         }
         return `<td>${metric(e.stats,k)}</td>`;
-      }).join('')}</tr>`).join('')||`<tr><td colspan="${columns.length}"><div class="empty-state">没有符合条件的结果，试试重置筛选。</div></td></tr>`;
+      }).join('')}</tr>${state.type==='placement'&&state.dimension==='campaign'?placementGroups(e.rows).map((child,childIndex)=>{const token=index+':'+childIndex;state.placementEntries.set(token,child);return `<tr class="placement-child-row${child.rows.length?'':' placement-missing-row'}"><td><div class="placement-child-label">${child.rows.length?`<button class="name-button" data-placement-entry="${token}">${esc(child.name)}</button>`:esc(child.name)}${child.rows.length?'':'<span class="row-meta">未提供</span>'}</div></td>${metricKeys.map(k=>`<td>${metric(child.stats,k)}</td>`).join('')}</tr>`;}).join(''):''}`).join('')||`<tr><td colspan="${columns.length}"><div class="empty-state">没有符合条件的结果，试试重置筛选。</div></td></tr>`;
       $('reportRowCount').textContent=`${num(state.entries.length)} 项 · ${num(visibleRows.length)} 条源记录 · ${currency}`;
       $('reportPageInfo').textContent=`${state.page} / ${pages}`;$('reportPrev').disabled=state.page<=1;$('reportNext').disabled=state.page>=pages;$('reportExportBtn').disabled=!state.entries.length;
+      rememberType();window.ReportViz?.mount?.($('reportWorkspace'));
     }
     function relationMarkup(sourceReport,rows){
       const links=L.related(state.reports,sourceReport,rows);
@@ -1484,33 +1838,33 @@ window.ReportUI=(()=>{
             const products=L.group(item.rows,'product');body=`<p class="read-only-note">${products.length} 个关联商品 / SKU。多商品广告组不能将搜索词的销售额精确分配给各 ASIN。</p><div class="reference-products">${products.slice(0,12).map(p=>`<span>${esc(p.name)}</span>`).join('')}${products.length>12?`<span>另 ${products.length-12} 项</span>`:''}</div>`;
           }else{
             const stats=L.aggregate(item.rows);body=`<div class="reference-values"><span>花费 <strong>${metric(stats,'spend')}</strong></span><span>销售额 <strong>${metric(stats,'sales')}</strong></span><span>ACOS <strong>${metric(stats,'acos')}</strong></span></div>`;
-            if(type==='placement')body+=`<div class="reference-mini-table">${L.group(item.rows,'placement').slice(0,8).map(e=>`<div><span>${esc(e.rows[0].campaign)} · ${esc(e.name)}</span><span>花费 ${metric(e.stats,'spend')} · ACOS ${metric(e.stats,'acos')}</span></div>`).join('')}</div>`;
+            if(type==='placement')body+=window.ReportViz?.placement?window.ReportViz.placement(item.rows,{currency:item.rows[0]?.currency}):`<div class="reference-mini-table">${L.group(item.rows,'placement').slice(0,8).map(e=>`<div><span>${esc(e.rows[0].campaign)} · ${esc(placementName(e.name))}</span><span>花费 ${metric(e.stats,'spend')} · ACOS ${metric(e.stats,'acos')}</span></div>`).join('')}</div>`;
           }
         }
         return `<article class="reference-card"><div class="reference-heading"><strong>${type==='share'?'账号搜索词展示份额':type==='placement'?'所属活动广告位':type==='target'?'关联投放整体表现':titles[type]}</strong><span class="report-state">${statusName[item.status]||item.status}</span></div><p class="read-only-note">${esc(item.message||'')}${item.report?`<br>来源：${esc(item.report.fileName)} · ${period(item.report)}`:''}</p>${body}${item.report?`<button type="button" class="text-button" data-reference-jump="${type}">${item.rows?.length?'查看关联明细':'单独查看这份报告'}</button>`:''}</article>`;
       }).join('')}</section>`;
     }
-    function shareChart(series,label){return series.some(s=>s.start&&s.start!==s.end)?'<p class="read-only-note">份额来自区间汇总，保留完整区间原值，不拆成日趋势。</p>':spark(series,'share',label,true);}
+    function shareChart(series,label){return window.ReportViz?.share?window.ReportViz.share(series):series.some(s=>s.start&&s.start!==s.end)?'<p class="read-only-note">份额来自区间汇总，保留完整区间原值，不拆成日趋势。</p>':spark(series,'share',label,true);}
     function searchReferences(sourceReport,rows){
       const item=L.relatedSearch(state.reports,sourceReport,rows);
       if(item.status==='not-applicable')return '';
       const entries=L.group(item.rows||[],'term').sort((a,b)=>(b.stats.spend||0)-(a.stats.spend||0));
       return `<section class="detail-section"><h3>关联搜索词 <span class="muted">${entries.length} 项</span></h3><p class="read-only-note">${esc(item.message)}${item.report?`<br>来源：${esc(item.report.fileName)} · ${period(item.report)}`:''}</p>${entries.slice(0,12).map(e=>`<div class="reference-mini-table"><div><button type="button" class="text-button" data-search-reference="${esc(e.rows[0].termKey)}" title="打开该搜索词在原搜索词报告中的完整诊断">${esc(e.name)}</button><span>花费 ${metric(e.stats,'spend')} · ACOS ${metric(e.stats,'acos')}</span></div></div>`).join('')}${entries.length>12?'<p class="read-only-note">以上列出花费最高的 12 项，全部关联记录可随报告导出。</p>':''}${entries.length?'<p class="read-only-note">点击名称查看原搜索词报告的完整诊断；诊断周期和基准仍以原搜索词报告为准。</p>':''}</section>`;
     }
-    function openEntry(index){
-      const entry=state.entries[index],report=current();if(!entry||!report)return;
+    function openEntry(index,placementEntry){
+      const entry=placementEntry||state.entries[index],report=current();if(!entry||!report||!entry.rows.length)return;
       const source=referenceSource(report);state.detail={sourceReport:source,rows:entry.rows};
       const daily=trend(entry.rows),lastDate=daily.at(-1)?.date||'',latestEnd=entry.rows.reduce((max,r)=>r.end>max?r.end:max,''),extraKeys=['asin','sku','budget','status','biddingStrategy','targetingType','placement'],labels={asin:'广告 ASIN',sku:'广告 SKU',budget:'预算',status:'状态',biddingStrategy:'竞价策略',targetingType:'投放类型',placement:'广告位'};
-      const extras=extraKeys.map(k=>{const values=[...new Set(entry.rows.filter(r=>r.end===latestEnd).map(r=>r[k]).filter(v=>v!=null&&v!==''))];return values.length?`<p><strong>${labels[k]}</strong>：${esc(values.join('；'))}</p>`:'';}).join('');
+      const extras=extraKeys.map(k=>{const values=[...new Set(entry.rows.filter(r=>r.end===latestEnd).map(r=>k==='placement'&&r[k]?placementName(r[k]):r[k]).filter(v=>v!=null&&v!==''))];return values.length?`<p><strong>${labels[k]}</strong>：${esc(values.join('；'))}</p>`:'';}).join('');
       let shareBlock='';
       if(report.type==='share'){
         const term=entry.rows[0].termKey,all=report.rows.filter(r=>r.termKey===term&&r.start>=source.start&&r.end<=source.end);
         const relation=L.related([report],{...source,type:'search'},all).share;
         shareBlock=`<section class="detail-section"><h3>账号级展示份额 / 排名</h3><p class="read-only-note">${esc(relation.message)}；不随当前商品 / 活动筛选改变，不做跨日平均。</p>${shareChart(relation.series||[],'展示份额')}${seriesTable(relation.series||[],true)}</section>`;
       }
-      $('reportDetailContent').innerHTML=`<div class="dialog-heading"><div><p class="eyebrow">${titles[report.type]}详情</p><h2>${esc(entry.name)}</h2><p class="muted">${esc(report.fileName)} · ${period(source)} · ${report.profile.attributionDays} 天归因</p></div><button type="button" class="icon-button" data-close aria-label="关闭报告详情">×</button></div><p class="read-only-note">${esc(context().accountId)} / ${esc(context().country)} / ${esc(report.rows[0].currency)} · 指标仅来自这份报告</p><div class="detail-metrics">${['spend','sales','clicks','orders','cvr','acos'].map(k=>`<div class="detail-metric"><small>${metricNames[k]}</small><strong>${metric(entry.stats,k)}</strong></div>`).join('')}</div>${extras?`<section class="detail-section"><h3>报告属性</h3><p class="read-only-note">${lastDate} 最近有记录的状态，非后台实时设置。</p>${extras}</section>`:''}${shareBlock}<section class="detail-section"><h3>${report.profile.dateMode==='daily'?'每日表现':'原始区间表现'}</h3>${report.profile.dateMode==='daily'?spark(daily,'spend','广告花费'):'<p class="read-only-note">区间记录不拆分成日趋势。</p>'}${seriesTable(daily)}</section>${relationMarkup(source,entry.rows)}<p class="read-only-note">首版报告数据仅供参考，不新增竞价建议或改变搜索词诊断标签。</p>`;
+      $('reportDetailContent').innerHTML=`<div class="dialog-heading"><div><p class="eyebrow">${titles[report.type]}详情</p><h2>${esc(entry.name)}</h2><p class="muted">${esc(report.fileName)} · ${period(source)} · ${report.profile.attributionDays} 天归因</p></div><button type="button" class="icon-button" data-close aria-label="关闭报告详情">×</button></div><p class="read-only-note">${esc(context().accountId)} / ${esc(context().country)} / ${esc(report.rows[0].currency)} · 指标仅来自这份报告</p><div class="detail-metrics">${['spend','sales','clicks','orders','cvr','acos'].map(k=>`<div class="detail-metric"><small>${metricNames[k]}</small><strong>${metric(entry.stats,k)}</strong></div>`).join('')}</div>${extras?`<section class="detail-section"><h3>报告属性</h3><p class="read-only-note">${lastDate} 最近有记录的状态，非后台实时设置。</p>${extras}</section>`:''}${shareBlock}<section class="detail-section"><h3>${report.profile.dateMode==='daily'?'每日表现':'原始区间表现'}</h3>${window.ReportViz?.performance?window.ReportViz.performance(entry.rows,{currency:report.rows[0].currency}):report.profile.dateMode==='daily'?spark(daily,'spend','广告花费'):'<p class="read-only-note">区间记录不拆分成日趋势。</p>'}${report.type==='placement'&&window.ReportViz?.placement?window.ReportViz.placement(entry.rows,{currency:report.rows[0].currency}):''}${seriesTable(daily)}</section>${relationMarkup(source,entry.rows)}<p class="read-only-note">首版报告数据仅供参考，不新增竞价建议或改变搜索词诊断标签。</p>`;
       $('reportDetailContent').insertAdjacentHTML('beforeend',searchReferences(source,entry.rows));
-      $('reportDetailDialog').showModal();
+      $('reportDetailDialog').showModal();window.ReportViz?.mount?.($('reportDetailContent'));
     }
     function seriesTable(series,share=false){
       const keys=share?['share','rank']:['impressions','clicks','spend','sales','orders','cvr','acos'];
@@ -1520,7 +1874,7 @@ window.ReportUI=(()=>{
       const report=state.reports.find(r=>r.type===type);if(!report)return;
       const item=L.related(state.reports,sourceReport,rows)[type];
       $('reportDetailDialog').close();$('detailDialog').close();selectType(type);
-      if(item?.rows?.length){const terms=new Set(item.rows.map(r=>r.termKey)),matched=type==='share'?report.rows.filter(r=>terms.has(r.termKey)&&r.start>=item.start&&r.end<=item.end):item.rows;state.jump={rows:new Set(matched),start:item.start,end:item.end,message:item.message};state.from=item.start||sourceReport.start;state.to=item.end||sourceReport.end;$('reportFrom').value=state.from;$('reportTo').value=state.to;}
+      if(item?.rows?.length){const terms=new Set(item.rows.map(r=>r.termKey)),matched=type==='share'?report.rows.filter(r=>terms.has(r.termKey)&&r.start>=item.start&&r.end<=item.end):item.rows;state.jump={rows:new Set(matched),start:item.start,end:item.end,message:item.message,filters:blankFilters()};filters().from=item.start||sourceReport.start;filters().to=item.end||sourceReport.end;syncInputs();syncPickers();}
       switchView('reports');$('reportWorkspace').scrollIntoView({block:'start',behavior:'smooth'});
     }
     async function importFiles(files){
@@ -1558,7 +1912,7 @@ window.ReportUI=(()=>{
           bridge.refreshSearch();bridge.toast(`已导入 ${staged.length} 类报告${replaced.length?'，已替换 '+replaced.join('、'):''}${state.errors.length?'；另有文件未导入，请查看报告列表。':'。'}`);
         }
         if(state.errors.length)$('reportLibrary').open=true;
-      }finally{pendingReplacement=null;state.busy=false;bridge.busy(false);$('fileInput').value='';inventory();syncPickers();render();}
+      }finally{pendingReplacement=null;state.busy=false;bridge.busy(false);$('fileInput').value='';inventory();syncInputs();syncPickers();render();changed();}
     }
     function rawSheet(report,rows,title){
       const keys=['start','end','portfolio','campaign','adgroup','term','target','match','asin','sku','placement','budget','status','biddingStrategy','targetingType',...metricKeys,'share','rank','topShare','line'];
@@ -1585,13 +1939,15 @@ window.ReportUI=(()=>{
       $('reportExportBtn').disabled=true;$('reportExportBtn').textContent='正在导出…';
       try{
         const rows=state.entries.flatMap(e=>e.rows),source=referenceSource(report);
-        const sheets=[{name:'报告汇总',rows:[[dimensions[state.dimension],...Object.values(metricNames)],...state.entries.map(e=>[e.name,...metricKeys.map(k=>e.stats[k])])],widths:[45,...metricKeys.map(()=>18)]},rawSheet(report,rows,'本报告源记录'),{name:'来源与筛选',rows:[['项目','内容'],['版本',E.VERSION],['来源',report.fileName],['账号',report.accountId],['账号类型',report.accountType],['站点',report.country],['原始报告日期',period(report)],['筛选开始',state.from],['筛选结束',state.to],['归因天数',report.profile.attributionDays],['广告组合',state.scope.portfolio.join('；')||'全部'],['广告活动',state.scope.campaign.join('；')||'全部'],['匹配类型',state.scope.match.join('；')||'全部'],['搜索',state.query],['关联范围',state.jump?.message||'未限定'],['口径','只汇总本报告；关联报告独立列出，不能相加。份额和排名保留原值，不跨日平均。预算和状态是报告历史记录。']],widths:[26,110]},...linkedSheets(source,rows)];
+        const sheets=[{name:'报告汇总',rows:[[dimensions[state.dimension],...Object.values(metricNames)],...state.entries.map(e=>[e.name,...metricKeys.map(k=>e.stats[k])])],widths:[45,...metricKeys.map(()=>18)]},rawSheet(report,rows,'本报告源记录'),{name:'来源与筛选',rows:[['项目','内容'],['版本',E.VERSION],['来源',report.fileName],['账号',report.accountId],['账号类型',report.accountType],['站点',report.country],['原始报告日期',period(report)],['筛选开始',filters().from],['筛选结束',filters().to],['归因天数',report.profile.attributionDays],['广告组合',filters().scope.portfolio.join('；')||'全部'],['广告活动',filters().scope.campaign.join('；')||'全部'],['匹配类型',filters().scope.match.join('；')||'全部'],['搜索',filters().query],['关联范围',state.jump?.message||'未限定'],['口径','只汇总本报告；关联报告独立列出，不能相加。份额和排名保留原值，不跨日平均。预算和状态是报告历史记录。']],widths:[26,110]},...linkedSheets(source,rows)];
         if(report.type==='share'){
           const item=L.related([report],{...source,type:'search'},rows).share;
           sheets.push({name:'账号展示份额日期明细',rows:[['开始日期','结束日期','搜索词','账号展示份额','账号排名','说明'],...(item.series||[]).map(s=>[s.start,s.end,s.term,s.share,s.rank,item.message])],percentColumns:[3],widths:[18,18,40,24,18,90]});
           sheets[0].rows[0].push('账号份额最近日期','账号展示份额','账号排名');
           state.entries.forEach((e,i)=>{const series=(item.series||[]).filter(s=>s.termKey===e.rows[0].termKey),latest=series.at(-1);sheets[0].rows[i+1].push(latest?.date,latest?.share,latest?.rank);});
         }
+        if(report.type==='placement')sheets.splice(1,0,{name:'活动广告位分布',rows:[['广告组合','广告活动','广告位','提供情况','源记录数',...Object.values(metricNames)],...L.group(rows,'campaign').flatMap(campaign=>placementGroups(campaign.rows).map(p=>[campaign.rows[0].portfolio,campaign.name,p.name,p.rows.length?'已提供':'未提供',p.rows.length,...metricKeys.map(k=>p.stats[k])]))],widths:[30,50,40,18,16,...metricKeys.map(()=>18)]});
+        sheets.find(s=>s.name==='来源与筛选').rows.push(['筛选作用域',state.jump?'独立关联筛选；公共筛选仍保留':'公共筛选'],['实际关联开始',source.start],['实际关联结束',source.end],['匹配类型应用',matchSupported()?'适用':'当前报告不支持此维度，已保留但不应用']);
         const blob=await SpreadsheetIO.write(sheets);download(blob,`广告诊断_${titles[report.type]}_${source.start}_${source.end}.xlsx`);bridge.toast('已导出当前筛选的全部结果、来源记录和关联参考。');
       }catch(error){message('导出未完成',error.message);}finally{$('reportExportBtn').disabled=false;$('reportExportBtn').textContent='↓ 导出报告数据';}
     }
@@ -1612,29 +1968,49 @@ window.ReportUI=(()=>{
       }
       bridge.installSearch(base,true);inventory();syncPickers();switchView('diagnosis');
     }
+    function snapshot(){
+      rememberType();
+      return {schema:1,context:context(),reports:state.reports,view:state.view,type:state.type,sharedFilters:copy(state.sharedFilters),typePrefs:copy(state.typePrefs),demo:state.demo,demoContext:state.demoContext?copy(state.demoContext):null,jump:state.jump?{type:state.type,reportId:current()?.id,start:state.jump.start,end:state.jump.end,message:state.jump.message,filters:copy(state.jump.filters),records:[...state.jump.rows].map(r=>r.record??r.line)}:null};
+    }
+    function restore(saved){
+      if(!saved||saved.schema!==1||!Array.isArray(saved.reports)||!saved.context||!['SC','VC'].includes(saved.context.accountType)||!saved.reports.every(r=>titles[r.type]&&Array.isArray(r.rows)&&r.rows.length&&r.profile&&r.quality))return false;
+      const sanitizeFilters=value=>{const f=blankFilters();for(const k of ['portfolio','campaign','match'])if(Array.isArray(value?.scope?.[k]))f.scope[k]=value.scope[k].filter(v=>typeof v==='string');for(const k of ['query','from','to'])if(typeof value?.[k]==='string')f[k]=value[k];return f;};
+      restoring=true;
+      try{
+        invalidate();state.reports=saved.reports;state.demo=!!saved.demo;state.demoContext=saved.demoContext||null;state.errors=[];state.view=saved.view==='reports'?'reports':'diagnosis';state.type=titles[saved.type]&&saved.type!=='search'?saved.type:'product';state.sharedFilters=sanitizeFilters(saved.sharedFilters);state.typePrefs=saved.typePrefs&&typeof saved.typePrefs==='object'?copy(saved.typePrefs):{};
+        Object.assign(state,{dimension:defaultDimension[state.type],sort:'spend',dir:-1,page:1},state.typePrefs[state.type]||{});
+        $('batchAccount').value=saved.context.accountId||'';$('batchType').value=saved.context.accountType;$('batchCountry').value=saved.context.country;
+        const report=current(),j=saved.jump;
+        if(j&&report&&j.type===state.type&&j.reportId===report.id&&Array.isArray(j.records)){const ids=new Set(j.records);state.jump={rows:new Set(report.rows.filter(r=>ids.has(r.record??r.line))),start:j.start,end:j.end,message:j.message||'恢复关联来源',filters:sanitizeFilters(j.filters)};}
+        bridge.clearSearch();if(search())bridge.installSearch(search(),state.demo);
+        syncInputs();inventory();syncPickers();switchView(state.view);return true;
+      }finally{restoring=false;}
+    }
+    function refreshView(){const previous=restoring;restoring=true;try{syncInputs();inventory();syncPickers();switchView(state.view);}finally{restoring=previous;}}
     $('batchCountry').innerHTML=countries.map(c=>`<option>${c}</option>`).join('');
-    for(const [id,key,title] of [['reportPortfolioFilter','portfolio','广告组合 / 商品'],['reportCampaignFilter','campaign','广告活动'],['reportMatchFilter','match','匹配类型']])picker.set(id,bridge.createMulti(id,title,'全部',()=>state.scope[key],values=>{state.scope[key]=values;state.page=1;syncPickers();render();}));
+    for(const [id,key,title] of [['reportPortfolioFilter','portfolio','广告组合 / 商品'],['reportCampaignFilter','campaign','广告活动'],['reportMatchFilter','match','匹配类型']])picker.set(id,bridge.createMulti(id,title,'全部',()=>filters().scope[key],values=>{filters().scope[key]=values;state.page=1;syncPickers();render();changed();}));
     $('workModeTabs').addEventListener('click',event=>{const b=event.target.closest('[data-work-view]');if(b)switchView(b.dataset.workView);});
     $('reportTypeTabs').addEventListener('click',event=>{const b=event.target.closest('[data-report-type]');if(b)selectType(b.dataset.reportType);});
     $('reportInventory').addEventListener('click',event=>{
       if(state.busy)return;
       const open=event.target.closest('[data-report-open]'),remove=event.target.closest('[data-report-remove]'),replace=event.target.closest('[data-report-replace]');
       if(open){if(open.dataset.reportOpen==='search')switchView('diagnosis');else{selectType(open.dataset.reportOpen);switchView('reports');}}
-      if(remove){const type=remove.dataset.reportRemove;invalidate();state.reports=state.reports.filter(r=>r.type!==type);if(type==='search')bridge.clearSearch();else bridge.refreshSearch();inventory();syncPickers();render();bridge.toast('已移除这份报告，其他报告保留。');}
+      if(remove){const type=remove.dataset.reportRemove;invalidate();state.reports=state.reports.filter(r=>r.type!==type);if(type==='search')bridge.clearSearch();else bridge.refreshSearch();inventory();syncInputs();syncPickers();render();bridge.toast('已移除这份报告，其他报告保留。');changed();}
       if(replace){pendingReplacement=replace.dataset.reportReplace;$('fileInput').click();}
     });
     $('newBatchBtn').addEventListener('click',()=>{clear();$('reportLibrary').open=true;$('batchAccount').focus();});
-    $('reportQuery').addEventListener('input',event=>{state.query=event.target.value;state.page=1;render();});
-    for(const [id,key] of [['reportFrom','from'],['reportTo','to']])$(id).addEventListener('change',event=>{state[key]=event.target.value;state.page=1;render();});
-    $('reportDimension').addEventListener('change',event=>{state.dimension=event.target.value;state.page=1;render();});
-    $('reportReset').addEventListener('click',()=>{resetFilters();syncPickers();render();});
-    $('reportTable').addEventListener('click',event=>{const entry=event.target.closest('[data-report-entry]'),sort=event.target.closest('[data-report-sort]');if(entry)openEntry(Number(entry.dataset.reportEntry));if(sort){state.dir=state.sort===sort.dataset.reportSort?-state.dir:-1;state.sort=sort.dataset.reportSort;render();}});
-    $('reportPrev').addEventListener('click',()=>{state.page--;render();});$('reportNext').addEventListener('click',()=>{state.page++;render();});
-    $('reportDetailContent').addEventListener('click',event=>{const b=event.target.closest('[data-reference-jump]'),term=event.target.closest('[data-search-reference]');if(b&&state.detail)jump(b.dataset.referenceJump,state.detail.sourceReport,state.detail.rows);if(term){$('reportDetailDialog').close();switchView('diagnosis');bridge.showSearchTerm(term.dataset.searchReference);}});
+    $('reportQuery').addEventListener('input',event=>{filters().query=event.target.value;state.page=1;render();changed();});
+    for(const [id,key] of [['reportFrom','from'],['reportTo','to']])$(id).addEventListener('change',event=>{filters()[key]=event.target.value;state.page=1;render();changed();});
+    $('reportDimension').addEventListener('change',event=>{state.dimension=event.target.value;state.page=1;render();changed();});
+    $('reportReset').addEventListener('click',()=>{resetFilters();syncPickers();render();changed();});
+    $('reportTable').addEventListener('click',event=>{const entry=event.target.closest('[data-report-entry]'),child=event.target.closest('[data-placement-entry]'),sort=event.target.closest('[data-report-sort]');if(entry)openEntry(Number(entry.dataset.reportEntry));if(child)openEntry(null,state.placementEntries.get(child.dataset.placementEntry));if(sort){state.dir=state.sort===sort.dataset.reportSort?-state.dir:-1;state.sort=sort.dataset.reportSort;render();changed();}});
+    $('reportPrev').addEventListener('click',()=>{state.page--;render();changed();});$('reportNext').addEventListener('click',()=>{state.page++;render();changed();});
+    $('reportDetailContent').addEventListener('click',event=>{const b=event.target.closest('[data-reference-jump]'),term=event.target.closest('[data-search-reference]');if(b&&state.detail)jump(b.dataset.referenceJump,state.detail.sourceReport,state.detail.rows);if(term)bridge.showSearchTerm(term.dataset.searchReference);});
     $('reportExportBtn').addEventListener('click',exportReport);
     $('fileInput').addEventListener('cancel',()=>{pendingReplacement=null;});
-    inventory();syncPickers();switchView('diagnosis');
-    return {importFiles,clear,demo,shareFor,hasReports:()=>state.reports.length>0,isBusy:()=>state.busy,beginImport(){pendingReplacement=null;$('fileInput').click();},relatedMarkup(rows){return search()?relationMarkup(search(),rows):'';},jump(type,rows){if(search())jump(type,search(),rows);},linkedSheets(rows){return search()?linkedSheets(search(),rows):[];},summary(){return {view:state.view,type:state.type,context:context(),reports:state.reports.map(r=>({type:r.type,fileName:r.fileName,rows:r.rows.length,start:r.start,end:r.end,days:r.profile.attributionDays,status:reportStatus(r)})),filteredCount:state.entries.length,stats:current()?L.aggregate(state.entries.flatMap(e=>e.rows)):null,errors:[...state.errors]};}};
+    for(const id of ['batchAccount','batchType','batchCountry'])$(id).addEventListener('change',changed);
+    inventory();syncPickers();switchView('diagnosis');initializing=false;
+    return {importFiles,clear,demo,shareFor,snapshot,restore,refreshView,hasReports:()=>state.reports.length>0,isBusy:()=>state.busy,beginImport(){pendingReplacement=null;$('fileInput').click();},relatedMarkup(rows){return search()?relationMarkup(search(),rows):'';},jump(type,rows){if(search())jump(type,search(),rows);},linkedSheets(rows){return search()?linkedSheets(search(),rows):[];},summary(){return {view:state.view,type:state.type,context:context(),filters:copy(filters()),sharedFilters:copy(state.sharedFilters),hasJump:!!state.jump,dimension:state.dimension,reports:state.reports.map(r=>({type:r.type,fileName:r.fileName,rows:r.rows.length,start:r.start,end:r.end,days:r.profile.attributionDays,status:reportStatus(r)})),filteredCount:state.entries.length,stats:current()?L.aggregate(state.entries.flatMap(e=>e.rows)):null,errors:[...state.errors]};}};
   }
   return {create};
 })();
@@ -1654,9 +2030,86 @@ window.ReportUI=(()=>{
   const storageKey='amazon-ad-diagnostic.settings.v1';
   const blankConfig=()=>({global:{sampleClicks:10,redClicks:null,targetAcos:null,redAcos:null},overrides:{}});
   let savedConfig=blankConfig();try{const c=JSON.parse(localStorage.getItem(storageKey));if(c&&c.global&&typeof c.overrides==='object'&&c.overrides!==null)savedConfig=c;}catch{}
-  const state={dataset:null,fileName:'',demo:false,dim:'term',scope:{market:'',portfolio:[],campaign:[],match:[]},targetMode:'source',targetModes:['source'],tag:'全部',search:'',minClicks:0,minSpend:0,priority:false,sort:'spend',dir:-1,page:1,pageSize:25,model:null,filtered:[],annotations:{},config:savedConfig,visible:new Set(['name','impressions','clicks','ctr','spend','cpc','sales','units','cvr','acos','roas','tags','advice']),detailId:null};
+  const state={dataset:null,fileName:'',demo:false,dim:'term',scope:{market:'',portfolio:[],campaign:[],match:[]},targetMode:'source',targetModes:['source'],tag:'全部',search:'',minClicks:0,minSpend:0,priority:false,sort:'clicks',dir:-1,page:1,pageSize:25,model:null,filtered:[],annotations:{},config:savedConfig,visible:new Set(['name','impressions','clicks','ctr','spend','cpc','sales','units','cvr','acos','roas','tags','advice']),detailId:null};
   const columns=[['name','客户搜索词'],['impressions','展示量'],['clicks','点击量'],['ctr','点击率'],['spend','花费'],['cpc','CPC'],['sales','销售额'],['orders','订单数'],['units','销量'],['cvr','转化率'],['acos','ACOS'],['roas','ROAS'],['tags','诊断标签'],['advice','建议摘要'],['share','账号展示份额 · 最近'],['rank','账号展示排名 · 最近']];
   let toastTimer,dragDepth=0,library;
+  const detailKey=new URL(location.href).searchParams.get('detail');
+  let persistenceReady=false,persistTimer,persistDirty=false,persistInFlight=0,persistError=false,restoring=false,dataRevision='',reportSignature='',detailOriginId=null,persistGeneration=0;
+  let channel;try{channel=new BroadcastChannel('ad-diagnostic-workspace-v1');}catch{}
+  const freshId=()=>globalThis.crypto?.randomUUID?.()||Date.now().toString(36)+'-'+Math.random().toString(36).slice(2);
+  function saveStatus(text,failed=false){$('saveStatus').textContent=text;$('saveStatus').classList.toggle('save-failed',failed);$('saveRetry').hidden=!failed;}
+  function captureWorkspace(){
+    const snapshot=library.snapshot();
+    const signature=JSON.stringify([snapshot.context,snapshot.reports.map(r=>[r.id,r.type,r.rows.length])]);
+    if(signature!==reportSignature){dataRevision=freshId();reportSignature=signature;}
+    const diagnosis=Object.fromEntries(['dim','scope','targetMode','targetModes','tag','search','minClicks','minSpend','priority','sort','dir','page','pageSize','annotations','config','detailId'].map(k=>[k,state[k]]));
+    diagnosis.visible=[...state.visible];
+    return {version:1,dataRevision,library:snapshot,diagnosis,libraryOpen:$('reportLibrary').open,detailOriginId,updatedAt:Date.now()};
+  }
+  function scheduleSave(){
+    if(!persistenceReady||restoring||!library||library.isBusy())return;
+    persistDirty=true;saveStatus('正在保存到本机…');clearTimeout(persistTimer);persistTimer=setTimeout(persistNow,220);
+  }
+  async function persistNow(){
+    clearTimeout(persistTimer);if(!persistenceReady||restoring||library.isBusy())return;
+    const generation=persistGeneration;persistDirty=false;persistInFlight++;
+    try{
+      const snapshot=captureWorkspace();
+      if(detailKey)await WorkspaceStore.updateDetail(detailKey,snapshot);
+      else if(snapshot.library.reports.length){const result=await WorkspaceStore.saveWorkspace(snapshot);if(result?.saved===false)return;}
+      else await WorkspaceStore.clearWorkspace();
+      if(generation===persistGeneration){persistError=false;if(!persistDirty)saveStatus(detailKey?'此详情已保存在本机':'已保存到本机 · 刷新可恢复');}
+    }catch(error){if(generation===persistGeneration){persistError=true;saveStatus(error.message||'保存失败，请导出备份',true);}}
+    finally{persistInFlight--;}
+  }
+  function restoreDiagnosis(saved={}){
+    for(const k of ['dim','scope','targetMode','targetModes','tag','search','minClicks','minSpend','priority','sort','dir','page','pageSize','annotations','config','detailId'])if(Object.hasOwn(saved,k))state[k]=saved[k];
+    if(Array.isArray(saved.visible))state.visible=new Set(saved.visible);
+    $('searchInput').value=state.search;$('minClicks').value=state.minClicks||'';$('minSpend').value=state.minSpend||'';$('priorityOnly').checked=state.priority;$('pageSize').value=state.pageSize;
+    document.querySelectorAll('[data-column]').forEach(el=>el.checked=state.visible.has(el.dataset.column));
+    syncBusinessFilters();refresh();
+  }
+  async function restoreWorkspace(){
+    restoring=true;saveStatus('正在读取本机数据…');$('uploadBtn').disabled=true;$('demoBtn').disabled=true;
+    if(detailKey){document.body.classList.add('detail-session');$('workspaceMain').hidden=true;$('detailPage').hidden=false;$('detailPageStatus').textContent='正在读取这份详情…';}
+    try{
+      const snapshot=detailKey?await WorkspaceStore.loadDetail(detailKey):await WorkspaceStore.loadWorkspace();
+      if(snapshot){
+        if(snapshot.version!==1||!library.restore(snapshot.library))throw new Error('保存的数据版本不兼容，请重新导入报告。');
+        dataRevision=snapshot.dataRevision;reportSignature=JSON.stringify([snapshot.library.context,snapshot.library.reports.map(r=>[r.id,r.type,r.rows.length])]);
+        if(detailKey){const active=await WorkspaceStore.loadWorkspace();if(active?.dataRevision===dataRevision)snapshot.diagnosis.annotations={...snapshot.diagnosis.annotations,...active.diagnosis?.annotations};}
+        restoreDiagnosis(snapshot.diagnosis);$('reportLibrary').open=!!snapshot.libraryOpen;library.refreshView?.();
+        detailOriginId=snapshot.detailOriginId||snapshot.diagnosis.detailId;
+        if(detailKey){$('detailPage').appendChild($('detailContent'));showFullDetail(detailOriginId);}
+        saveStatus(detailKey?'独立详情 · 原列表保持不变':'已恢复本机报表与筛选');
+      }else if(detailKey)throw new Error('这份详情已被清除或超过保留期限，请返回分析页重新打开。');
+      else saveStatus('导入后自动保存到本机');
+    }catch(error){saveStatus(error.message,true);if(detailKey)$('detailPageStatus').textContent=error.message;}
+    finally{restoring=false;persistenceReady=true;$('uploadBtn').disabled=false;$('demoBtn').disabled=false;document.body.dataset.ready='true';}
+  }
+  function showFullDetail(id){
+    const entry=state.model?.entries.find(e=>e.id===id);if(!entry){$('detailPageStatus').textContent='当前快照中没有这项搜索词，请返回本页报告查看。';return;}
+    state.detailId=id;$('workspaceMain').hidden=true;$('detailPage').hidden=false;$('detailPageStatus').textContent=`${state.dataset.start} 至 ${state.dataset.end} · ${library.summary().context.accountId} · 本页使用打开时的报表范围`;
+    renderDetail(entry);document.title=entry.name+' · 搜索词详情';window.scrollTo({top:0,behavior:'instant'});
+  }
+  function leaveDetail(){
+    $('detailPage').hidden=true;$('workspaceMain').hidden=false;library.refreshView?.();$('detailReturnBar').hidden=false;window.scrollTo({top:0,behavior:'instant'});
+  }
+  async function openDetailPage(entry,snapshot){
+    const child=window.open('about:blank','_blank');
+    if(child){child.document.title='正在打开搜索词详情';const note=child.document.createElement('p');note.textContent='正在准备详情…';note.style.cssText='font:16px system-ui;padding:32px;color:#645c7a';child.document.body.appendChild(note);}
+    try{
+      snapshot=snapshot||captureWorkspace();snapshot.diagnosis.detailId=entry.id;snapshot.detailOriginId=entry.id;
+      const key=await WorkspaceStore.saveDetail(snapshot),url=new URL(location.href);url.search='';url.hash='';url.searchParams.set('detail',key);
+      if(child&&!child.closed){child.opener=null;child.location.replace(url.href);}
+      else showInfo('在新页面查看详情',`<p>浏览器拦截了新标签页，请点击下面的入口。</p><p><a class="button primary" href="${esc(url.href)}" target="_blank" rel="noopener">打开 ${esc(entry.name)} 的详情</a></p>`);
+    }catch(error){child?.close();showInfo('详情未能打开',`<p>${esc(error.message)}</p><p>当前报表仍保留在本页，可先导出保存。</p>`);}
+  }
+  function openSearchTermPage(term){
+    if(!state.dataset)return;const snapshot=captureWorkspace(),scope={market:state.dataset.markets[0],portfolio:[],campaign:[],match:[]};
+    const model=E.model(state.dataset.rows,scope,'term',state.config,'source'),entry=model.entries.find(e=>e.rows[0].termKey===term);if(!entry)return;
+    snapshot.diagnosis={...snapshot.diagnosis,dim:'term',scope,targetMode:'source',targetModes:['source'],search:term,tag:'全部',minClicks:0,minSpend:0,priority:false,sort:'clicks',dir:-1,page:1};openDetailPage(entry,snapshot);
+  }
   const reportLabel=()=>state.dataset?`${state.dataset.profile.format} 格式 · ${state.dataset.profile.attributionDays} 天归因`:'';
   const groupUnit=e=>e.breakdown.some(b=>b.unassignedPortfolio)?'分析分组':'商品';
   const sourceLabel=k=>{const f=state.dataset?.profile.fieldSources[k];return f?`${f.column} 列（${f.header}）`:'未提供';};
@@ -1811,11 +2264,12 @@ window.ReportUI=(()=>{
       if(k==='name'){let meta=e.dim==='term'?`${e.breakdown.length} 个${groupUnit(e)} · ${e.sourceCount} 个投放来源`:e.dim==='portfolio'?`${new Set(e.rows.map(r=>r.campaign)).size} 个广告活动`:e.dim==='campaign'?e.rows[0].portfolio:e.dim==='adgroup'?e.rows[0].campaign:state.targetMode==='text'?`${e.sourceCount} 个投放来源`:e.rows[0].adgroup+' · '+e.rows[0].match;return `<td><button class="name-button" data-detail="${esc(e.id)}">${esc(e.name)}</button>${e.isAsin?'<span class="tag asin">ASIN</span>':''}<div class="row-meta">${esc(meta)}</div></td>`;}
       if(k==='tags')return `<td class="tags-cell">${e.tags.map(tag).join('')}${e.breakdown.length>1?'<div class="row-meta">不同商品标签汇集</div>':''}</td>`;
       if(k==='advice')return `<td class="suggestion-cell">${esc(summaryAdvice(e))}</td>`;
-      return `<td${['spend','sales','acos'].includes(k)?' class="number-accent"':''}>${metricCell(e,k)}</td>`;
+      return `<td>${metricCell(e,k)}</td>`;
     }).join('')+`<td><button class="text-button" data-detail="${esc(e.id)}" aria-label="查看 ${esc(e.name)} 的详情">查看</button></td></tr>`).join(''):`<tr><td colspan="${visible.length+1}"><div class="empty-state"><h3>没有符合条件的结果</h3><p>试试减少筛选条件，或点击「重置」。</p></div></td></tr>`;
     $('rowSummary').textContent=`共 ${integer(total)} 项${total?` · 显示 ${integer((state.page-1)*state.pageSize+1)}–${integer(Math.min(state.page*state.pageSize,total))}`:''} · 金额：${JSON.parse(state.scope.market)[1]}`;
     $('pageInfo').textContent=`${state.page} / ${pages}`;$('prevPage').disabled=state.page<=1;$('nextPage').disabled=state.page>=pages;
     $('exportBtn').disabled=!total;
+    scheduleSave();
   }
   function settingsFields(){
     const pk=$('settingsScope').value,s=E.effectiveSettings(state.config,pk)||blankConfig().global;
@@ -1828,10 +2282,10 @@ window.ReportUI=(()=>{
     if(state.scope.portfolio.length===1){const r=state.dataset.rows.find(r=>r.market===state.scope.market&&r.portfolio===state.scope.portfolio[0]);if(r)$('settingsScope').value=r.portfolioKey;}
     settingsFields();$('settingsDialog').showModal();
   }
-  function saveConfig(){if(!state.demo){savedConfig=state.config;try{localStorage.setItem(storageKey,JSON.stringify(savedConfig));}catch{toast('设置本次有效；浏览器未允许保存到本机。');}}}
+  function saveConfig(){if(!state.demo){savedConfig=state.config;try{localStorage.setItem(storageKey,JSON.stringify(savedConfig));}catch{toast('设置本次有效；浏览器未允许保存到本机。');}channel?.postMessage({type:'config',config:state.config});}scheduleSave();}
   function resetPresentation(){state.dim='term';closeMulti();state.scope.portfolio=[];state.scope.campaign=[];state.scope.match=[];state.targetMode='source';state.targetModes=['source'];resetTableFilters(false);}
-  function resetTableFilters(render=true){state.tag='全部';state.search='';state.minClicks=0;state.minSpend=0;state.priority=false;state.page=1;state.sort='spend';state.dir=-1;$('searchInput').value='';$('minClicks').value='';$('minSpend').value='';$('priorityOnly').checked=false;if(render){renderTags();renderTable();}}
-  function installDataset(dataset,fileName,demo=false){state.dataset=dataset;state.fileName=fileName;state.demo=demo;state.config=demo?{global:{sampleClicks:10,redClicks:30,targetAcos:.25,redAcos:.45},overrides:{}}:savedConfig;state.scope.market=dataset.markets[0];state.annotations={};state.detailId=null;resetPresentation();syncBusinessFilters();refresh();}
+  function resetTableFilters(render=true){state.tag='全部';state.search='';state.minClicks=0;state.minSpend=0;state.priority=false;state.page=1;state.sort='clicks';state.dir=-1;$('searchInput').value='';$('minClicks').value='';$('minSpend').value='';$('priorityOnly').checked=false;if(render){renderTags();renderTable();}}
+  function installDataset(dataset,fileName,demo=false){if(!restoring&&!detailKey)persistenceReady=true;state.dataset=dataset;state.fileName=fileName;state.demo=demo;state.config=demo?{global:{sampleClicks:10,redClicks:30,targetAcos:.25,redAcos:.45},overrides:{}}:savedConfig;state.scope.market=dataset.markets[0];state.annotations={};state.detailId=null;resetPresentation();syncBusinessFilters();refresh();}
   function clearSearch(){state.dataset=null;state.demo=false;state.config=savedConfig;state.annotations={};state.scope.market='';resetPresentation();syncBusinessFilters();refresh();$('detailDialog').close();}
   function demo(){
     const headers=Object.values({...E.REQUIRED,...E.OPTIONAL});const data=[headers];
@@ -1846,12 +2300,15 @@ window.ReportUI=(()=>{
     library.demo(E.parseData(data));toast('已加载六类虚构示例，可查看详情中的跨报告参考。');
   }
   function openDetail(id){
-    const entry=state.model.entries.find(e=>e.id===id);if(!entry)return;state.detailId=id;renderDetail(entry);if(!$('detailDialog').open)$('detailDialog').showModal();
+    const entry=state.model.entries.find(e=>e.id===id);if(!entry)return;
+    if(entry.dim==='term'){openDetailPage(entry);return;}
+    state.detailId=id;renderDetail(entry);if(!$('detailDialog').open)$('detailDialog').showModal();
   }
+  function updateOpenDetail(){const entry=state.model?.entries.find(e=>e.id===state.detailId);if(entry&&(!$('detailPage').hidden||$('detailDialog').open))renderDetail(entry);}
   function renderDetail(e){
     const s=e.stats,c=e.currency;
     const metrics=[['广告花费',money(s.spend,c)],['归因销售额',money(s.sales,c)],['ACOS',s.sales===0&&s.spend>0?'无销售':pct(s.acos)],['点击 / 订单',integer(s.clicks)+' / '+integer(s.orders)],['订单转化率',pct(s.cvr)],['实际平均 CPC',money(s.cpc,c)]];
-    $('detailContent').innerHTML=`<div class="dialog-heading"><div><p class="eyebrow">${esc(E.DIMENSIONS[e.dim])}详情</p><h2>${esc(e.name)}</h2><p class="muted">${e.breakdown.length} 个${groupUnit(e)} · ${e.sourceCount} 个投放来源 · ${esc(c)}</p></div><button class="icon-button" data-close aria-label="关闭详情">×</button></div><div class="detail-metrics">${metrics.map(([label,value])=>`<div class="detail-metric"><small>${esc(label)}</small><strong>${esc(value)}</strong></div>`).join('')}</div>${e.breakdown.length>1?'<p class="context-warning">上方为整体汇总。下方按商品分别诊断，建议仅用于对应来源。</p>':''}${library.relatedMarkup(e.rows)}${e.breakdown.map((b,i)=>breakdownHTML(e,b,i)).join('')}<p class="read-only-note">结果基于本次报告与当前设置。原始文件未修改；相关性、备注和处理状态仅保留在当前分析中，可随导出保存。</p>`;
+    $('detailContent').innerHTML=`<div class="dialog-heading"><div><p class="eyebrow">${esc(E.DIMENSIONS[e.dim])}详情</p><h2>${esc(e.name)}</h2><p class="muted">${e.breakdown.length} 个${groupUnit(e)} · ${e.sourceCount} 个投放来源 · ${esc(c)}</p></div>${detailKey?'':'<button class="icon-button" data-close aria-label="关闭详情">×</button>'}</div><div class="detail-metrics">${metrics.map(([label,value])=>`<div class="detail-metric"><small>${esc(label)}</small><strong>${esc(value)}</strong></div>`).join('')}</div>${e.breakdown.length>1?'<p class="context-warning">上方为整体汇总。下方按商品分别诊断，建议仅用于对应来源。</p>':''}${window.ReportViz?`<section class="detail-section"><h3>搜索表现趋势</h3><p class="read-only-note">当前搜索词报告范围内的花费、销售额、点击与订单；不混入其他报告金额。</p>${ReportViz.performance(e.rows,{currency:c})}</section>`:""}${library.relatedMarkup(e.rows)}${e.breakdown.map((b,i)=>breakdownHTML(e,b,i)).join('')}<p class="read-only-note">结果基于本次报告与当前设置。原始文件未修改；相关性、备注和处理状态自动保存在本机，也可随导出保存。</p>`;
   }
   function breakdownHTML(e,b,index){
     const annotation=state.annotations[b.id]||{relevance:'待确认',status:'待处理',note:''};const v=E.scenarios(b.stats,b.settings),c=e.currency,isTerm=e.dim==='term';
@@ -1877,7 +2334,7 @@ window.ReportUI=(()=>{
     const mapping=['term','impressions','clicks','spend','sales','orders','units'].map(k=>`<div class="check-line">${esc(E.REQUIRED[k].replace(/^7天/,''))}：${esc(sourceLabel(k))}</div>`).join('');
     showInfo('数据检查',`<p>${esc(state.fileName)}</p><div class="check-line"><strong>${esc(reportLabel())}</strong> · ${p.dateMode==='daily'?'单列 Date / 日期，逐日记录':'开始日期 + 结束日期，范围记录'}</div><div class="check-line">读取记录 <strong>${integer(q.records)}</strong> 条 · 核心字段与非负数值校验通过</div><div class="check-line">完全重复记录 <strong>${q.duplicates}</strong> 条${q.duplicates?'，未自动删除；汇总包含这些记录，请检查是否重复导出。':'，未发现完全重复行。'}</div><div class="check-line">跨日期记录 <strong>${integer(q.intervals)}</strong> 条，按整段汇总；不会拆分成日趋势。</div><div class="check-line">零点击记录 <strong>${q.zeroClick}</strong> 条，零花费但有销售 <strong>${q.zeroSpendSales}</strong> 条。记录保留，分母为零显示“—”。</div><div class="check-line">空组合 / No Portfolio <strong>${q.blankPortfolios}</strong> 条${q.blankPortfolios?`，已按 ${q.unassignedCampaigns} 个广告活动隔离，避免混合不同商品；暂不判断潜力词和商品内 EXACT 覆盖。`:'。'}</div><div class="check-line">${q.markets} 个站点 / 币种分区；金额只在同一分区内汇总。</div><h3>本报告字段映射</h3>${mapping}<h3>计算与覆盖范围</h3><p>销售额、订单和销量均使用 ${p.attributionDays} 天归因字段。销售额构成：${esc(p.salesBasis)}。附加销量/销售额用于保留构成信息，不再加到总量，避免重复累计。账号类型来自批次设置；归因周期来自实际表头。</p><p>核心比率按汇总数据重算。ACOS 在有花费但无销售时显示“无销售”。无销售花费卡片统计销售额为零的原始记录花费，不等于汇总后无销售搜索词的花费。</p><p>同一批次可导入六类报告，各自汇总；同类报告替换旧文件。7 天与 14 天归因口径分别保留，不直接合并或按比例换算。本报告未提供当前竞价、预算、广告位加价和商品实时售价。</p><p>搜索词报告的展示量不一定等于后台完整广告展示量。<a href="https://advertising.amazon.com/help/G3HEFZYWZF84NPS9" target="_blank" rel="noopener noreferrer">查看亚马逊报告说明</a></p>`);
   }
-  function guide(){showInfo('使用说明',`<ol><li>先设置账号名称、类型和站点，再批量导入六类 SP 报告（XLSX / CSV）。按表头识别类型和归因周期；同类文件替换旧报告，其他报告保留。文件不会上传到服务器。</li><li>在「诊断设置」填写四项阈值。可以设置全局默认，也可为每个广告组合单独设定。</li><li>选择商品与分析维度。四个业务选择框均支持搜索、多选，勾选后点击「应用」；搜索不会清除已勾选项。商品、活动和匹配类型清空后表示不限制范围。同一框内满足任一选项，不同框之间同时满足。搜索词标签在所属商品内分别判断。</li><li>点击名称或「查看」，展开标签依据、数值测算和投放来源；搜索词支持相关性、备注及处理状态。</li><li>点击「导出分析」，保存当前筛选的全部结果、分商品建议、投放来源及诊断设置。</li></ol><p>「投放汇总」同时选择两种方式时，可切换查看；导出仅包含当前视图，避免重复累计。商品范围改变后，会保留仍有效的活动选择，并移除不属于该范围的活动。</p><h3>多报告联动</h3><p>“报告数据”可单独查看商品、活动、广告位、展示份额和投放的汇总、日期明细并导出。搜索词详情增加跨报告参考，可跳转到关联来源。各报告的花费和销售额不能相加。不同周期仅在交集内参考，不能直接对比主报告全周期；无交集只提示。份额和排名是账号级原值，不跨日平均；商品关系不代表搜索词业绩归属于某一 ASIN。现有诊断规则和商品基准仍只使用搜索词报告。</p><h3>标签规则</h3><p>点击不足 → 数据量不足；样本充足且有销售时，ACOS ≤ 目标 → 优秀，目标 &lt; ACOS &lt; 红线 → 有待优化，ACOS ≥ 红线 → 紧急调整。样本充足、有花费但无销售也归紧急调整。</p><p>点击不足但有订单且转化率高于所属商品整体基准 → 附加潜力标签；点击达到红线，且高 ACOS 或有花费无销售 → 附加低效标签。两项附加标签只适用于搜索词。</p><h3>数据与测算</h3><p>SC 样本采用 7 天归因，VC 样本采用 14 天归因；账号类型由批次指定，归因周期以表头识别。Date 是单日记录，开始/结束日期是时间范围。销售额、订单和销量必须来自同一周期，不把 14 天数据换算为 7 天。未分配组合记录按广告活动隔离，确认商品归属前不判断潜力词。</p><p>转化率按订单数 ÷ 点击量；先汇总基础指标，再计算比率。源文件中的 CTR、CPC、ACOS、ROAS 不直接平均。内部计算使用完整精度，页面显示两位小数。</p><p>潜力词基准始终是所属广告组合在本报告中的整体订单转化率，广告活动、匹配类型和表格筛选不会改变这一基准。</p><p>当前 CPC 与后台竞价并不相同。目标 CPC 及价格情景测算均假设历史销售效率不变；EXACT 来源缺失也不证明账户尚未建立该投放。</p><h3>本机保存</h3><p>真实报表的阈值设置保存在当前浏览器。导入的数据与备注保留在当前页面内，刷新或清除后需重新导入；请先导出需要保存的结果。示例是虚构数据，与真实报表的设置分开。</p>`);}
+  function guide(){showInfo('使用说明',`<ol><li>先设置账号名称、类型和站点，再批量导入六类 SP 报告（XLSX / CSV）。按表头识别类型和归因周期；同类文件替换旧报告，其他报告保留。文件不会上传到服务器。</li><li>在「诊断设置」填写四项阈值。可以设置全局默认，也可为每个广告组合单独设定。</li><li>选择商品与分析维度。四个业务选择框均支持搜索、多选，勾选后点击「应用」；搜索不会清除已勾选项。商品、活动和匹配类型清空后表示不限制范围。同一框内满足任一选项，不同框之间同时满足。搜索词标签在所属商品内分别判断。</li><li>点击搜索词名称或「查看」将在独立标签页打开详情，原列表保留。详情包括份额与排名组合图、每日表现、标签依据和投放来源；搜索词支持相关性、备注及处理状态。</li><li>点击「导出分析」，保存当前筛选的全部结果、分商品建议、投放来源及诊断设置。</li></ol><p>「投放汇总」同时选择两种方式时，可切换查看；导出仅包含当前视图，避免重复累计。商品范围改变后，会保留仍有效的活动选择，并移除不属于该范围的活动。</p><h3>多报告联动</h3><p>“报告数据”的商品、活动、日期、搜索等条件跨报告保留；不适用的匹配类型暂不应用。广告位默认按活动汇总，分别列出四个位置，缺失位置显示未提供。可单独查看各类报告的汇总、日期明细并导出。搜索词详情增加跨报告参考，可跳转到关联来源。各报告的花费和销售额不能相加。不同周期仅在交集内参考，不能直接对比主报告全周期；无交集只提示。份额和排名是账号级原值，不跨日平均；商品关系不代表搜索词业绩归属于某一 ASIN。现有诊断规则和商品基准仍只使用搜索词报告。</p><h3>标签规则</h3><p>点击不足 → 数据量不足；样本充足且有销售时，ACOS ≤ 目标 → 优秀，目标 &lt; ACOS &lt; 红线 → 有待优化，ACOS ≥ 红线 → 紧急调整。样本充足、有花费但无销售也归紧急调整。</p><p>点击不足但有订单且转化率高于所属商品整体基准 → 附加潜力标签；点击达到红线，且高 ACOS 或有花费无销售 → 附加低效标签。两项附加标签只适用于搜索词。</p><h3>数据与测算</h3><p>SC 样本采用 7 天归因，VC 样本采用 14 天归因；账号类型由批次指定，归因周期以表头识别。Date 是单日记录，开始/结束日期是时间范围。销售额、订单和销量必须来自同一周期，不把 14 天数据换算为 7 天。未分配组合记录按广告活动隔离，确认商品归属前不判断潜力词。</p><p>转化率按订单数 ÷ 点击量；先汇总基础指标，再计算比率。源文件中的 CTR、CPC、ACOS、ROAS 不直接平均。内部计算使用完整精度，页面显示两位小数。</p><p>潜力词基准始终是所属广告组合在本报告中的整体订单转化率，广告活动、匹配类型和表格筛选不会改变这一基准。</p><p>当前 CPC 与后台竞价并不相同。目标 CPC 及价格情景测算均假设历史销售效率不变；EXACT 来源缺失也不证明账户尚未建立该投放。</p><h3>本机保存</h3><p>真实报表的阈值设置保存在当前浏览器。导入的报表、筛选和备注会自动保存到本机数据库，显示“已保存”后刷新可恢复；清除本机数据或清理浏览器网站数据后需要重新导入。独立详情保存最多20份、保留7天。示例是虚构数据，与真实报表的设置分开。</p>`);}
   async function exportAnalysis(){
     if(!state.filtered.length)return;$('exportBtn').disabled=true;$('exportBtn').textContent='正在导出…';
     try{
@@ -1895,13 +2352,13 @@ window.ReportUI=(()=>{
     }catch(e){showInfo('导出未完成',`<p>${esc(e.message)}</p>`);}finally{$('exportBtn').disabled=!state.filtered.length;$('exportBtn').textContent='↓ 导出分析';}
   }
   $('uploadBtn').addEventListener('click',()=>library.beginImport());$('fileInput').addEventListener('change',e=>library.importFiles(e.target.files));$('demoBtn').addEventListener('click',demo);
-  $('clearBtn').addEventListener('click',()=>{library.clear();toast('已清除当前分析批次，诊断阈值保留。');});
+  $('clearBtn').addEventListener('click',async()=>{persistGeneration++;clearTimeout(persistTimer);restoring=true;saveStatus('正在清除本机数据…');try{await WorkspaceStore.clearAll();library.clear();persistDirty=false;persistError=false;channel?.postMessage({type:'cleared'});saveStatus('本机报表与详情缓存已清除');toast('已清除本机报表、备注与详情缓存，诊断阈值保留。');}catch(error){persistError=true;saveStatus(error.message,true);toast('清除未完成，当前数据已保留，请重试。');}finally{restoring=false;}});
   $('settingsBtn').addEventListener('click',openSettings);$('settingsScope').addEventListener('change',settingsFields);
-  $('settingsForm').addEventListener('submit',event=>{event.preventDefault();const s={sampleClicks:Number($('sampleClicks').value),redClicks:Number($('redClicks').value),targetAcos:Number($('targetAcos').value)/100,redAcos:Number($('redAcos').value)/100};const error=E.validateSettings(s);if(error){$('settingsError').textContent=error;return;}const pk=$('settingsScope').value;if(pk)state.config.overrides[pk]=s;else state.config.global=s;saveConfig();$('settingsDialog').close();refresh();if($('detailDialog').open&&state.detailId)openDetail(state.detailId);toast('阈值已保存，诊断结果已更新。');});
-  $('removeOverride').addEventListener('click',()=>{delete state.config.overrides[$('settingsScope').value];saveConfig();settingsFields();refresh();if($('detailDialog').open&&state.detailId)openDetail(state.detailId);toast('此商品已恢复全局默认阈值。');});
-  document.addEventListener('click',event=>{const closer=event.target.closest('[data-close]');if(closer)closer.closest('dialog').close();const detail=event.target.closest('[data-detail]');if(detail)openDetail(detail.dataset.detail);const cfg=event.target.closest('[data-config]');if(cfg){openSettings();$('settingsScope').value=cfg.dataset.config;settingsFields();}});
+  $('settingsForm').addEventListener('submit',event=>{event.preventDefault();const s={sampleClicks:Number($('sampleClicks').value),redClicks:Number($('redClicks').value),targetAcos:Number($('targetAcos').value)/100,redAcos:Number($('redAcos').value)/100};const error=E.validateSettings(s);if(error){$('settingsError').textContent=error;return;}const pk=$('settingsScope').value;if(pk)state.config.overrides[pk]=s;else state.config.global=s;saveConfig();$('settingsDialog').close();refresh();updateOpenDetail();toast('阈值已保存，诊断结果已更新。');});
+  $('removeOverride').addEventListener('click',()=>{delete state.config.overrides[$('settingsScope').value];saveConfig();settingsFields();refresh();updateOpenDetail();toast('此商品已恢复全局默认阈值。');});
+  document.addEventListener('click',event=>{const closer=event.target.closest('[data-close]');if(closer)closer.closest('dialog')?.close();const detail=event.target.closest('[data-detail]');if(detail)openDetail(detail.dataset.detail);const cfg=event.target.closest('[data-config]');if(cfg){openSettings();$('settingsScope').value=cfg.dataset.config;settingsFields();}});
   document.querySelectorAll('dialog').forEach(d=>d.addEventListener('click',e=>{if(e.target===d){const b=d.getBoundingClientRect();if(e.clientX<b.left||e.clientX>b.right||e.clientY<b.top||e.clientY>b.bottom)d.close();}}));
-  $('dimensionTabs').addEventListener('click',event=>{const b=event.target.closest('[data-dim]');if(!b)return;state.dim=b.dataset.dim;state.page=1;state.tag='全部';state.search='';$('searchInput').value='';refresh();});
+  $('dimensionTabs').addEventListener('click',event=>{const b=event.target.closest('[data-dim]');if(!b)return;state.dim=b.dataset.dim;state.sort='clicks';state.dir=-1;state.page=1;state.tag='全部';state.search='';$('searchInput').value='';refresh();});
   $('dimensionTabs').addEventListener('keydown',event=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;event.preventDefault();const tabs=[...document.querySelectorAll('[data-dim]')],i=tabs.findIndex(b=>b.dataset.dim===state.dim),n=event.key==='Home'?0:event.key==='End'?tabs.length-1:(i+(event.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;tabs[n].click();tabs[n].focus();});
   for(const [id,key,title,all]of [['portfolioFilter','portfolio','广告组合 / 商品','全部广告组合'],['campaignFilter','campaign','广告活动','全部广告活动'],['matchFilter','match','匹配类型','全部匹配类型']]){
     createMulti(id,title,all,()=>state.scope[key],values=>{state.scope[key]=values;state.page=1;syncBusinessFilters();refresh();});
@@ -1921,19 +2378,32 @@ window.ReportUI=(()=>{
   $('pageSize').addEventListener('change',e=>{state.pageSize=Number(e.target.value);state.page=1;renderTable();});$('prevPage').addEventListener('click',()=>{state.page--;renderTable();$('tableRegion').scrollTop=0;});$('nextPage').addEventListener('click',()=>{state.page++;renderTable();$('tableRegion').scrollTop=0;});
   $('columnPicker').innerHTML=columns.filter(([k])=>k!=='name').map(([k,l])=>`<label><input type="checkbox" data-column="${k}"${state.visible.has(k)?' checked':''}>${l}</label>`).join('');
   $('columnsBtn').addEventListener('click',()=>{$('columnPicker').hidden=!$('columnPicker').hidden;$('columnsBtn').setAttribute('aria-expanded',String(!$('columnPicker').hidden));});$('columnPicker').addEventListener('change',event=>{const k=event.target.dataset.column;if(!k)return;if(event.target.checked)state.visible.add(k);else state.visible.delete(k);renderTable();});
-  $('detailContent').addEventListener('input',event=>{const k=event.target.dataset.annotation;if(!k)return;const e=state.model.entries.find(e=>e.id===state.detailId),b=e?.breakdown[Number(event.target.dataset.bi)];if(!b)return;state.annotations[b.id]={relevance:'待确认',status:'待处理',note:'',...state.annotations[b.id],[k]:event.target.value};if(k==='relevance'){$('advice-'+event.target.dataset.bi).innerHTML=E.advice(b,state.annotations[b.id])?`<div class="advice">${esc(E.advice(b,state.annotations[b.id]))}</div>`:'<p>按当前规则，不主动建议调整。</p>';renderTable();}});
+  $('detailContent').addEventListener('input',event=>{const k=event.target.dataset.annotation;if(!k)return;const e=state.model.entries.find(e=>e.id===state.detailId),b=e?.breakdown[Number(event.target.dataset.bi)];if(!b)return;state.annotations[b.id]={relevance:'待确认',status:'待处理',note:'',...state.annotations[b.id],[k]:event.target.value};const patch={[b.id]:{[k]:event.target.value}};channel?.postMessage({type:'annotation',dataRevision,patch});if(detailKey)WorkspaceStore.patchWorkspaceAnnotations(dataRevision,patch).catch(error=>saveStatus(error.message,true));scheduleSave();if(k==='relevance'){$('advice-'+event.target.dataset.bi).innerHTML=E.advice(b,state.annotations[b.id])?`<div class="advice">${esc(E.advice(b,state.annotations[b.id]))}</div>`:'<p>按当前规则，不主动建议调整。</p>';renderTable();}});
   $('guideBtn').addEventListener('click',guide);$('qualityBtn').addEventListener('click',quality);$('exportBtn').addEventListener('click',exportAnalysis);
   document.addEventListener('dragenter',event=>{if([...event.dataTransfer.types].includes('Files')){event.preventDefault();dragDepth++;$('dropOverlay').hidden=false;}});document.addEventListener('dragover',event=>{if([...event.dataTransfer.types].includes('Files'))event.preventDefault();});document.addEventListener('dragleave',()=>{dragDepth=Math.max(0,dragDepth-1);if(!dragDepth)$('dropOverlay').hidden=true;});document.addEventListener('drop',event=>{event.preventDefault();dragDepth=0;$('dropOverlay').hidden=true;if(!$('uploadBtn').disabled)library.importFiles(event.dataTransfer.files);});
-  window.addEventListener('beforeunload',event=>{if(Object.keys(state.annotations).length){event.preventDefault();event.returnValue='';}});
+  window.addEventListener('beforeunload',event=>{if(library?.hasReports()&&(persistDirty||persistInFlight||persistError)){event.preventDefault();event.returnValue='';}});
+  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden'&&persistDirty)persistNow();});
   library=ReportUI.create({
-    createMulti,closePicker:closeMulti,info:showInfo,toast,clearSearch,refreshSearch:()=>{if(state.dataset)refresh();},
+    createMulti,closePicker:closeMulti,info:showInfo,toast,clearSearch,changed:scheduleSave,refreshSearch:()=>{if(state.dataset)refresh();},
     installSearch:(report,isDemo=false)=>installDataset(report,report.fileName,isDemo),
-    showSearchTerm:term=>{if(!state.dataset)return;resetPresentation();syncBusinessFilters();state.search=term;$('searchInput').value=term;refresh();const entry=state.model.entries.find(e=>e.rows[0].termKey===term);if(entry)openDetail(entry.id);},
+    showSearchTerm:openSearchTermPage,
     emptyMeta:text=>{$('fileMeta').textContent=text;if(library?.hasReports()&&!state.dataset){$('dataPill').textContent='已导入报告';$('dataPill').className='pill real';$('clearBtn').hidden=false;}},
     busy:value=>{document.body.classList.toggle('busy',value);closeMulti();for(const id of ['uploadBtn','demoBtn','clearBtn'])$(id).disabled=value;if(!value)$('uploadBtn').innerHTML='<span aria-hidden="true">＋</span> 导入报表';}
   });
-  $('detailContent').addEventListener('click',event=>{const b=event.target.closest('[data-reference-jump]');const entry=state.model?.entries.find(e=>e.id===state.detailId);if(b&&entry)library.jump(b.dataset.referenceJump,entry.rows);});
-  syncBusinessFilters();refresh();
+  $('detailContent').addEventListener('click',event=>{const b=event.target.closest('[data-reference-jump]');const entry=state.model?.entries.find(e=>e.id===state.detailId);if(b&&entry){if(detailKey)leaveDetail();library.jump(b.dataset.referenceJump,entry.rows);}});
+  $('saveRetry').addEventListener('click',persistNow);
+  $('detailBackBtn').addEventListener('click',leaveDetail);
+  $('detailReturnBtn').addEventListener('click',()=>showFullDetail(detailOriginId));
+  $('detailExportBtn').addEventListener('click',async()=>{const original=state.filtered,entry=state.model?.entries.find(e=>e.id===state.detailId);if(!entry)return;state.filtered=[entry];try{await exportAnalysis();}finally{state.filtered=original;}});
+  $('detailCloseBtn').addEventListener('click',()=>{window.close();});
+  $('detailHomeLink').href=location.pathname||'./';
+  if(channel)channel.onmessage=event=>{
+    const message=event.data;
+    if(message?.type==='annotation'&&message.dataRevision===dataRevision){for(const [id,patch] of Object.entries(message.patch||{}))state.annotations[id]={...state.annotations[id],...patch};const entry=state.model?.entries.find(e=>e.id===state.detailId);if(entry){$('detailContent').querySelectorAll('[data-annotation]').forEach(el=>{const b=entry.breakdown[Number(el.dataset.bi)],value=b&&state.annotations[b.id]?.[el.dataset.annotation];if(value!==undefined&&el!==document.activeElement)el.value=value;});entry.breakdown.forEach((b,i)=>{const el=$('advice-'+i);if(el){const advice=E.advice(b,state.annotations[b.id]);el.innerHTML=advice?`<div class="advice">${esc(advice)}</div>`:'<p>按当前规则，不主动建议调整。</p>';}});}if(state.model)renderTable();scheduleSave();}
+    if(message?.type==='config'&&!state.demo){savedConfig=message.config;state.config=message.config;if(state.dataset){refresh();updateOpenDetail();}scheduleSave();}
+    if(message?.type==='cleared'){persistenceReady=false;clearTimeout(persistTimer);persistDirty=false;persistError=false;saveStatus('本机缓存已在另一页面清除；此页停止自动保存');$('saveRetry').hidden=true;}
+  };
+  syncBusinessFilters();refresh();restoreWorkspace();
   // Feature-detected WebMCP: this shares the same view and settings actions as the UI.
   if(document.modelContext?.registerTool){
     const tools=[{name:'read_ad_diagnostic_summary',title:'读取广告诊断概览',description:'读取当前报表业务范围的汇总指标和表格筛选结果数量。不会修改页面。',inputSchema:{type:'object',properties:{},additionalProperties:false},annotations:{readOnlyHint:true,untrustedContentHint:true},execute:input=>{if(!input||Object.keys(input).length)throw new Error('不接受参数。');return {hasData:!!state.dataset,isDemo:state.demo,dimension:E.DIMENSIONS[state.dim],scope:state.scope,targetModes:state.targetModes,targetMode:state.targetMode,stats:state.model?.stats||null,filteredCount:state.filtered.length,library:library.summary()};}},{name:'set_ad_diagnostic_dimension',title:'切换广告分析维度',description:'将页面切换到指定分析维度并更新表格，不更改报表或诊断阈值。',inputSchema:{type:'object',properties:{dimension:{type:'string',enum:Object.keys(E.DIMENSIONS)}},required:['dimension'],additionalProperties:false},annotations:{readOnlyHint:false,untrustedContentHint:false},execute:input=>{if(!input||Object.keys(input).some(k=>k!=='dimension')||!Object.hasOwn(E.DIMENSIONS,input.dimension))throw new Error('分析维度无效。');state.dim=input.dimension;resetTableFilters(false);refresh();return {dimension:E.DIMENSIONS[state.dim],count:state.model?.entries.length||0};}}];
