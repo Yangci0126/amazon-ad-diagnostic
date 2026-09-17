@@ -56,7 +56,7 @@
 <body>
   <a class="skip-link" href="#analysis">跳到分析表格</a>
   <header class="topbar">
-    <a class="brand" href="./" aria-label="广告诊断台首页"><span class="brandmark" aria-hidden="true"><i></i><i></i><i></i></span><span>广告诊断台<span class="brand-sub">SP · 多报告分析 · v1.4</span></span></a>
+    <a class="brand" href="./" aria-label="广告诊断台首页"><span class="brandmark" aria-hidden="true"><i></i><i></i><i></i></span><span>广告诊断台<span class="brand-sub">SP · 多报告分析 · v1.4.1</span></span></a>
     <div class="header-actions"><span class="local-note"><span aria-hidden="true">◈</span> 数据仅在本机处理</span><button id="guideBtn" class="button quiet">使用说明</button><button id="settingsBtn" class="button">诊断设置</button><button id="uploadBtn" class="button primary"><span aria-hidden="true">＋</span> 导入报表</button></div>
     <input type="file" id="fileInput" accept=".xlsx,.csv" multiple hidden>
   </header>
@@ -843,7 +843,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
 /* Pure, deterministic calculations. No network or UI side effects. */
 (function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.AdEngine=api;})(typeof globalThis!=='undefined'?globalThis:this,function(){
   'use strict';
-  const VERSION='1.4.0';
+  const VERSION='1.4.1';
   const REQUIRED={start:'开始日期',end:'结束日期',portfolio:'广告组合名称',currency:'货币',campaign:'广告活动名称',adgroup:'广告组名称',country:'国家/地区',target:'投放',match:'匹配类型',term:'客户搜索词',impressions:'展示量',clicks:'点击量',spend:'花费',sales:'7天总销售额',orders:'7天总订单数(#)',units:'7天总销售量(#)'};
   const OPTIONAL={skuUnits:'7天内广告SKU销售量(#)',otherUnits:'7天内其他SKU销售量(#)',skuSales:'7天内广告SKU销售额',otherSales:'7天内其他SKU销售额'};
   const NUMERIC=['impressions','clicks','spend','sales','orders','units','skuUnits','otherUnits','skuSales','otherSales'];
@@ -855,6 +855,42 @@ https://github.com/nodeca/pako/blob/main/LICENSE
   const clean=x=>String(x??'').trim();
   const normalize=x=>clean(x).toLowerCase();
   const header=x=>clean(x).replace(/[\s\uFEFF]/g,'').replace(/（/g,'(').replace(/）/g,')').toLowerCase();
+  const MONEY_KEYS=new Set(['spend','sales','skuSales','otherSales','budget']);
+  const CURRENCY_SIGNS={
+    '$':['USD','CAD','MXN','AUD','SGD','NZD','HKD','TWD'],
+    'A$':['AUD'],'AU$':['AUD'],'US$':['USD'],'C$':['CAD'],'CA$':['CAD'],
+    'NZ$':['NZD'],'S$':['SGD'],'SG$':['SGD'],'HK$':['HKD'],'NT$':['TWD'],'MX$':['MXN'],'R$':['BRL'],
+    '€':['EUR'],'£':['GBP'],'¥':['JPY','CNY'],'₹':['INR'],'₽':['RUB'],'₺':['TRY'],'₩':['KRW']
+  };
+  const CURRENCY_MARKER='(?:[A-Z]{3}\\s*[$€£¥₹₽₺₩]?|(?:AU|US|CA|NZ|SG|HK|NT|MX|A|C|S|R)\\s*\\$|[$€£¥₹₽₺₩])';
+  const CURRENCY_PREFIX=new RegExp('^('+CURRENCY_MARKER+')\\s*','i'),CURRENCY_SUFFIX=new RegExp('\\s*('+CURRENCY_MARKER+')$','i');
+  function currencyMarkerMatches(marker,currency){
+    const token=marker.replace(/\s/g,'').toUpperCase(),code=clean(currency).toUpperCase();
+    if(token===code)return true;
+    const compound=token.match(/^([A-Z]{3})([$€£¥₹₽₺₩])$/);
+    if(compound)return compound[1]===code&&!!CURRENCY_SIGNS[compound[2]]?.includes(code);
+    return !!CURRENCY_SIGNS[token]?.includes(code);
+  }
+  // Parse source values, not Excel display formatting. Currency marks only belong on money columns.
+  function numberValue(value,k,currency){
+    if(value==null||clean(value)===''||/^(?:-|—|--|n\/a|not available)$/i.test(clean(value)))return null;
+    if(typeof value==='number')return Number.isFinite(value)?value:NaN;
+    let text=clean(value).replace(/[\u00a0\u202f]/g,' '),percent=false;
+    if(text.endsWith('%')){percent=true;text=text.slice(0,-1).trim();}
+    if(percent&&!['share','topShare'].includes(k))return NaN;
+    if(MONEY_KEYS.has(k)){
+      const prefix=text.match(CURRENCY_PREFIX),suffix=text.match(CURRENCY_SUFFIX);
+      if(prefix&&suffix)return NaN;
+      const mark=prefix||suffix;
+      if(mark){
+        if(!currencyMarkerMatches(mark[1],currency))return NaN;
+        text=(prefix?text.slice(prefix[0].length):text.slice(0,-suffix[0].length)).trim();
+      }
+    }
+    if(text.includes(',')){if(!/^\d{1,3}(?:,\d{3})+(?:\.\d+)?$/.test(text))return NaN;text=text.replace(/,/g,'');}
+    if(!/^(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?$/i.test(text))return NaN;
+    return Number(text)/(percent?100:1);
+  }
   const ALIASES={start:['开始日期','Start Date'],end:['结束日期','End Date'],date:['日期','Date'],portfolio:['广告组合名称','Portfolio name'],currency:['货币','Currency'],campaign:['广告活动名称','Campaign Name'],adgroup:['广告组名称','Ad Group Name'],country:['国家/地区','Country','Country/Region'],target:['投放','Targeting'],match:['匹配类型','Match Type'],term:['客户搜索词','Customer Search Term'],impressions:['展示量','Impressions'],clicks:['点击量','Clicks'],spend:['花费','Spend']};
   function columnName(index){let s='';for(index++;index>0;index=Math.floor((index-1)/26))s=String.fromCharCode(65+(index-1)%26)+s;return s;}
   function schema(rawHeaders){
@@ -888,7 +924,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
       const line=matrix[i];if(!line||line.every(v=>v==null||v===''))continue;
       const r={line:i+1};let bad=false;
       for(const k of Object.keys({...REQUIRED,...OPTIONAL})){const v=indices[k]<0?undefined:line[indices[k]];
-        if(NUMERIC.includes(k)){if(v==null||clean(v)===''){if(OPTIONAL[k]){r[k]=0;continue;}issues.push(`第 ${i+1} 行：${fieldLabel(k)}为空`);bad=true;continue;}const n=typeof v==='number'?v:Number(clean(v).replace(/,/g,''));if(!Number.isFinite(n)||n<0||(COUNT_KEYS.includes(k)&&!Number.isInteger(n))){issues.push(`第 ${i+1} 行：${fieldLabel(k)}不是有效的非负${COUNT_KEYS.includes(k)?'整数':'数值'}`);bad=true;}r[k]=n;}
+        if(NUMERIC.includes(k)){if(v==null||clean(v)===''){if(OPTIONAL[k]){r[k]=0;continue;}issues.push(`第 ${i+1} 行：${fieldLabel(k)}为空`);bad=true;continue;}const n=numberValue(v,k,line[indices.currency]);if(n===null||!Number.isFinite(n)||n<0||(COUNT_KEYS.includes(k)&&!Number.isInteger(n))){issues.push(`第 ${i+1} 行：${fieldLabel(k)}不是有效的非负${COUNT_KEYS.includes(k)?'整数':'数值'}`);bad=true;}r[k]=n;}
         else if(k==='start'||k==='end'){r[k]=dateValue(v);if(!r[k]){issues.push(`第 ${i+1} 行：日期格式无效`);bad=true;}}
         else r[k]=clean(v);
       }
@@ -966,7 +1002,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
     return (low?'已达到低效红线。':'')+'先标记该词与商品的相关性：不相关时评估否定；强相关时'+(low?'优先检查页面和变体匹配，并控制消耗。':'评估降低投放竞价或改善页面。');
   }
   function sources(rows){return [...group(rows,r=>key(r.portfolioKey,r.campaign,r.adgroup,r.targetKey,r.match))].map(([id,rs])=>({id,...rs[0],rows:rs,stats:aggregate(rs)})).sort((a,b)=>b.stats.spend-a.stats.spend);}
-  return {VERSION,REQUIRED,OPTIONAL,TAGS,DIMENSIONS,key,normalize,dateValue,schema,isReportHeaders,parseData,aggregate,validateSettings,effectiveSettings,diagnose,model,scenarios,advice,sources};
+  return {VERSION,REQUIRED,OPTIONAL,TAGS,DIMENSIONS,key,normalize,dateValue,numberValue,schema,isReportHeaders,parseData,aggregate,validateSettings,effectiveSettings,diagnose,model,scenarios,advice,sources};
 });
 
 </script>
@@ -1009,7 +1045,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
     IT:['意大利','義大利','IT','ITA','Italy','Italia'],ES:['西班牙','ES','ESP','Spain','España'],
     NL:['荷兰','荷蘭','NL','NLD','Netherlands'],SE:['瑞典','SE','SWE','Sweden'],PL:['波兰','波蘭','PL','POL','Poland'],
     BE:['比利时','比利時','BE','BEL','Belgium'],IE:['爱尔兰','愛爾蘭','IE','IRL','Ireland'],
-    JP:['日本','JP','JPN','Japan'],AU:['澳大利亚','澳大利亞','AU','AUS','Australia'],
+    JP:['日本','JP','JPN','Japan'],AU:['澳大利亚','澳大利亞','澳洲','AU','AUS','Australia'],
     IN:['印度','IN','IND','India'],SG:['新加坡','SG','SGP','Singapore'],
     AE:['阿联酋','阿聯酋','阿拉伯联合酋长国','AE','ARE','UAE','United Arab Emirates'],
     SA:['沙特阿拉伯','沙特','SA','SAU','Saudi Arabia'],TR:['土耳其','TR','TUR','Turkey','Türkiye'],
@@ -1071,17 +1107,6 @@ https://github.com/nodeca/pako/blob/main/LICENSE
     if(!mon)return null;
     return E.dateValue(`${m[3]}-${mon}-${isMonthFirst?m[2]:m[1]}`);
   }
-  function numberValue(value,k){
-    if(value==null||clean(value)===''||/^(?:-|—|--|n\/a|not available)$/i.test(clean(value)))return null;
-    if(typeof value==='number')return Number.isFinite(value)?value:NaN;
-    let text=clean(value).replace(/[\u00a0\u202f]/g,' '),percent=false;
-    if(text.endsWith('%')){percent=true;text=text.slice(0,-1).trim();}
-    if(percent&&!['share','topShare'].includes(k))return NaN;
-    text=text.replace(/^(?:[A-Z]{3}\s*|[$€£¥₹₽₺₩]\s*)/i,'').replace(/\s*(?:[A-Z]{3}|[$€£¥₹₽₺₩])$/i,'').trim();
-    if(/,/.test(text)){if(!/^\d{1,3}(?:,\d{3})+(?:\.\d+)?$/.test(text))return NaN;text=text.replace(/,/g,'');}
-    if(!/^(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?$/i.test(text))return NaN;
-    return Number(text)/(percent?100:1);
-  }
   function schema(rawHeaders){
     const headers=(rawHeaders||[]).map(header),seen=new Map(),indices={},fieldSources={};
     headers.forEach((h,i)=>{if(!h)return;if(seen.has(h))throw new Error(`存在重复表头：${clean(rawHeaders[i])}（${columnName(seen.get(h))} 列与 ${columnName(i)} 列）。请保留一列。`);seen.set(h,i);});
@@ -1129,7 +1154,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
         if(['country','date'].includes(k))continue;
         const value=indices[k]<0?null:line[indices[k]];
         if(NUMERIC.includes(k)){
-          r[k]=numberValue(value,k);
+          r[k]=E.numberValue(value,k,line[indices.currency]);
           if(r[k]===null){if(required.has(k))issue(`${label(k)}为空`);continue;}
           if(!Number.isFinite(r[k])||r[k]<0||(COUNTS.has(k)&&!Number.isInteger(r[k]))||(['share','topShare'].includes(k)&&r[k]>1)||(k==='rank'&&r[k]<1))issue(`${label(k)}不是有效的${['share','topShare'].includes(k)?'0% 至 100% 份额':COUNTS.has(k)?'非负整数':'非负数值'}`);
         }else if(k==='start'||k==='end'){r[k]=dateValue(value);if(!r[k])issue(`${label(k)}日期格式无效`);}
